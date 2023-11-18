@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.speedify.feature_bengkel.presentation.BengkelHomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_bengkel_home" />
+
+    <fragment
+        android:id="@+id/navigation_education"
+        android:name="com.example.speedify.feature_education.presentation.EducationFragment"
+        android:label="@string/title_education"
+        tools:layout="@layout/fragment_education" />
+
+    <fragment
+        android:id="@+id/navigation_consultation"
+        android:name="com.example.speedify.feature_consultation.presentation.ConsultationFragment"
+        android:label="@string/title_consultation"
+        tools:layout="@layout/fragment_consultation" />
+
+    <fragment
+        android:id="@+id/navigation_activity"
+        android:name="com.example.speedify.feature_activity.presentation.ActivityFragment"
+        android:label="@string/title_activity"
+        tools:layout="@layout/fragment_activity" />
+
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.example.speedify.feature_setting.presentation.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>
