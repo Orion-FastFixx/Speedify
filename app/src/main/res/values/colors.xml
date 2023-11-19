@@ -6,4 +6,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="iguanaGreen25">#4079AC78</color>
+    <color name="quick_silver">#FFA4A4A4</color>
+    <color name="dim_gray">#FF6B6D6D</color>
+    <color name="silver_sand">#FFC4C4C4</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_grey">#FFb5b5b5</color>
 </resources>
