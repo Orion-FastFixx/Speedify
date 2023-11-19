@@ -2,9 +2,9 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_checked="true"
-        android:color="@color/mughalGreen80"/>
+        android:color="@color/cinnabar"/>
 
     <item android:state_checked="false"
-        android:color="@color/davysGrey"/>
+        android:color="@color/american_silver"/>
 
 </selector>
