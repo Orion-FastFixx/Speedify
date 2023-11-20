@@ -5,6 +5,11 @@
     <string name="title_consultation">Konsultasi</string>
     <string name="title_activity">Aktivitas</string>
     <string name="title_setting">Setting</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="card_one_review_value">(%1$s)</string>
+    <string name="card_two_review_value">(%1$s)</string>
+    <string name="card_two_distance_value">(%1$s)</string>
+    <string name="card_two_price_value">(%1$s)</string>
+    <string name="dummy_image">Dummy Image</string>
+    <string name="icon">Icon</string>
+    <string name="query_hint">Cari Bengkel</string>
 </resources>
