@@ -9,4 +9,7 @@ interface BengkelRepository {
 
     suspend fun getALlPromotion(): LiveData<ResultState<List<PromotionEntity>>>
     suspend fun getAllBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>>
+    suspend fun getNearestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>>
+    suspend fun getTheBestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>>
+    suspend fun getAllBengkelMotor(): LiveData<ResultState<List<BengkelEntity>>>
 }

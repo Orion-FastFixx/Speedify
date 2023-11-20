@@ -42,7 +42,8 @@ class BengkelHomeViewModel @Inject constructor(
                             promotion = it.data
                         )
 
-                        getAllBengkelMobil()
+                        getNearestBengkelMobil()
+
                     }
 
                     is ResultState.Error -> {
@@ -56,9 +57,9 @@ class BengkelHomeViewModel @Inject constructor(
         }
     }
 
-    fun getAllBengkelMobil() {
+    fun getNearestBengkelMobil() {
         viewModelScope.launch {
-            useCases.getAllBengkelMobil().asFlow().collect() {
+            useCases.getNearestBengkelMobil().asFlow().collect() {
                 when (it) {
                     is ResultState.Loading -> {
                         _bengkelState.value = _bengkelState.value.copy(
@@ -71,7 +72,39 @@ class BengkelHomeViewModel @Inject constructor(
                         _bengkelState.value = _bengkelState.value.copy(
                             isLoading = false,
                             error = null,
-                            bengkelMobil = it.data
+                            nearestBengkelMobil = it.data
+                        )
+
+                        getTheBestBengkelMobil()
+                    }
+
+                    is ResultState.Error -> {
+                        _bengkelState.value = _bengkelState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getTheBestBengkelMobil() {
+        viewModelScope.launch {
+            useCases.getTheBestBengkelMobil().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _bengkelState.value = _bengkelState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _bengkelState.value = _bengkelState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            theBestBengkelMobil = it.data
                         )
                     }
 

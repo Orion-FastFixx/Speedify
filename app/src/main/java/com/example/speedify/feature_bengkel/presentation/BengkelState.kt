@@ -7,5 +7,6 @@ data class BengkelState(
     val isLoading: Boolean = true,
     val error: String? = null,
     val promotion: List<PromotionEntity>? = null,
-    val bengkelMobil: List<BengkelEntity>? = null,
+    val nearestBengkelMobil: List<BengkelEntity>? = null,
+    val theBestBengkelMobil: List<BengkelEntity>? = null,
 )

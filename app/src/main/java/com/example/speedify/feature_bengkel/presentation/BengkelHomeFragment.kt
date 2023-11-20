@@ -51,10 +51,10 @@ class BengkelHomeFragment : Fragment() {
             state.promotion?.let {
                 promotionAdapter.setItems(it)
             }
-            state.bengkelMobil?.let {
+            state.nearestBengkelMobil?.let {
                 sectionOneAdapter.setItems(it)
             }
-            state.bengkelMobil?.let {
+            state.theBestBengkelMobil?.let {
                 sectionTwoAdapter.setItems(it)
             }
         }
