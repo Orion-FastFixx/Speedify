@@ -6,6 +6,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="iguanaGreen25">#4079AC78</color>
+    <color name="primary">#EC3D3D</color>
+    <color name="second">#F2F2F2</color>
+    <color name="tertiary">#252629</color>
     <color name="quick_silver">#FFA4A4A4</color>
     <color name="dim_gray">#FF6B6D6D</color>
     <color name="silver_sand">#FFC4C4C4</color>

@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_consultation"
-        android:name="com.example.speedify.feature_consultation.presentation.ConsultationFragment"
+        android:name="com.example.speedify.feature_consultation.presentation.presentation.ConsultationFragment"
         android:label="@string/title_consultation"
         tools:layout="@layout/fragment_consultation" />
 
