@@ -1,4 +1,4 @@
-package com.example.speedify.feature_consultation.presentation.presentation
+package com.example.speedify.feature_consultation.presentation
 
 import android.os.Bundle
 import android.content.ContentValues.TAG
@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentTersediaBinding
-import com.example.speedify.feature_consultation.presentation.presentation.adapter.MontirAdapter
-import com.example.speedify.feature_consultation.presentation.presentation.adapter.MyViewPagerAdapter
-import com.example.speedify.feature_consultation.presentation.presentation.model.ConsultationViewModel
+import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
+import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,7 +29,7 @@ class TersediaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTersediaBinding.inflate(inflater, container, false)
 
         val state = viewModel.montirState.value

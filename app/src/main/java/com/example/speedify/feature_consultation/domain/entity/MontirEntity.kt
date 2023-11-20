@@ -1,4 +1,4 @@
-package com.example.speedify.feature_consultation.presentation.domain.entity
+package com.example.speedify.feature_consultation.domain.entity
 
 import androidx.annotation.DrawableRes
 import com.example.speedify.R

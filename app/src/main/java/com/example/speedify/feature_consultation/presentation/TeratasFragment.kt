@@ -1,4 +1,4 @@
-package com.example.speedify.feature_consultation.presentation.presentation
+package com.example.speedify.feature_consultation.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
