@@ -5,6 +5,6 @@
         android:color="@color/cinnabar"/>
 
     <item android:state_checked="false"
-        android:color="@color/american_silver"/>
+        android:color="@color/dim_gray"/>
 
 </selector>
