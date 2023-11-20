@@ -23,7 +23,43 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
         liveData {
             try {
                 val response = BengkelDataSource.getAllBengkelMobil()
-                emit(ResultState.Success(response))
+                val filteredResponse = response.filter { it.spesialisasi_bengkel == "Mobil" }
+                emit(ResultState.Success(filteredResponse))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getNearestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>> =
+        liveData {
+            try {
+                val response = BengkelDataSource.getAllBengkelMobil()
+                val filteredResponse =
+                    response.filter { it.spesialisasi_bengkel == "Mobil" && it.lokasi.toDouble() < 3.0 }
+                emit(ResultState.Success(filteredResponse))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+
+            }
+        }
+
+    override suspend fun getTheBestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>> =
+        liveData {
+            try {
+                val response = BengkelDataSource.getAllBengkelMobil()
+                val filteredResponse = response.filter { it.spesialisasi_bengkel == "Mobil" && it.rating.toDouble() >= 4.5 }
+                emit(ResultState.Success(filteredResponse))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getAllBengkelMotor(): LiveData<ResultState<List<BengkelEntity>>> =
+        liveData {
+            try {
+                val response = BengkelDataSource.getAllBengkelMobil()
+                val filteredResponse = response.filter { it.spesialisasi_bengkel == "Motor" }
+                emit(ResultState.Success(filteredResponse))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }

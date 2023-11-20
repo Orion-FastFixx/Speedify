@@ -1,9 +1,9 @@
-package com.example.speedify.feature_consultation.presentation.presentation.adapter
+package com.example.speedify.feature_consultation.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.CardMontirBinding
-import com.example.speedify.feature_consultation.presentation.domain.entity.MontirEntity
+import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
 

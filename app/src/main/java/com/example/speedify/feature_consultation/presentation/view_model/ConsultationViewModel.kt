@@ -1,11 +1,11 @@
-package com.example.speedify.feature_consultation.presentation.presentation.model
+package com.example.speedify.feature_consultation.presentation.view_model
 
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.example.speedify.feature_consultation.presentation.domain.use_case.MontirUseCase
-import com.example.speedify.feature_consultation.presentation.presentation.MontirState
+import com.example.speedify.feature_consultation.domain.use_case.MontirUseCase
+import com.example.speedify.feature_consultation.presentation.MontirState
 import com.example.speedify.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +21,10 @@ class ConsultationViewModel @Inject constructor(
 
     private val _montirState = MutableStateFlow(MontirState())
     val montirState = _montirState.asStateFlow()
+
+    init {
+        getAllMontir()
+    }
 
     fun getAllMontir() {
         viewModelScope.launch {
