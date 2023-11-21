@@ -1,4 +1,4 @@
-package com.example.speedify.feature_bengkel.presentation
+package com.example.speedify.feature_bengkel.presentation.home
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.example.speedify.databinding.FragmentBengkelHomeBinding
 import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionOneAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionTwoAdapter
+import com.example.speedify.feature_bengkel.presentation.home.view_model.BengkelHomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

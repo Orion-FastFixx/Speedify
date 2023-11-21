@@ -1,9 +1,10 @@
-package com.example.speedify.feature_bengkel.presentation
+package com.example.speedify.feature_bengkel.presentation.home.view_model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
+import com.example.speedify.feature_bengkel.presentation.home.BengkelState
 import com.example.speedify.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.speedify.feature_bengkel.presentation.BengkelHomeFragment"
+        android:name="com.example.speedify.feature_bengkel.presentation.home.BengkelHomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_bengkel_home" />
 

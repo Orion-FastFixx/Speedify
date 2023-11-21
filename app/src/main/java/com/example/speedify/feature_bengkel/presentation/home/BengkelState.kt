@@ -1,4 +1,4 @@
-package com.example.speedify.feature_bengkel.presentation
+package com.example.speedify.feature_bengkel.presentation.home
 
 import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
