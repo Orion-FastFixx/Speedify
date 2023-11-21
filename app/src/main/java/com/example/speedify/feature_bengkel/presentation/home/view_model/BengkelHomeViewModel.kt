@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
-import com.example.speedify.feature_bengkel.presentation.home.BengkelState
+import com.example.speedify.feature_bengkel.presentation.home.BengkelHomeState
 import com.example.speedify.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,8 @@ class BengkelHomeViewModel @Inject constructor(
     private val useCases: UseCasesBengkel
 ) : ViewModel() {
 
-    private val _bengkelState = MutableStateFlow(BengkelState())
-    val bengkelState = _bengkelState.asStateFlow()
+    private val _bengkelHomeState = MutableStateFlow(BengkelHomeState())
+    val bengkelState = _bengkelHomeState.asStateFlow()
 
     init {
         getAllPromotion()
@@ -30,14 +30,14 @@ class BengkelHomeViewModel @Inject constructor(
             useCases.getAllPromotion().asFlow().collect() {
                 when (it) {
                     is ResultState.Loading -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = true,
                             error = null
                         )
                     }
 
                     is ResultState.Success -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = null,
                             promotion = it.data
@@ -48,7 +48,7 @@ class BengkelHomeViewModel @Inject constructor(
                     }
 
                     is ResultState.Error -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = it.error ?: "An error occurred"
                         )
@@ -63,14 +63,14 @@ class BengkelHomeViewModel @Inject constructor(
             useCases.getNearestBengkelMobil().asFlow().collect() {
                 when (it) {
                     is ResultState.Loading -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = true,
                             error = null
                         )
                     }
 
                     is ResultState.Success -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = null,
                             nearestBengkelMobil = it.data
@@ -80,7 +80,7 @@ class BengkelHomeViewModel @Inject constructor(
                     }
 
                     is ResultState.Error -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = it.error ?: "An error occurred"
                         )
@@ -95,14 +95,14 @@ class BengkelHomeViewModel @Inject constructor(
             useCases.getTheBestBengkelMobil().asFlow().collect() {
                 when (it) {
                     is ResultState.Loading -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = true,
                             error = null
                         )
                     }
 
                     is ResultState.Success -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = null,
                             theBestBengkelMobil = it.data
@@ -110,7 +110,7 @@ class BengkelHomeViewModel @Inject constructor(
                     }
 
                     is ResultState.Error -> {
-                        _bengkelState.value = _bengkelState.value.copy(
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = it.error ?: "An error occurred"
                         )
