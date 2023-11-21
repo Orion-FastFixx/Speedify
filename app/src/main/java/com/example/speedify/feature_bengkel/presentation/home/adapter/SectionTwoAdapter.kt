@@ -17,6 +17,12 @@ class SectionTwoAdapter :
         }
     }
 
+    private lateinit var onItemClickCallback: PromotionAdapter.OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: PromotionAdapter.OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =
         ItemCardBengkelOneBinding.inflate(inflater, container, false)
 
