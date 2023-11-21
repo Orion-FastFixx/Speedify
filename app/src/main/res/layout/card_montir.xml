@@ -30,8 +30,11 @@
                 android:layout_width="70sp"
                 android:layout_height="70sp"
                 android:layout_gravity="clip_horizontal"
+                android:src="@drawable/montir2"
                 android:background="@drawable/ellipse"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:outlineProvider="background"
+                android:clipToOutline="true"/>
 
             <LinearLayout
                 android:id="@+id/layout5"

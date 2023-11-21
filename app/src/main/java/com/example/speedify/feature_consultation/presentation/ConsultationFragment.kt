@@ -13,7 +13,9 @@ import com.example.speedify.feature_consultation.presentation.adapter.MontirView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton.OnChangedCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ConsultationFragment : Fragment() {
 
     private lateinit var viewPagerConsul: ViewPager2

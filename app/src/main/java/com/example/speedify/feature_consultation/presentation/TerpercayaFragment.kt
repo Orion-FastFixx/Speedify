@@ -1,6 +1,5 @@
 package com.example.speedify.feature_consultation.presentation
 
-import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentTerpercayaBinding
-import com.example.speedify.feature_consultation.presentation.adapter.Montir2Adapter
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
 import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TerpercayaFragment : Fragment() {
 
     private var _binding: FragmentTerpercayaBinding? = null
@@ -24,23 +24,22 @@ class TerpercayaFragment : Fragment() {
     private val montirAdapter by lazy {
         MontirAdapter()
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentTerpercayaBinding.inflate(inflater, container, false)
+
+        // Pindahkan initAdapter() ke sini agar diinisialisasi saat fragment dibuat
+        initAdapter()
+
         val state = viewModel.montirState.value
 
         if (state.isLoading) {
-            Log.d(ContentValues.TAG, "Montir:   Loading")
+            Log.d("Montir", "Loading")
         } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "Montir:   ${state.error}")
+            Log.e("Montir", state.error!!)
         } else {
             state.trustedMontir?.let {
                 montirAdapter.setItems(it)
@@ -48,6 +47,7 @@ class TerpercayaFragment : Fragment() {
         }
         return binding.root
     }
+
     private fun initAdapter() {
         binding.recyleviewmontir3.apply {
             adapter = montirAdapter
@@ -58,7 +58,12 @@ class TerpercayaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
+        // Hapus initAdapter() dari sini, karena sudah dipindahkan ke onCreateView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

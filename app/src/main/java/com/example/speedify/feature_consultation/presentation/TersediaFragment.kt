@@ -34,6 +34,8 @@ class TersediaFragment : Fragment() {
     ): View {
         _binding = FragmentTersediaBinding.inflate(inflater, container, false)
 
+        initAdapter()
+
         val state = viewModel.montirState.value
 
         if (state.isLoading) {
@@ -53,7 +55,6 @@ class TersediaFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initAdapter()
     }
 
     private fun initAdapter() {
