@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentTersediaBinding
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
@@ -21,6 +22,7 @@ class TersediaFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ConsultationViewModel by viewModels()
+
 
     private val montirAdapter by lazy {
         MontirAdapter()
@@ -60,11 +62,6 @@ class TersediaFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

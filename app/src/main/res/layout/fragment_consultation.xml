@@ -5,60 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".feature_consultation.presentation.ConsultationFragment">
-
-    <EditText
-        android:id="@+id/cariMontir"
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:padding="10dp"
-        android:background="@drawable/search"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColorHint="@color/tertiary"
-        android:hint="Cari Montir Pilihanmu"
-        android:textSize="12sp"
-        android:fontFamily="@font/mona_sans_regular"
-        />
-
-    <ImageButton
-        android:id="@+id/btn_search"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/search_btn"
-        android:layout_marginTop="7sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
     
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="65sp"
-        app:layout_constraintTop_toTopOf="@id/cariMontir"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tersedia"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Teratas"/>
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Terpercaya"/>
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2

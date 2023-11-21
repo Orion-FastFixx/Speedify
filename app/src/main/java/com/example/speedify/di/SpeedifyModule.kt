@@ -11,6 +11,8 @@ import com.example.speedify.feature_bengkel.domain.use_case.GetAllPromotion
 import com.example.speedify.feature_bengkel.domain.use_case.GetNearestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
+import com.example.speedify.feature_consultation.domain.use_case.GetTheBestMontir
+import com.example.speedify.feature_consultation.domain.use_case.GetTrustedMontir
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,6 +32,8 @@ object SpeedifyModule {
     fun provideMontirUseCase(repository: MontirRepo): MontirUseCase {
         return MontirUseCase(
             getAllMontir = GetAllMontir(repository),
+            getTheBestMontir = GetTheBestMontir(repository),
+            getTrustedMontir = GetTrustedMontir(repository)
         )
     }
 
