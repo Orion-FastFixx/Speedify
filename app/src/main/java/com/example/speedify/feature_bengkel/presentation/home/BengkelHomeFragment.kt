@@ -1,6 +1,7 @@
 package com.example.speedify.feature_bengkel.presentation.home
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import com.example.speedify.databinding.FragmentBengkelHomeBinding
 import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionOneAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionTwoAdapter
+import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.BengkelMobilActivity
+import com.example.speedify.feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity
 import com.example.speedify.feature_bengkel.presentation.home.view_model.BengkelHomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -65,6 +68,19 @@ class BengkelHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+
+        val btnBengkelMobil = binding.btnBengkelMobil
+        val btnBengkelMotor = binding.btnBengkelMotor
+
+        btnBengkelMobil.setOnClickListener {
+            val intent = Intent(requireContext(), BengkelMobilActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnBengkelMotor.setOnClickListener {
+            val intent = Intent(requireContext(), BengkelMotorActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initAdapter() {
