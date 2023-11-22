@@ -5,6 +5,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
@@ -13,6 +14,9 @@ abstract class BaseAdapter<T, V : ViewBinding>(
     DiffCallbackListener<T>
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
     private var _items = mutableListOf<T>()
+
+    // Get the LayoutManager from the RecyclerView
+    var layoutManager: LinearLayoutManager? = null
 
     fun setItems(items: List<T>) {
         val diffResult =
@@ -36,8 +40,9 @@ abstract class BaseAdapter<T, V : ViewBinding>(
     override fun onBindViewHolder(holder: BaseAdapter.BaseViewHolder, position: Int) {
         bind(holder.binding as V, _items[position], position, _items.size)
 
-        // Check if it's the last item
-        if (position == _items.size - 1) {
+
+        // Check if it's a horizontal LinearLayoutManager and if it's the last item
+        if (layoutManager?.orientation == LinearLayoutManager.HORIZONTAL && position == _items.size - 1) {
             val layoutParams = holder.itemView.layoutParams as RecyclerView.LayoutParams
             layoutParams.marginEnd = 16.dpToPx(holder.itemView.context) // Convert dp to pixels
             holder.itemView.layoutParams = layoutParams
