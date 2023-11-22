@@ -8,7 +8,6 @@
         android:id="@+id/sv_fastfixx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
         android:background="@drawable/search_bar"
         app:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"

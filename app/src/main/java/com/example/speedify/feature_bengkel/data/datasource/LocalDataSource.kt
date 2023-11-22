@@ -7,7 +7,7 @@ import com.example.speedify.feature_bengkel.domain.entity.dummyPromotion
 
 interface LocalDataSource {
     fun getAllPromotion(): List<PromotionEntity>?
-    fun getAllBengkelMobil(): List<BengkelEntity>?
+    fun getAllBengkel(): List<BengkelEntity>?
 }
 
 object BengkelDataSource : LocalDataSource {
@@ -15,7 +15,7 @@ object BengkelDataSource : LocalDataSource {
         return dummyPromotion
     }
 
-    override fun getAllBengkelMobil(): List<BengkelEntity> {
+    override fun getAllBengkel(): List<BengkelEntity> {
         return dummyBengkel
     }
 }

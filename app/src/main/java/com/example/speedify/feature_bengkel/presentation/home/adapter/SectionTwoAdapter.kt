@@ -7,7 +7,7 @@ import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
 
-class SectionOneAdapter :
+class SectionTwoAdapter :
     BaseAdapter<BengkelEntity, ItemCardBengkelOneBinding>(diffCallbackListener) {
 
     companion object {
@@ -15,6 +15,12 @@ class SectionOneAdapter :
             override fun areItemsTheSame(oldItem: BengkelEntity, newItem: BengkelEntity) =
                 oldItem.id == newItem.id
         }
+    }
+
+    private lateinit var onItemClickCallback: PromotionAdapter.OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: PromotionAdapter.OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =

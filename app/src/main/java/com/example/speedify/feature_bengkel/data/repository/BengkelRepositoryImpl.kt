@@ -22,7 +22,7 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
     override suspend fun getAllBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>> =
         liveData {
             try {
-                val response = BengkelDataSource.getAllBengkelMobil()
+                val response = BengkelDataSource.getAllBengkel()
                 val filteredResponse = response.filter { it.spesialisasi_bengkel == "Mobil" }
                 emit(ResultState.Success(filteredResponse))
             } catch (e: Exception) {
@@ -33,7 +33,7 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
     override suspend fun getNearestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>> =
         liveData {
             try {
-                val response = BengkelDataSource.getAllBengkelMobil()
+                val response = BengkelDataSource.getAllBengkel()
                 val filteredResponse =
                     response.filter { it.spesialisasi_bengkel == "Mobil" && it.lokasi.toDouble() < 3.0 }
                 emit(ResultState.Success(filteredResponse))
@@ -46,7 +46,7 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
     override suspend fun getTheBestBengkelMobil(): LiveData<ResultState<List<BengkelEntity>>> =
         liveData {
             try {
-                val response = BengkelDataSource.getAllBengkelMobil()
+                val response = BengkelDataSource.getAllBengkel()
                 val filteredResponse = response.filter { it.spesialisasi_bengkel == "Mobil" && it.rating.toDouble() >= 4.5 }
                 emit(ResultState.Success(filteredResponse))
             } catch (e: Exception) {
@@ -57,7 +57,7 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
     override suspend fun getAllBengkelMotor(): LiveData<ResultState<List<BengkelEntity>>> =
         liveData {
             try {
-                val response = BengkelDataSource.getAllBengkelMobil()
+                val response = BengkelDataSource.getAllBengkel()
                 val filteredResponse = response.filter { it.spesialisasi_bengkel == "Motor" }
                 emit(ResultState.Success(filteredResponse))
             } catch (e: Exception) {
