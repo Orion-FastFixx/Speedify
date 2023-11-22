@@ -6,4 +6,6 @@ import com.example.speedify.utils.ResultState
 
 interface MontirRepo {
     suspend fun getAllMontir(): LiveData<ResultState<List<MontirEntity>>>
+    suspend fun getTheBestMontir(): LiveData<ResultState<List<MontirEntity>>>
+    suspend fun getTrustedMontir(): LiveData<ResultState<List<MontirEntity>>>
 }

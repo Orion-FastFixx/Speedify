@@ -12,13 +12,38 @@ class MontirRepoImpl private constructor() : MontirRepo {
     override suspend fun getAllMontir(): LiveData<ResultState<List<MontirEntity>>> =
         liveData {
             try {
-                val response = MontirDataSource.getAllMontir() ?: emptyList()
+                val response = MontirDataSource.getAllMontir()
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }
         }
 
+    override suspend fun getTheBestMontir(): LiveData<ResultState<List<MontirEntity>>> =
+        liveData {
+            try{
+                val response = MontirDataSource.getAllMontir()
+                val filteredResponse =
+                    response.filter{it.jlhRating.toDouble() >= 4.5 }
+                        .sortedByDescending { it.jlhRating.toDouble() }
+                emit(ResultState.Success(filteredResponse))
+            }catch (e: Exception){
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getTrustedMontir(): LiveData<ResultState<List<MontirEntity>>> =
+        liveData {
+            try{
+                val response = MontirDataSource.getAllMontir()
+                val filteredResponse =
+                    response.filter{it.jlhCostumer.toInt() >= 50 }
+                        .sortedByDescending { it.jlhCostumer.toInt() }
+                emit(ResultState.Success(filteredResponse))
+            }catch (e: Exception){
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
     companion object {
         @Volatile
         private var instance: MontirRepoImpl? = null

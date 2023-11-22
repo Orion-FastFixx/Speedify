@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10sp"
+        android:padding="20sp"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -30,8 +30,11 @@
                 android:layout_width="70sp"
                 android:layout_height="70sp"
                 android:layout_gravity="clip_horizontal"
+                android:src="@drawable/montir2"
                 android:background="@drawable/ellipse"
-                android:scaleType="centerInside" />
+                android:scaleType="centerCrop"
+                android:outlineProvider="background"
+                android:clipToOutline="true"/>
 
             <LinearLayout
                 android:id="@+id/layout5"
@@ -62,30 +65,58 @@
                     android:id="@+id/layout6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="1dp"
+                        android:contentDescription="@string/icon"
+                        android:src="@drawable/ic_star_fill" />
+
                     <TextView
                         android:id="@+id/jlhRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
                         android:fontFamily="@font/mona_sans_medium"
                         android:textColor="@color/tertiary"
                         android:textSize="14sp"
                         android:text="4.5"/>
 
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/icon"
+                        android:src="@drawable/ic_work" />
+
                     <TextView
                         android:id="@+id/pengalaman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10sp"
+                        android:layout_marginStart="3dp"
                         android:fontFamily="@font/mona_sans_medium"
                         android:textColor="@color/tertiary"
                         android:textSize="14sp"
-                        android:text="10 Tahun "/>
+                        android:text="10"/>
+
+                    <TextView
+                        android:id="@+id/ketPengalaman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:fontFamily="@font/mona_sans_medium"
+                        android:textColor="@color/tertiary"
+                        android:textSize="14sp"
+                        android:text="Tahun"/>
 
                 </LinearLayout>
 

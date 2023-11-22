@@ -1,50 +1,53 @@
-package com.example.speedify.feature_consultation.presentation
+package com.example.speedify.feature_activity.presentation
 
+import android.content.ContentValues
 import android.os.Bundle
-import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.R
+import com.example.speedify.databinding.FragmentProsesBinding
 import com.example.speedify.databinding.FragmentTersediaBinding
+import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
+import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
 import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TersediaFragment : Fragment() {
+class ProsesFragment : Fragment() {
 
-    private var _binding: FragmentTersediaBinding? = null
+    private var _binding: FragmentProsesBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ConsultationViewModel by viewModels()
+    private val viewModel: PesananViewModel by viewModels()
 
 
-    private val montirAdapter by lazy {
-        MontirAdapter()
+    private val pesananAdapter by lazy {
+        PesananAdapter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentTersediaBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = FragmentProsesBinding.inflate(inflater, container, false)
 
         initAdapter()
 
-        val state = viewModel.montirState.value
+        val state = viewModel.pesananState.value
 
         if (state.isLoading) {
-            Log.d(TAG, "Montir:   Loading")
+            Log.d(ContentValues.TAG, "Pesanan:   Loading")
         } else if (state.error != null) {
-            Log.e(TAG, "Montir:   ${state.error}")
+            Log.e(ContentValues.TAG, "Pesanan:   ${state.error}")
         } else {
-            state.montir?.let {
-                montirAdapter.setItems(it)
+            state.proses?.let {
+                pesananAdapter.setItems(it)
             }
         }
         return binding.root
@@ -58,15 +61,14 @@ class TersediaFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        binding.recyleviewmontir.apply {
-            adapter = montirAdapter
+        binding.rvProses.apply {
+            adapter = pesananAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
     }
 
     companion object {
+
     }
 }
-
-
