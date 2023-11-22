@@ -28,7 +28,7 @@
         style="@style/MonaBold10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/text_background"
         android:padding="4dp"
@@ -41,7 +41,7 @@
         android:id="@+id/ll_info_card_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="16dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/img_container_card_two"
         app:layout_constraintTop_toBottomOf="@+id/tv_type_bengkel_card_two">
@@ -138,7 +138,7 @@
 
         <TextView
             android:id="@+id/tv_price_card_two"
-            style="@style/MonaLight12"
+            style="@style/MonaMedium12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="4dp"
