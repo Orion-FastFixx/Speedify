@@ -1,14 +1,13 @@
 package com.example.speedify.feature_consultation.presentation
 
-import android.os.Bundle
 import android.content.ContentValues.TAG
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentTersediaBinding
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
@@ -34,8 +33,6 @@ class TersediaFragment : Fragment() {
     ): View {
         _binding = FragmentTersediaBinding.inflate(inflater, container, false)
 
-        initAdapter()
-
         val state = viewModel.montirState.value
 
         if (state.isLoading) {
@@ -50,11 +47,10 @@ class TersediaFragment : Fragment() {
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initAdapter()
     }
 
     private fun initAdapter() {
