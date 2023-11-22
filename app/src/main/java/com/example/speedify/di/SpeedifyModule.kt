@@ -1,4 +1,11 @@
 package com.example.speedify.di
+import com.example.speedify.feature_activity.data.repository.PesananRepoImpl
+import com.example.speedify.feature_activity.domain.interface_repositoty.PesananRepo
+import com.example.speedify.feature_activity.domain.use_case.GetAllPesanan
+import com.example.speedify.feature_activity.domain.use_case.GetPesananBatal
+import com.example.speedify.feature_activity.domain.use_case.GetPesananProses
+import com.example.speedify.feature_activity.domain.use_case.GetPesananSelesai
+import com.example.speedify.feature_activity.domain.use_case.PesananUseCase
 import com.example.speedify.feature_consultation.data.repository.MontirRepoImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
 import com.example.speedify.feature_consultation.domain.use_case.GetAllMontir
@@ -52,6 +59,23 @@ object SpeedifyModule {
             getNearestBengkelMobil = GetNearestBengkelMobil(repository),
             getTheBestBengkelMobil = GetTheBestBengkelMobil(repository),
             getAllBengkelMotor = GetAllBengkelMotor(repository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideMPesananRepository(): PesananRepo {
+        return PesananRepoImpl.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun providePesananUseCase(repository: PesananRepo): PesananUseCase {
+        return PesananUseCase(
+            getAllPesanan = GetAllPesanan(repository),
+            getPesananProses = GetPesananProses(repository),
+            getPesananSelesai = GetPesananSelesai(repository),
+            getPesananBatal = GetPesananBatal(repository),
         )
     }
 }

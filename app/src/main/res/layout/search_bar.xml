@@ -13,7 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryBackground="@color/transparent"
-        app:queryHint="@string/query_hint"
         app:searchIcon="@drawable/ic_search" >
     </androidx.appcompat.widget.SearchView>
 

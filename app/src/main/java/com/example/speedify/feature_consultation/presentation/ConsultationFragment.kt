@@ -35,9 +35,9 @@ class ConsultationFragment : Fragment() {
 
         viewPagerAdapter = MontirViewPagerAdapter(childFragmentManager, lifecycle)
 
-        tabLayout.addTab(tabLayout.newTab().setText("Tersedia"))
-        tabLayout.addTab(tabLayout.newTab().setText("Teratas"))
-        tabLayout.addTab(tabLayout.newTab().setText("Terpercaya"))
+//        tabLayout.addTab(tabLayout.newTab().setText("Tersedia"))
+//        tabLayout.addTab(tabLayout.newTab().setText("Teratas"))
+//        tabLayout.addTab(tabLayout.newTab().setText("Terpercaya"))
 
         viewPagerConsul.adapter = viewPagerAdapter
 
