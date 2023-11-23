@@ -21,4 +21,6 @@
     <string name="process">Dalam proses</string>
     <string name="done">Riwayat</string>
     <string name="cancel">Dibatalkan</string>
+    <string name="search_bengkel">Cari Bengkel</string>
+    <string name="search_montir">Cari Montir</string>
 </resources>

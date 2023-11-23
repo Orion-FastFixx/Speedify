@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.R
 import com.example.speedify.databinding.ActivityBengkelMotorBinding
 import com.example.speedify.feature_bengkel.presentation.bengkel_motor.adapter.BengkelMotorAdapter
 import com.example.speedify.feature_bengkel.presentation.bengkel_motor.view_model.BengkelMotorViewModel
@@ -42,6 +43,9 @@ class BengkelMotorActivity : AppCompatActivity() {
                 bengkelMotorAdapter.setItems(it)
             }
         }
+
+        val svBengkelMotor = binding.svBengkelMotor.svFastfixx
+        svBengkelMotor.queryHint = resources.getString(R.string.search_bengkel)
     }
 
     private fun initAdapter() {

@@ -37,6 +37,9 @@ class ConsultationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setViewPager()
+        
+        val svConsultation = binding.svMontir.svFastfixx
+        svConsultation.queryHint = resources.getString(R.string.search_montir)
     }
 
     private fun setViewPager() {
