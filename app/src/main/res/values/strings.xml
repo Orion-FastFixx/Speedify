@@ -18,4 +18,7 @@
     <string name="available">Tersedia</string>
     <string name="top">Teratas</string>
     <string name="trusted">Terpercaya</string>
+    <string name="process">Dalam proses</string>
+    <string name="done">Riwayat</string>
+    <string name="cancel">Dibatalkan</string>
 </resources>

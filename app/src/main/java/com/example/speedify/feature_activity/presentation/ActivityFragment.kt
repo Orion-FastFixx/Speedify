@@ -5,21 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.speedify.R
+import com.example.speedify.databinding.FragmentActivityBinding
+import com.example.speedify.databinding.FragmentConsultationBinding
 import com.example.speedify.feature_activity.presentation.adapter.PesananViewPagerAdapter
+import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
+import com.example.speedify.feature_consultation.presentation.ConsultationFragment
 import com.example.speedify.feature_consultation.presentation.adapter.MontirViewPagerAdapter
+import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ActivityFragment : Fragment() {
 
-    private lateinit var viewPagerPesan: ViewPager2
+    private var _binding: FragmentActivityBinding? = null
 
-    private lateinit var tabLayout: TabLayout
+    private val binding get() = _binding!!
 
-    private lateinit var viewPagerAdapter: PesananViewPagerAdapter
+    private val viewModel: PesananViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,41 +37,33 @@ class ActivityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_activity, container, false)
+        _binding = FragmentActivityBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        tabLayout = view.findViewById(R.id.tb_pesanan)
-        viewPagerPesan = view.findViewById(R.id.vp_pesanan)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewPagerAdapter = PesananViewPagerAdapter(childFragmentManager, lifecycle)
+        setViewPager()
+    }
 
-        viewPagerPesan.adapter = viewPagerAdapter
+    private fun setViewPager() {
+        val pesananViewPagerAdapter = PesananViewPagerAdapter(childFragmentManager, lifecycle)
+        val viewPager: ViewPager2 = binding.vpPesanan
+        viewPager.adapter = pesananViewPagerAdapter
+        viewPager.isUserInputEnabled = false
+        val tabs: TabLayout = binding.tbPesanan
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab != null) {
-                    viewPagerPesan.currentItem = tab.position
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-        })
-
-        viewPagerPesan.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                tabLayout.selectTab(tabLayout.getTabAt(position))
-            }
-        })
-
-        return view
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = resources.getString(TAB_TITLE[position])
+        }.attach()
     }
 
     companion object {
+        private val TAB_TITLE = intArrayOf(
+            R.string.process,
+            R.string.done,
+            R.string.cancel,
+        )
     }
 }

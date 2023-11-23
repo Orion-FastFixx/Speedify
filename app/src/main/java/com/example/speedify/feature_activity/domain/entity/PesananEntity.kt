@@ -31,7 +31,7 @@ val dummyPesanan = listOf(
         R.drawable.pesanan,
         LocalDate.of(2023, 11, 22),
         "Sriwijaya Motor",
-        "Ganti Spare Part, Ban Kempes, Mesin Mati",
+        "Ganti Spare Part",
         122930,
         Status.Proses,
         50000
