@@ -23,4 +23,6 @@
     <string name="cancel">Dibatalkan</string>
     <string name="search_bengkel">Cari Bengkel</string>
     <string name="search_montir">Cari Montir</string>
+    <string name="example_title_detail_bengkel">Sriwijaya Motor</string>
+    <string name="example_desc_detail_bengkel">Bengkel mobil resmi yang telah berdiri sejak tahun 1993, dengan menyediakan semua layanan service mobil.</string>
 </resources>

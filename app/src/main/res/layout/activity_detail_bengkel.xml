@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    tools:context=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity">
+
+    <ImageView
+        android:id="@+id/iv_detail_bengkel"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginStart="-16dp"
+        android:layout_marginEnd="-16dp"
+        android:contentDescription="@string/dummy_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/example_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title_detail_bengkel"
+        style="@style/MonaBold20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="24dp"
+        android:text="@string/example_title_detail_bengkel"
+        android:textColor="@color/charleston_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_detail_bengkel" />
+
+    <TextView
+        android:id="@+id/tv_description_detail_bengkel"
+        style="@style/MonaRegular14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:text="@string/example_desc_detail_bengkel"
+        android:textColor="@color/dim_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_bengkel" />
+
+    <LinearLayout
+        android:id="@+id/ll_rating_detail_bengkel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_description_detail_bengkel">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="1dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <TextView
+            android:id="@+id/tv_rating_detail_bengkel"
+            style="@style/MonaSemiBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginTop="2dp"
+            android:text="4.5"
+            android:textColor="@color/charleston_green" />
+
+        <TextView
+            android:id="@+id/tv_review_detail_bengkel"
+            style="@style/MonaSemiBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:text="(5K+) ."
+            android:textColor="@color/charleston_green" />
+
+        <TextView
+            android:id="@+id/tv_rating_review_detail_bengkel"
+            style="@style/MonaSemiBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:text="Rating dan Ulasan"
+            android:textColor="@color/charleston_green" />
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_one_detail_bengkel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="12dp"
+        app:dividerColor="@color/american_silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_rating_detail_bengkel" />
+
+    <TextView
+        android:id="@+id/tv_select_service_detail_bengkel"
+        style="@style/MonaSemiBold20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Pilih Layanan"
+        android:textColor="@color/charleston_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_one_detail_bengkel" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divider_two_detail_bengkel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:dividerColor="@color/american_silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_select_service_detail_bengkel" />
+
+    <TextView
+        android:id="@+id/tv_user_info_detail_bengkel"
+        style="@style/MonaSemiBold20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Tambah Informasi"
+        android:textColor="@color/charleston_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_two_detail_bengkel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
