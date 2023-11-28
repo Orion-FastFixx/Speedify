@@ -1,139 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingHorizontal="16dp"
     tools:context=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity">
 
-    <ImageView
-        android:id="@+id/iv_detail_bengkel"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginStart="-16dp"
-        android:layout_marginEnd="-16dp"
-        android:contentDescription="@string/dummy_image"
-        android:scaleType="centerCrop"
-        android:src="@drawable/example_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_title_detail_bengkel"
-        style="@style/MonaBold20"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="24dp"
-        android:text="@string/example_title_detail_bengkel"
-        android:textColor="@color/charleston_green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_detail_bengkel" />
-
-    <TextView
-        android:id="@+id/tv_description_detail_bengkel"
-        style="@style/MonaRegular14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="10dp"
-        android:text="@string/example_desc_detail_bengkel"
-        android:textColor="@color/dim_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_bengkel" />
-
-    <LinearLayout
-        android:id="@+id/ll_rating_detail_bengkel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="6dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_description_detail_bengkel">
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp">
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginTop="1dp"
-            android:contentDescription="@string/icon"
-            android:src="@drawable/ic_star_fill" />
+            android:id="@+id/iv_detail_bengkel"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginStart="-18dp"
+            android:layout_marginEnd="-16dp"
+            android:contentDescription="@string/dummy_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/example_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_rating_detail_bengkel"
-            style="@style/MonaSemiBold12"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_title_detail_bengkel"
+            style="@style/MonaBold20"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:layout_marginTop="2dp"
-            android:text="4.5"
-            android:textColor="@color/charleston_green" />
+
+            android:layout_marginTop="24dp"
+            android:text="@string/example_title_detail_bengkel"
+            android:textColor="@color/charleston_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_bengkel" />
 
         <TextView
-            android:id="@+id/tv_review_detail_bengkel"
-            style="@style/MonaSemiBold12"
+            android:id="@+id/tv_description_detail_bengkel"
+            style="@style/MonaRegular14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:text="@string/example_desc_detail_bengkel"
+            android:textColor="@color/dim_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_bengkel" />
+
+        <LinearLayout
+            android:id="@+id/ll_rating_detail_bengkel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            android:text="(5K+) ."
-            android:textColor="@color/charleston_green" />
+
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_detail_bengkel">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_star_fill" />
+
+            <TextView
+                android:id="@+id/tv_rating_detail_bengkel"
+                style="@style/MonaSemiBold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="2dp"
+                android:text="4.5"
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                android:id="@+id/tv_review_detail_bengkel"
+                style="@style/MonaSemiBold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:text="(5K+) ."
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                android:id="@+id/tv_rating_review_detail_bengkel"
+                style="@style/MonaSemiBold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:text="Rating dan Ulasan"
+                android:textColor="@color/charleston_green" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/section_one_detail_bengkel"
+            layout="@layout/detail_bengkel_section_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_rating_detail_bengkel" />
+
+        <LinearLayout
+            android:id="@+id/ll_cb_one_detail_bengkel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_one_detail_bengkel">
+
+            <CheckBox
+                android:id="@+id/cb_item_one_detail_bengkel"
+                style="@style/MonaMedium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mesin Mati"
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                style="@style/MonaMedium14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.150.000"
+                android:textColor="@color/charleston_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_cb_two_detail_bengkel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_cb_one_detail_bengkel">
+
+            <CheckBox
+                android:id="@+id/cb_item_two_detail_bengkel"
+                style="@style/MonaMedium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mesin Mati"
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                style="@style/MonaMedium14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.150.000"
+                android:textColor="@color/charleston_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_cb_three_detail_bengkel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_cb_two_detail_bengkel">
+
+            <CheckBox
+                android:id="@+id/cb_item_three_detail_bengkel"
+                style="@style/MonaMedium14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mesin Mati"
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                style="@style/MonaMedium14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.150.000"
+                android:textColor="@color/charleston_green" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/section_two_detail_bengkel"
+            layout="@layout/detail_bengkel_section_component"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_cb_three_detail_bengkel" />
+
+        <LinearLayout
+            android:id="@+id/ll_user_location_detail_bengkel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_two_detail_bengkel">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="-5dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:id="@+id/tv_user_location_detail_bengkel"
+                style="@style/MonaSemiBold14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="Jl. Raya Ciputat No. 1, Jakarta Selatan"
+                android:textColor="@color/dim_gray" />
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:contentDescription="@string/icon"-->
+            <!--                android:src="@drawable/ic_expand_down_light" />-->
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_rating_review_detail_bengkel"
-            style="@style/MonaSemiBold12"
+            android:id="@+id/tv_detail_location_detail_bengkel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="2dp"
-            android:text="Rating dan Ulasan"
-            android:textColor="@color/charleston_green" />
-    </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:text="Detail Lokasi (Patokan)"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_user_location_detail_bengkel" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_one_detail_bengkel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleDetailLocationEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:layout_marginTop="12dp"
-        app:dividerColor="@color/american_silver"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_rating_detail_bengkel" />
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_location_detail_bengkel">
 
-    <TextView
-        android:id="@+id/tv_select_service_detail_bengkel"
-        style="@style/MonaSemiBold20"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Pilih Layanan"
-        android:textColor="@color/charleston_green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_one_detail_bengkel" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleDetailLocationEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_two_detail_bengkel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:dividerColor="@color/american_silver"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_select_service_detail_bengkel" />
+        <TextView
+            android:id="@+id/tv_user_fullname_detail_bengkel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Nama Lengkap"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleDetailLocationEditTextLayout" />
 
-    <TextView
-        android:id="@+id/tv_user_info_detail_bengkel"
-        style="@style/MonaSemiBold20"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Tambah Informasi"
-        android:textColor="@color/charleston_green"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_two_detail_bengkel" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleFullnameEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_detail_bengkel">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleFullnameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_detail_complaint_detail_bengkel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Detail Keluhan"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleFullnameEditTextLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/titleDetailComplaintEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_complaint_detail_bengkel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/titleDetailComplaintEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_place_order_detail_bengkel"
+            android:layout_width="312dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/cinnabar"
+            android:text="Lanjutkan Pembayaran"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleDetailComplaintEditTextLayout" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_place_order_detail_bengkel" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
