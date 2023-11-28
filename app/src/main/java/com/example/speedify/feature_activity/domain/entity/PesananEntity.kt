@@ -3,6 +3,7 @@ package com.example.speedify.feature_activity.domain.entity
 import androidx.annotation.DrawableRes
 import com.example.speedify.R
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.EnumSet
 
 
@@ -11,11 +12,11 @@ data class PesananEntity(
     val id: String,
     @DrawableRes val imgPesanan: Int,
     val namaBengkel: String,
-    val lokasi: String,
-    val tgl: LocalDate,
-    val codeConfirm: Number,
+    val tujuan: String,
+    val tgl: LocalDateTime,
+    val harga: Number,
     val status: Status,
-    val harga: Number
+    val rating: Int = 0,
 )
 
 enum class Status {
@@ -29,51 +30,51 @@ val dummyPesanan = listOf(
     PesananEntity(
         "1",
         R.drawable.pesanan,
-        LocalDate.of(2023, 11, 22),
         "Sriwijaya Motor",
-        "Ganti Spare Part",
-        122930,
+        "Kalidoni",
+        LocalDateTime.of(2023, 11, 22, 12, 30,0),
+        150000,
         Status.Proses,
-        50000
+
     ),
     PesananEntity(
-        "4",
+        "2",
         R.drawable.pesanan2,
-        LocalDate.of(2023, 11, 22),
-        "Center Mobil",
-        "Ganti Spare Part",
-        122929,
+        "CarFix Group",
+        "Kalidoni",
+        LocalDateTime.of(2023, 8, 10, 11, 30,0),
+        150000,
         Status.Batal,
-        50000
+        rating = 0
     ),
     PesananEntity(
         "3",
         R.drawable.pesanan,
-        LocalDate.of(2023, 9, 12),
-        "Boboiboy Motor",
-        "Mesin Mati",
-        122920,
+        "Honda Onion",
+        "Kalidoni",
+        LocalDateTime.of(2023, 10, 19, 9, 30,0),
+        150000,
         Status.Selesai,
-        55000
+        rating = 5
     ),
     PesananEntity(
         "5",
         R.drawable.pesanan2,
-        LocalDate.of(2023, 11, 19),
-        "Center Mobil",
-        "Ban Kempes",
-        122928,
+        "Jasa Raya",
+        "Kalidoni",
+        LocalDateTime.of(2023, 7, 29, 8, 30,0),
+        150000,
         Status.Selesai,
-        45000
+        rating = 4
     ),
     PesananEntity(
         "6",
         R.drawable.pesanan,
-        LocalDate.of(2023, 8, 12),
-        "Center Mobil",
-        "Ban Bocor",
-        122925,
+        "Honda Onion",
+        "Kalidoni",
+        LocalDateTime.of(2023, 2, 17, 12, 30,0),
+        150000,
         Status.Selesai,
-        50000
+        rating = 5
     ),
 )
