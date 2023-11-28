@@ -10,9 +10,9 @@ import java.util.EnumSet
 data class PesananEntity(
     val id: String,
     @DrawableRes val imgPesanan: Int,
-    val tgl: LocalDate,
     val namaBengkel: String,
-    val kendala: String,
+    val lokasi: String,
+    val tgl: LocalDate,
     val codeConfirm: Number,
     val status: Status,
     val harga: Number

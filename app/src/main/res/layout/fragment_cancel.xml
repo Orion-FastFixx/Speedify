@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/card_activity"
+            tools:listitem="@layout/item_activity"
             />
         <Space
             android:layout_width="match_parent"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <bitmap
+            android:src="@drawable/ic_star_line"
+            android:tint="@color/transparent"/>
+    </item>
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <bitmap
+                android:src="@drawable/ic_star_line"
+                android:tint="@color/transparent"/>
+        </clip>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip>
+            <bitmap
+                android:src="@drawable/ic_star_fill" />
+        </clip>
+    </item>
+</layer-list>

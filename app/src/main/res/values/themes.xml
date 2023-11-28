@@ -63,7 +63,9 @@
         <item name="textAllCaps">false</item>
     </style>
 
-
+    <style name="circleImg">
+        <item name="cornerSize">50%</item>
+    </style>
 
 <!--    <style name="Theme.Speedify" parent="Base.Theme.Speedify" />-->
 </resources>
