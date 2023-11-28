@@ -30,7 +30,7 @@ class PesananAdapter :
         binding.imgPesanan.setImageResource(item.imgPesanan)
         binding.namaBengkel.text = item.namaBengkel
         binding.tujuan.text = item.tujuan
-        binding.tgl.text = String.format("%s, %s a", item.tgl.toLocalDate(), item.tgl.toLocalTime());
+        binding.tgl.text = String.format("%s, %s", item.tgl.toLocalDate(), item.tgl.toLocalTime());
         binding.harga.text = String.format("Rp. %s", item.harga)
         binding.ratingBar.rating = item.rating.toFloat()
     }

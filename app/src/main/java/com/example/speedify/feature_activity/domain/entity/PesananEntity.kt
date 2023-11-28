@@ -32,7 +32,7 @@ val dummyPesanan = listOf(
         R.drawable.pesanan,
         "Sriwijaya Motor",
         "Kalidoni",
-        LocalDateTime.of(2023, 11, 22, 12, 30,0),
+        LocalDateTime.of(2023, 11, 22, 0, 30,0).withHour(14),
         150000,
         Status.Proses,
 
@@ -42,7 +42,7 @@ val dummyPesanan = listOf(
         R.drawable.pesanan2,
         "CarFix Group",
         "Kalidoni",
-        LocalDateTime.of(2023, 8, 10, 11, 30,0),
+        LocalDateTime.of(2023, 8, 10, 11, 30,0).withHour(14),
         150000,
         Status.Batal,
         rating = 0
@@ -52,7 +52,7 @@ val dummyPesanan = listOf(
         R.drawable.pesanan,
         "Honda Onion",
         "Kalidoni",
-        LocalDateTime.of(2023, 10, 19, 9, 30,0),
+        LocalDateTime.of(2023, 10, 19, 23, 30,0).withHour(14),
         150000,
         Status.Selesai,
         rating = 5
@@ -62,7 +62,7 @@ val dummyPesanan = listOf(
         R.drawable.pesanan2,
         "Jasa Raya",
         "Kalidoni",
-        LocalDateTime.of(2023, 7, 29, 8, 30,0),
+        LocalDateTime.of(2023, 7, 29, 8, 30,0).withHour(14),
         150000,
         Status.Selesai,
         rating = 4
