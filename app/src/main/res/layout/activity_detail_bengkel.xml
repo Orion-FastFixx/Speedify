@@ -120,7 +120,7 @@
 
         <include
             android:id="@+id/section_one_detail_bengkel"
-            layout="@layout/detail_bengkel_section_component"
+            layout="@layout/section_component"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +204,7 @@
 
         <include
             android:id="@+id/section_two_detail_bengkel"
-            layout="@layout/detail_bengkel_section_component"
+            layout="@layout/section_component"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
