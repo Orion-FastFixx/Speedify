@@ -16,14 +16,20 @@
         android:theme="@style/Theme.Speedify"
         tools:targetApi="31">
         <activity
-            android:name=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity"
-            android:exported="true" >
+            android:name=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity"
+            android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity"
             android:exported="false" />
@@ -33,7 +39,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label="@string/app_name"/>
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
