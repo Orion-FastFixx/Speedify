@@ -13,24 +13,46 @@
         android:paddingHorizontal="16dp">
 
         <ImageView
+            android:id="@+id/ic_back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_header_title_detail_bengkel"
+            style="@style/MonaSemiBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10.5dp"
+            android:text="@string/example_title_detail_bengkel"
+            android:textColor="@color/charleston_green"
+            app:layout_constraintStart_toEndOf="@+id/ic_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/iv_detail_bengkel"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginStart="-18dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="-16dp"
             android:contentDescription="@string/dummy_image"
             android:scaleType="centerCrop"
             android:src="@drawable/example_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/ic_back" />
 
         <TextView
             android:id="@+id/tv_title_detail_bengkel"
             style="@style/MonaBold20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="24dp"
             android:text="@string/example_title_detail_bengkel"
             android:textColor="@color/charleston_green"
@@ -53,7 +75,6 @@
             android:id="@+id/ll_rating_detail_bengkel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="6dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +148,7 @@
                 style="@style/MonaMedium14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp.150.000"
+                android:text="Rp150.000"
                 android:textColor="@color/charleston_green" />
         </LinearLayout>
 
@@ -152,7 +173,7 @@
                 style="@style/MonaMedium14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp.150.000"
+                android:text="Rp150.000"
                 android:textColor="@color/charleston_green" />
         </LinearLayout>
 
@@ -177,7 +198,7 @@
                 style="@style/MonaMedium14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp.150.000"
+                android:text="Rp150.000"
                 android:textColor="@color/charleston_green" />
         </LinearLayout>
 
