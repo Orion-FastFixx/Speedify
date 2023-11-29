@@ -18,7 +18,6 @@
             android:id="@+id/imgPesanan"
             android:layout_width="29dp"
             android:layout_height="29dp"
-            android:layout_marginStart="10dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/circleImg"
             android:src="@drawable/pesanan2"/>

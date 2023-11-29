@@ -1,6 +1,7 @@
 package com.example.speedify.feature_activity.presentation
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
 import com.example.speedify.databinding.FragmentProsesBinding
 import com.example.speedify.databinding.FragmentTersediaBinding
+import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
@@ -58,6 +60,7 @@ class ProsesFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun initAdapter() {

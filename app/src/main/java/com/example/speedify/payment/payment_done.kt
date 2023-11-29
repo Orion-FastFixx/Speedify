@@ -1,12 +1,12 @@
-package com.example.speedify.feature_activity.presentation
+package com.example.speedify.payment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.speedify.R
 
-class DetailPesananActivity : AppCompatActivity() {
+class payment_done : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.detail_pesanan)
+        setContentView(R.layout.activity_payment_done)
     }
 }

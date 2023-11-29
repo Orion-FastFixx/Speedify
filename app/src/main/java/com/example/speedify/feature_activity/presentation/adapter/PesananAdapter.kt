@@ -33,6 +33,7 @@ class PesananAdapter :
         binding.tgl.text = String.format("%s, %s", item.tgl.toLocalDate(), item.tgl.toLocalTime());
         binding.harga.text = String.format("Rp. %s", item.harga)
         binding.ratingBar.rating = item.rating.toFloat()
+
     }
 
     interface OnItemClickCallback {
