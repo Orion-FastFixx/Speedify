@@ -24,14 +24,6 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         val orderSummary = binding.checkoutBengkel.orderSummary.tvSectionName
         orderSummary.text = getString(R.string.order_summary)
 
-//      Set text location
-        val location = binding.checkoutBengkel.location.tvSectionName
-        location.text = getString(R.string.section_location)
-
-//      Set text payment method
-        val paymentMethod = binding.checkoutBengkel.paymentMethod.tvSectionName
-        paymentMethod.text = getString(R.string.payment_method)
-
 //      Go to Payment Methods
         val morePayment = binding.checkoutBengkel.icArrowRightPaymentMethod
         morePayment.setOnClickListener {
