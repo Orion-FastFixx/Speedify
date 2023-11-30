@@ -12,19 +12,6 @@
         android:id="@+id/payment_methods_bengkel"
         layout="@layout/payment_methods_component"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/btn_save_payment_method"
-        android:layout_width="312dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/cinnabar"
-        android:text="Simpan"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
