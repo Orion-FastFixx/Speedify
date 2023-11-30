@@ -37,6 +37,11 @@
         <item name="android:fontFamily">@font/mona_sans_regular</item>
     </style>
 
+    <style name="MonaMedium10">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/mona_sans_medium</item>
+    </style>
+
     <style name="MonaMedium12">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/mona_sans_medium</item>
@@ -79,6 +84,16 @@
 
     <style name="MonaBold10">
         <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/mona_sans_bold</item>
+    </style>
+
+    <style name="MonaBold12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/mona_sans_bold</item>
+    </style>
+
+    <style name="MonaBold14">
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/mona_sans_bold</item>
     </style>
 
