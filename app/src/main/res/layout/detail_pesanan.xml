@@ -441,6 +441,7 @@
             android:layout_width="255dp"
             android:layout_height="50dp"
             android:fontFamily="@font/mona_sans_semibold"
+            android:backgroundTint="@color/primary"
             android:text="Selesai"
             android:textSize="14dp"
             android:layout_marginTop="15dp"

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_detail_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ic_back"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                style="@style/MonaSemiBold16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Metode Pembayaran"
+                android:textColor="@color/charleston_green"
+                app:layout_constraintStart_toEndOf="@+id/ic_back"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_linked_method"
+        style="@style/MonaMedium14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Metode yang Sudah Terhubung"
+        android:textColor="@color/dim_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <LinearLayout
+        android:id="@+id/ll_cash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_linked_method">
+
+        <ImageView
+            android:id="@+id/iv_cash"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_cash" />
+
+        <TextView
+            android:id="@+id/tv_cash"
+            style="@style/MonaMedium16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="Cash" />
+
+        <ImageView
+            android:id="@+id/iv_radio_cash"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_radio_check_fill" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ovo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_cash">
+
+        <ImageView
+            android:id="@+id/iv_ovo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_ovo" />
+
+        <LinearLayout
+            android:id="@+id/ll_ovo_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_ovo"
+                style="@style/MonaMedium16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OVO" />
+
+            <TextView
+                android:id="@+id/tv_ovo_balance"
+                style="@style/MonaRegular12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/dummy_nominal" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_radio_ovo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_radio_unchecked" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gopay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_ovo">
+
+        <ImageView
+            android:id="@+id/iv_gopay"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_gopay" />
+
+        <LinearLayout
+            android:id="@+id/ll_gopay_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_gopay"
+                style="@style/MonaMedium16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GoPay" />
+
+            <TextView
+                android:id="@+id/tv_gopay_balance"
+                style="@style/MonaRegular12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/dummy_nominal" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_radio_gopay"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_radio_unchecked" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_add_method"
+        style="@style/MonaMedium14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tambahkan Metode"
+        android:textColor="@color/dim_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_gopay" />
+
+    <LinearLayout
+        android:id="@+id/ll_add_cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_method">
+
+        <ImageView
+            android:id="@+id/iv_add_cards"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_credit_card" />
+
+        <TextView
+            android:id="@+id/tv_add_cards"
+            style="@style/MonaMedium16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="Kartu-Kartu" />
+
+        <ImageView
+            android:id="@+id/iv_expand_add_cards"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_arrow_right_light" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_dana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_add_cards">
+
+        <ImageView
+            android:id="@+id/iv_add_dana"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_dana" />
+
+        <TextView
+            android:id="@+id/tv_add_dana"
+            style="@style/MonaMedium16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="DANA" />
+
+        <ImageView
+            android:id="@+id/iv_expand_add_dana"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_arrow_right_light" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_linkaja"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_add_dana">
+
+        <ImageView
+            android:id="@+id/iv_add_linkaja"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_link_aja" />
+
+        <TextView
+            android:id="@+id/tv_add_linkaja"
+            style="@style/MonaMedium16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="LinkAja" />
+
+        <ImageView
+            android:id="@+id/iv_expand_add_linkaja"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_arrow_right_light" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save_payment_method"
+        android:layout_width="312dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/cinnabar"
+        android:text="Simpan"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

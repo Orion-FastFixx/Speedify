@@ -18,6 +18,12 @@ class PesananAdapter :
         }
     }
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(callback: OnItemClickCallback) {
+        onItemClickCallback = callback
+    }
+
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =
         ItemActivityBinding.inflate(inflater, container, false)
 
@@ -33,6 +39,10 @@ class PesananAdapter :
         binding.tgl.text = String.format("%s, %s", item.tgl.toLocalDate(), item.tgl.toLocalTime());
         binding.harga.text = String.format("Rp. %s", item.harga)
         binding.ratingBar.rating = item.rating.toFloat()
+
+        binding.root.setOnClickListener {
+            onItemClickCallback?.onItemClicked(item)
+        }
 
     }
 

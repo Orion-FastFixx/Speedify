@@ -31,7 +31,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -68,4 +67,9 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="choose_services">Pilih Layanan</string>
+    <string name="order_summary">Ringkasan Pesanan</string>
+    <string name="section_location">Lokasi</string>
+    <string name="payment_method">Metode Pembayaran</string>
+    <string name="dummy_nominal">Saldo: Rp100.000</string>
 </resources>

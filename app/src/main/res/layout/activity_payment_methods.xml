@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:clipToPadding="false"
@@ -48,5 +49,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rvPayment" />
 
+=======
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    tools:context=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity">
+
+    <include
+        android:id="@+id/payment_methods_bengkel"
+        layout="@layout/payment_methods_component"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+>>>>>>> 39f03369fd040b213fde2f9efc55b862bc7e4470
 
 </androidx.constraintlayout.widget.ConstraintLayout>

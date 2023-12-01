@@ -12,25 +12,62 @@
         android:clipToPadding="false"
         android:paddingHorizontal="16dp">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_detail_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ic_back"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="6dp"
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_title_toolbar"
+                    style="@style/MonaSemiBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/example_title_detail_bengkel"
+                    android:textColor="@color/charleston_green"
+                    app:layout_constraintStart_toEndOf="@+id/ic_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <ImageView
             android:id="@+id/iv_detail_bengkel"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:layout_marginStart="-18dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="-16dp"
             android:contentDescription="@string/dummy_image"
             android:scaleType="centerCrop"
             android:src="@drawable/example_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
         <TextView
             android:id="@+id/tv_title_detail_bengkel"
             style="@style/MonaBold20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="24dp"
             android:text="@string/example_title_detail_bengkel"
             android:textColor="@color/charleston_green"
@@ -53,7 +90,6 @@
             android:id="@+id/ll_rating_detail_bengkel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="6dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,105 +135,40 @@
 
         <include
             android:id="@+id/section_one_detail_bengkel"
-            layout="@layout/detail_bengkel_section_component"
+            layout="@layout/section_component"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_rating_detail_bengkel" />
 
-        <LinearLayout
-            android:id="@+id/ll_cb_one_detail_bengkel"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_item_services"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_one_detail_bengkel"
+            tools:listitem="@layout/item_checkbox_bengkel_services" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_section_two_detail_bengkel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            app:dividerColor="@color/american_silver"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/section_one_detail_bengkel">
-
-            <CheckBox
-                android:id="@+id/cb_item_one_detail_bengkel"
-                style="@style/MonaMedium14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mesin Mati"
-                android:textColor="@color/charleston_green" />
-
-            <TextView
-                style="@style/MonaMedium14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp.150.000"
-                android:textColor="@color/charleston_green" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_cb_two_detail_bengkel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_cb_one_detail_bengkel">
-
-            <CheckBox
-                android:id="@+id/cb_item_two_detail_bengkel"
-                style="@style/MonaMedium14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mesin Mati"
-                android:textColor="@color/charleston_green" />
-
-            <TextView
-                style="@style/MonaMedium14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp.150.000"
-                android:textColor="@color/charleston_green" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_cb_three_detail_bengkel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_cb_two_detail_bengkel">
-
-            <CheckBox
-                android:id="@+id/cb_item_three_detail_bengkel"
-                style="@style/MonaMedium14"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mesin Mati"
-                android:textColor="@color/charleston_green" />
-
-            <TextView
-                style="@style/MonaMedium14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp.150.000"
-                android:textColor="@color/charleston_green" />
-        </LinearLayout>
-
-        <include
-            android:id="@+id/section_two_detail_bengkel"
-            layout="@layout/detail_bengkel_section_component"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_cb_three_detail_bengkel" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_item_services" />
 
         <LinearLayout
             android:id="@+id/ll_user_location_detail_bengkel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/section_two_detail_bengkel">
+            app:layout_constraintTop_toBottomOf="@+id/divider_section_two_detail_bengkel">
 
             <ImageView
                 android:layout_width="30dp"
@@ -217,22 +188,16 @@
                 android:singleLine="true"
                 android:text="Jl. Raya Ciputat No. 1, Jakarta Selatan"
                 android:textColor="@color/dim_gray" />
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginTop="2dp"-->
-            <!--                android:contentDescription="@string/icon"-->
-            <!--                android:src="@drawable/ic_expand_down_light" />-->
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_detail_location_detail_bengkel"
+            style="@style/MonaMedium12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Detail Lokasi (Patokan)"
-            android:textSize="16sp"
+            android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_user_location_detail_bengkel" />
 
@@ -241,30 +206,35 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="1dp"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_location_detail_bengkel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/titleDetailLocationEditText"
+                style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textMultiLine"
+                android:inputType="text"
+                android:paddingVertical="8dp"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/charleston_green" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/tv_user_fullname_detail_bengkel"
+            style="@style/MonaMedium12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="36dp"
             android:text="Nama Lengkap"
-            android:textSize="16sp"
+            android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleDetailLocationEditTextLayout" />
 
@@ -273,29 +243,34 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="1dp"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_detail_bengkel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/titleFullnameEditText"
+                style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine"
+                android:paddingVertical="8dp"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/charleston_green" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv_detail_complaint_detail_bengkel"
+            style="@style/MonaMedium12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="36dp"
             android:text="Detail Keluhan"
-            android:textSize="16sp"
+            android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleFullnameEditTextLayout" />
 
@@ -304,21 +279,24 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            app:boxBackgroundColor="@android:color/transparent"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="1dp"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_complaint_detail_bengkel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/titleDetailComplaintEditText"
+                style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine"
+                android:paddingVertical="8dp"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textColor="@color/charleston_green" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

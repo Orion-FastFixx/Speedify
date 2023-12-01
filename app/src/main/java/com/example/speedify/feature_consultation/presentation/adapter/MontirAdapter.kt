@@ -3,6 +3,7 @@ package com.example.speedify.feature_consultation.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.CardMontirBinding
+import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
@@ -15,6 +16,12 @@ class MontirAdapter :
             override fun areItemsTheSame(oldItem: MontirEntity, newItem: MontirEntity) =
                 oldItem.id == newItem.id
         }
+    }
+
+    private var onItemClickCallback: MontirAdapter.OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(callback: MontirAdapter.OnItemClickCallback) {
+        onItemClickCallback = callback
     }
 
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =
@@ -33,6 +40,10 @@ class MontirAdapter :
         binding.pengalaman.text = item.pengalaman.toString()
         binding.harga.text = item.harga.toString()
         binding.jlhCostumer.text = item.jlhCostumer.toString()
+
+        binding.root.setOnClickListener {
+            onItemClickCallback?.onItemClicked(item)
+        }
     }
 
     interface OnItemClickCallback {

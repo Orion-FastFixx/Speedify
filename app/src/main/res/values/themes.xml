@@ -12,9 +12,34 @@
         <item name="android:fontFamily">@font/mona_sans_light</item>
     </style>
 
+    <style name="MonaRegular12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/mona_sans_regular</item>
+    </style>
+
     <style name="MonaRegular14">
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/mona_sans_regular</item>
+    </style>
+
+    <style name="MonaRegular16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/mona_sans_regular</item>
+    </style>
+
+    <style name="MonaRegular18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/mona_sans_regular</item>
+    </style>
+
+    <style name="MonaRegular20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/mona_sans_regular</item>
+    </style>
+
+    <style name="MonaMedium10">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/mona_sans_medium</item>
     </style>
 
     <style name="MonaMedium12">
@@ -24,6 +49,11 @@
 
     <style name="MonaMedium14">
         <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/mona_sans_medium</item>
+    </style>
+
+    <style name="MonaMedium16">
+        <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/mona_sans_medium</item>
     </style>
 
@@ -42,6 +72,11 @@
         <item name="android:fontFamily">@font/mona_sans_semibold</item>
     </style>
 
+    <style name="MonaSemiBold18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/mona_sans_semibold</item>
+    </style>
+
     <style name="MonaSemiBold20">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/mona_sans_semibold</item>
@@ -49,6 +84,16 @@
 
     <style name="MonaBold10">
         <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/mona_sans_bold</item>
+    </style>
+
+    <style name="MonaBold12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/mona_sans_bold</item>
+    </style>
+
+    <style name="MonaBold14">
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/mona_sans_bold</item>
     </style>
 

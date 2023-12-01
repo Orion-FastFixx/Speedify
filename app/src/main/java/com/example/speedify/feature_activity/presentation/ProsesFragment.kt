@@ -15,6 +15,7 @@ import com.example.speedify.databinding.FragmentProsesBinding
 import com.example.speedify.databinding.FragmentTersediaBinding
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
+import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
 import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
@@ -61,6 +62,15 @@ class ProsesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pesananAdapter.setOnItemClickCallback(object : PesananAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: PesananEntity) {
+                // Tanggapi klik item di sini
+                val intent = Intent(requireContext(), DetailPesananActivity::class.java)
+                intent.putExtra("pesanan_id", data.id)
+                startActivity(intent)
+            }
+        })
+
     }
 
     private fun initAdapter() {
@@ -69,6 +79,7 @@ class ProsesFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
+
     }
 
     companion object {

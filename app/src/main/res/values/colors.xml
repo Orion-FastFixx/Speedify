@@ -14,4 +14,6 @@
     <color name="transparent">#00000000</color>
     <color name="light_grey">#FFb5b5b5</color>
     <color name="star">#F69736</color>
+    <color name="brandeis_blue">#FF0066FF</color>
+    <color name="cultured">#FFf6f6f6</color>
 </resources>
