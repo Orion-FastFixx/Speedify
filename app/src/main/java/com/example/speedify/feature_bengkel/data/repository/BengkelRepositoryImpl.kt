@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.speedify.feature_bengkel.data.datasource.BengkelDataSource
 import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
+import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
 import com.example.speedify.utils.ResultState
@@ -47,7 +48,8 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
         liveData {
             try {
                 val response = BengkelDataSource.getAllBengkel()
-                val filteredResponse = response.filter { it.spesialisasi_bengkel == "Mobil" && it.rating.toDouble() >= 4.5 }
+                val filteredResponse =
+                    response.filter { it.spesialisasi_bengkel == "Mobil" && it.rating.toDouble() >= 4.5 }
                 emit(ResultState.Success(filteredResponse))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
@@ -60,6 +62,16 @@ class BengkelRepositoryImpl private constructor() : BengkelRepository {
                 val response = BengkelDataSource.getAllBengkel()
                 val filteredResponse = response.filter { it.spesialisasi_bengkel == "Motor" }
                 emit(ResultState.Success(filteredResponse))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getAllLayanan(): LiveData<ResultState<List<LayananEntity>>> =
+        liveData {
+            try {
+                val response = BengkelDataSource.getAllLayanan()
+                emit(ResultState.Success(response))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }

@@ -133,13 +133,38 @@
                 android:textColor="@color/charleston_green" />
         </LinearLayout>
 
-        <include
-            android:id="@+id/section_one_detail_bengkel"
-            layout="@layout/section_component"
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:dividerColor="@color/american_silver"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_rating_detail_bengkel" />
+
+        <TextView
+            android:id="@+id/section_one_detail_bengkel"
+            style="@style/MonaSemiBold20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/choose_services"
+            android:textColor="@color/charleston_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            style="@style/MonaMedium14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/bright_maroon"
+            app:layout_constraintStart_toEndOf="@+id/section_one_detail_bengkel"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -196,7 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Detail Lokasi (Patokan)"
+            android:text="@string/location_detail"
             android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_user_location_detail_bengkel" />
@@ -209,6 +234,7 @@
             app:boxBackgroundColor="@android:color/transparent"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidthFocused="1dp"
+            app:endIconMode="clear_text"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_location_detail_bengkel">
@@ -233,25 +259,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="Nama Lengkap"
+            android:text="@string/full_name"
             android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleDetailLocationEditTextLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/titleFullnameEditTextLayout"
+            android:id="@+id/titleFullNameEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:boxBackgroundColor="@android:color/transparent"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidthFocused="1dp"
+            app:endIconMode="clear_text"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_detail_bengkel">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/titleFullnameEditText"
+                android:id="@+id/titleFullNameEditText"
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,10 +296,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="Detail Keluhan"
+            android:text="@string/detail_complaint"
             android:textColor="@color/dim_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleFullnameEditTextLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/titleFullNameEditTextLayout" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titleDetailComplaintEditTextLayout"
@@ -282,6 +309,7 @@
             app:boxBackgroundColor="@android:color/transparent"
             app:boxStrokeColor="@color/black"
             app:boxStrokeWidthFocused="1dp"
+            app:endIconMode="clear_text"
             app:hintEnabled="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_complaint_detail_bengkel">

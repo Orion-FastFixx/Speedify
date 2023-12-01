@@ -25,9 +25,24 @@
     <string name="search_montir">Cari Montir</string>
     <string name="example_title_detail_bengkel">Sriwijaya Motor</string>
     <string name="example_desc_detail_bengkel">Bengkel mobil resmi yang telah berdiri sejak tahun 1993, dengan menyediakan semua layanan service mobil.</string>
-    <string name="choose_services">Pilih Layanan</string>
+    <string name="choose_services">Pilih Layanan<font color='#FF0000'>*</font></string>
     <string name="order_summary">Ringkasan Pesanan</string>
     <string name="section_location">Lokasi</string>
     <string name="payment_method">Metode Pembayaran</string>
     <string name="dummy_nominal">Saldo: Rp100.000</string>
+    <string name="example_subtitle_bengkel">Bengkel Mobil</string>
+    <string name="services">Layanan</string>
+    <string name="nominal">Nominal</string>
+    <string name="example_item_service">Ban Bocor</string>
+    <string name="example_item_price">100.000</string>
+    <string name="example_subtotal_price">Rp200000</string>
+    <string name="location_detail">Detail Lokasi (Patokan)<font color='#FF0000'>*</font></string>
+    <string name="full_name">Nama Lengkap<font color='#FF0000'>*</font></string>
+    <string name="detail_complaint">Detail Keluhan<font color='#FF0000'>*</font></string>
+    <string name="example_payment_method">Cash</string>
+    <string name="example_total_price">Total Pembayaran</string>
+    <string name="example_total_price_2">Rp100.000</string>
+    <string name="btn_pay">Bayar</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="admin_fee">Biaya Admin</string>
 </resources>
