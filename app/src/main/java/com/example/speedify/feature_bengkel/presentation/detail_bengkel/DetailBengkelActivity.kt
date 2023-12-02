@@ -53,6 +53,11 @@ class DetailBengkelActivity : AppCompatActivity() {
         setupTextChangeListeners()
         updateButtonState()
         sendUserData()
+
+        val iconBack = binding.icBack
+        iconBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupTextChangeListeners() {

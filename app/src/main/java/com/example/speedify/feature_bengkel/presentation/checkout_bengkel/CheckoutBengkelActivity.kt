@@ -1,11 +1,14 @@
 package com.example.speedify.feature_bengkel.presentation.checkout_bengkel
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.speedify.R
@@ -20,6 +23,7 @@ class CheckoutBengkelActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityCheckoutBengkelBinding
 
     private val binding get() = _binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCheckoutBengkelBinding.inflate(layoutInflater)
@@ -39,25 +43,50 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         paymentMethod.text = getString(R.string.payment_method)
 //        End set text payment method
 
-//        Get user data
+//      Get user data
         getUserData()
-//        End get user data
+//      End get user data
 
 //      Go to Payment Methods
         val morePayment = binding.checkoutBengkel.icArrowRightPaymentMethod
         morePayment.setOnClickListener {
-            val intent = Intent(this, PaymentMethodsActivity::class.java)
-            startActivity(intent)
+            val currentPayment = binding.checkoutBengkel.tvNominalPaymentMethod.text.toString()
+            val intent = Intent(this, PaymentMethodsActivity::class.java).apply {
+                putExtra(PaymentMethodsActivity.CURRENT_PAYMENT_METHOD_NAME, currentPayment)
+            }
+            paymentMethodResultLauncher.launch(intent)
         }
-//        End go to Payment Methods
+//      End go to Payment Methods
 
-//        Button pay
+//      initial payment method section
+        binding.checkoutBengkel.tvNominalBalance.visibility = View.GONE
+//      End initial payment method section
+
+//      Button pay
         setupTextChangeListeners()
         updateButtonState()
         payService()
-//        End button pay
+//      End button pay
 
+//      Back button
+        val iconBack = binding.checkoutBengkel.icBack
+        iconBack.setOnClickListener {
+            onBackPressed()
+        }
+//      End back button
     }
+
+    //   Get data from PaymentMethodsActivity
+    private val paymentMethodResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.let { intent ->
+                    val paymentMethod = intent.getStringExtra(PAYMENT_METHOD_NAME)
+                    val balance = intent.getStringExtra(BALANCE)
+                    updatePaymentMethod(paymentMethod, balance)
+                }
+            }
+        }
 
     private fun getUserData() {
         val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText
@@ -81,14 +110,14 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 safelyCastToLayananEntityList(rawServices)
             }
 
-
-//        set field data to CheckoutBengkelActivity
+//      set field data to CheckoutBengkelActivity
         detailLocation.setText(location)
         userName.setText(name)
         detailComplaints.setText(complaints)
         displaySelectedServicesAndPrice(selectedServices)
     }
 
+    //   Cast to LayananEntity
     private fun safelyCastToLayananEntityList(rawServices: Serializable?): ArrayList<LayananEntity> {
         return if (rawServices is List<*>) {
             rawServices.filterIsInstance<LayananEntity>() as ArrayList<LayananEntity>
@@ -98,17 +127,20 @@ class CheckoutBengkelActivity : AppCompatActivity() {
     }
 
     private fun displaySelectedServicesAndPrice(selectedServices: ArrayList<LayananEntity>) {
-//        LinearLayout for services in CheckoutBengkelActivity
+//      LinearLayout for services in CheckoutBengkelActivity
         val servicesLayout = binding.checkoutBengkel.llDynamicServices
         servicesLayout.removeAllViews()
 
+        // init subtotal price view
         val subtotalPriceView = binding.checkoutBengkel.tvSubtotalPriceService
 
+        // Set admin fee
         val adminFeeNominalView = binding.checkoutBengkel.tvNominalAdminFeeService
         val adminFee = 1000
         adminFeeNominalView.text = String.format("%s", adminFee)
 
 
+        // init total price view
         val totalPriceView = binding.checkoutBengkel.tvTotalPrice
 
         val inflater = LayoutInflater.from(this)
@@ -128,9 +160,11 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 
             servicesLayout.addView(serviceView)
         }
+        // Set subtotal price
         val formattedSubtotalPrice = subtotalPrice.currencyFormat()
         subtotalPriceView.text = formattedSubtotalPrice
 
+        // Set total price
         val totalPrice = subtotalPrice + adminFee
         val formattedTotalPrice = totalPrice.currencyFormat()
         totalPriceView.text = formattedTotalPrice
@@ -160,6 +194,35 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         }
         binding.checkoutBengkel.btnPayCheckout.setBackgroundColor(buttonColor)
         binding.checkoutBengkel.btnPayCheckout.setTextColor(Color.WHITE)
+    }
+
+
+    private fun updatePaymentMethod(paymentMethod: String?, balance: String?) {
+        val paymentMethodView = binding.checkoutBengkel.tvNominalPaymentMethod
+        val paymentMethodIcon = binding.checkoutBengkel.icPaymentMethod
+        val balanceView = binding.checkoutBengkel.tvNominalBalance
+
+        when (paymentMethod) {
+            "Cash" -> {
+                paymentMethodIcon.setImageResource(R.drawable.ic_cash)
+                paymentMethodView.text = "Cash"
+                balanceView.visibility = View.GONE
+            }
+
+            "OVO" -> {
+                paymentMethodIcon.setImageResource(R.drawable.ic_ovo)
+                paymentMethodView.text = "OVO"
+                balanceView.visibility = View.VISIBLE
+                balanceView.text = balance
+            }
+
+            "GoPay" -> {
+                paymentMethodIcon.setImageResource(R.drawable.ic_gopay)
+                paymentMethodView.text = "GoPay"
+                balanceView.visibility = View.VISIBLE
+                balanceView.text = balance
+            }
+        }
     }
 
     private fun payService() {
@@ -228,5 +291,7 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         const val USER_NAME = "key_name"
         const val DETAIL_COMPLAINT = "key_complaint"
         const val SELECTED_SERVICES = "key_selected_services"
+        const val PAYMENT_METHOD_NAME = "key_payment_method_name"
+        const val BALANCE = "key_balance"
     }
 }
