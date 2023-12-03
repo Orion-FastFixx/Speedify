@@ -74,7 +74,7 @@
             android:layout_height="48dp"
             android:scaleType="centerCrop"
             app:shapeAppearanceOverlay="@style/circleImg"
-            android:src="@drawable/pesanan2"/>
+            android:src="@drawable/img_hafiz"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
