@@ -16,39 +16,55 @@
         android:theme="@style/Theme.Speedify"
         tools:targetApi="31">
         <activity
-<<<<<<< HEAD
+            android:name=".feature_profile.presentation.kendaraan.EditKendaraanMobilActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature_consultation.presentation.chat_montir.ChatMontirActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.privacy_policy.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.kendaraan.EditKendaraanMotorActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature_profile.presentation.kendaraan.DataKendaraanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.ContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.edit_password.EditPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.edit_profile.EditProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".feature_profile.presentation.ProfileFragment"
+            android:exported="false" />
+        <activity
             android:name=".payment.payment_methods"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_payment_methods"
-            android:theme="@style/Theme.Speedify"/>
+            android:theme="@style/Theme.Speedify" />
         <activity
             android:name=".payment.payment_done"
             android:exported="false" />
         <activity
             android:name=".feature_consultation.presentation.order_montir.orderMontir"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".feature_activity.presentation.detail_pesanan.DetailPesananActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity"
-            android:exported="false" />
-=======
-            android:name=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity"
             android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity"
             android:exported="false" />
-        <activity
-            android:name=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
->>>>>>> 39f03369fd040b213fde2f9efc55b862bc7e4470
         <activity
             android:name=".feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity"
             android:exported="false" />
@@ -57,7 +73,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-<<<<<<< HEAD
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -66,10 +81,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-=======
-            android:exported="false"
-            android:label="@string/app_name" />
->>>>>>> 39f03369fd040b213fde2f9efc55b862bc7e4470
     </application>
 
 </manifest>

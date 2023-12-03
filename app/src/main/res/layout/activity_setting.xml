@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".feature_profile.presentation.SettingActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/cl_detail_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ic_back"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="6dp"
+                android:backgroundTint="@color/transparent"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_weight="1"
+                android:layout_gravity="start"/>
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                style="@style/MonaSemiBold16"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:fontFamily="@font/mona_sans_bold"
+                android:text="@string/title_setting"
+                android:textColor="@color/tertiary"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="start"
+                android:layout_weight="6"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="30dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <ImageView
+            android:id="@+id/ic_contact"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_key"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium16"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu1_setting"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_edit"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="30dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutMenu1">
+
+        <ImageView
+            android:id="@+id/ic_out"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_out"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium16"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu2_setting"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_out"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

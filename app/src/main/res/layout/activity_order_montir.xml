@@ -68,7 +68,7 @@
                     android:layout_weight="1"
                     android:gravity="end"/>
 
-                <ImageButton
+                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:backgroundTint="@color/transparent"
@@ -333,7 +333,7 @@
                 android:layout_height="24dp"
                 android:backgroundTint="@color/transparent"
                 android:contentDescription="@string/icon"
-                android:src="@drawable/btn_back"
+                android:src="@drawable/ic_next"
                 android:layout_weight="1"
                 android:gravity="end"/>
 
@@ -348,7 +348,7 @@
             android:background="@color/light_grey"
             app:layout_constraintTop_toBottomOf="@id/layout8"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_detail_pesanan"
             android:layout_width="255dp"
             android:layout_height="50dp"

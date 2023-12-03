@@ -1,12 +1,12 @@
-package com.example.speedify.feature_activity.presentation.detail_pesanan
+package com.example.speedify.feature_profile.presentation.privacy_policy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.speedify.R
 
-class DetailPesananActivity : AppCompatActivity() {
+class PrivacyPolicyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_pesanan)
+        setContentView(R.layout.activity_privacy_policy)
     }
 }

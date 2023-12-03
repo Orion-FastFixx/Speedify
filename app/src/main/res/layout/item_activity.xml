@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10sp"
     android:orientation="vertical">
@@ -36,7 +37,7 @@
                 android:fontFamily="@font/mona_sans_semibold"
                 android:textSize="14dp"
                 android:text="Sriwijaya Mobil"
-            />
+                android:textColor="@color/tertiary"/>
 
             <TextView
                 android:id="@+id/tujuan"
@@ -46,7 +47,7 @@
                 android:fontFamily="@font/mona_sans_semibold"
                 android:textSize="14dp"
                 android:text="Kalidoni"
-                />
+                android:textColor="@color/tertiary"/>
 
 
                 <TextView
@@ -56,7 +57,8 @@
                     android:fontFamily="@font/mona_sans_regular"
                     android:layout_marginTop="6dp"
                     android:textSize="12sp"
-                    android:text="12 Juli 2023, 10.33"/>
+                    android:text="12 Juli 2023, 10.33"
+                    android:textColor="@color/tertiary"/>
 
 
             <TextView
@@ -67,7 +69,7 @@
                 android:layout_marginTop="15dp"
                 android:textSize="12dp"
                 android:text="Detail"
-                android:clickable="true"
+                android:textColor="@color/tertiary"
                 />
 
         </LinearLayout>
@@ -85,7 +87,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/mona_sans_medium"
             android:textSize="15dp"
-            android:text="RP. 167.000"/>
+            android:text="RP. 167.000"
+            android:textColor="@color/tertiary"/>
 
         <RatingBar
             android:id="@+id/ratingBar"

@@ -132,7 +132,8 @@
                 android:layout_marginTop="20sp"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Rp. "
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/tertiary"/>
 
             <TextView
                 android:id="@+id/harga"
@@ -141,7 +142,8 @@
                 android:layout_marginTop="20sp"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="35.000 "
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/tertiary"/>
 
         </LinearLayout>
 
@@ -157,7 +159,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_bold"
                 android:text="100"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/tertiary"/>
 
             <TextView
                 android:id="@+id/ketCostumer"
@@ -166,7 +169,8 @@
                 android:layout_marginStart="5sp"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Costumer sudah melakukan chat"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:textColor="@color/tertiary"/>
         </LinearLayout>
     </LinearLayout>
 

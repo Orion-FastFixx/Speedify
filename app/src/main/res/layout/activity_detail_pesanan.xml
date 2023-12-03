@@ -4,32 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:backgroundTint="@color/white"
     tools:context=".feature_activity.presentation.detail_pesanan.DetailPesananActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:clipToPadding="false"
         android:paddingHorizontal="15dp">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <include
-                android:id="@+id/sv_detail_pesanan"
-                layout="@layout/app_bar_main"
+            <LinearLayout
+                android:id="@+id/cl_detail_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent">
 
+                <ImageView
+                    android:id="@+id/ic_back"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="6dp"
+                    android:contentDescription="@string/icon"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_title_toolbar"
+                    style="@style/MonaSemiBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/example_title_detail_pesanan"
+                    android:textColor="@color/tertiary"
+                    app:layout_constraintStart_toEndOf="@id/ic_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,10 +73,9 @@
                 android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mona_sans_medium"
+                style="@style/MonaMedium16"
                 android:text="ID Pesanan"
                 android:textColor="@color/tertiary"
-                android:textSize="16dp"
                 android:layout_weight="1"
                 android:layout_gravity="start"
                 />
@@ -66,10 +90,9 @@
                     android:id="@+id/idPesanan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mona_sans_regular"
+                    style="@style/MonaRegular14"
                     android:text="A-5DCWKF6WWHLS"
                     android:textColor="@color/light_grey"
-                    android:textSize="14dp"
                     android:layout_weight="1"
                     android:gravity="end"/>
 
@@ -90,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout">
 
@@ -118,16 +141,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/mona_sans_semibold"
+                        style="@style/MonaSemiBold16"
                         android:text="Sriwijaya Mobil"
-                        android:textSize="16dp" />
+                        android:textColor="@color/tertiary" />
 
                     <TextView
                         android:id="@+id/penghubung"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mona_sans_semibold"
+                        style="@style/MonaSemiBold14"
                         android:text="-"
+                        android:textColor="@color/tertiary"
                         android:textSize="14dp" />
 
                     <TextView
@@ -135,9 +159,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/mona_sans_semibold"
+                        style="@style/MonaSemiBold16"
                         android:text="Kalidoni"
-                        android:textSize="16dp" />
+                        android:textColor="@color/tertiary" />
 
                 </LinearLayout>
 
@@ -146,8 +170,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:fontFamily="@font/mona_sans_regular"
+                    style="@style/MonaRegular12"
                     android:text="Dipesan"
+                    android:textColor="@color/tertiary"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -183,10 +208,10 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/mona_sans_semibold"
+                    style="@style/MonaSemiBold14"
                     android:maxLines="1"
                     android:text="Jl. Slamet Riady No. 14, Ilir Barat I, Kalidoni, Palembang"
-                    android:textSize="14dp" />
+                    android:textColor="@color/tertiary" />
 
             </LinearLayout>
 
@@ -217,10 +242,10 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/mona_sans_semibold"
+                    style="@style/MonaSemiBold14"
                     android:maxLines="1"
                     android:text="Kalidoni"
-                    android:textSize="14dp" />
+                    android:textColor="@color/tertiary"  />
 
             </LinearLayout>
 
@@ -241,8 +266,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/mona_sans_medium"
             android:text="Kasih rating ke bengkel?"
-            android:textColor="@color/tertiary"
             android:textSize="16dp"
+            android:textColor="@color/tertiary"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -303,8 +328,8 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/mona_sans_semibold"
             android:text="Ringkasan Pesanan"
-            android:textColor="@color/tertiary"
             android:textSize="16dp"
+            android:textColor="@color/tertiary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line2"/>
 
@@ -322,8 +347,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Mesin Mati"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="start"/>
 
@@ -333,8 +358,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Rp. 150000"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="end"/>
 
@@ -354,8 +379,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Subtotal"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="start"/>
 
@@ -365,8 +390,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Rp. 150000"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="end"/>
 
@@ -386,8 +411,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Biaya Perjalanan"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="start"/>
 
@@ -397,8 +422,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_medium"
                 android:text="Rp. 17000"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="end"/>
 
@@ -418,8 +443,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_semibold"
                 android:text="Total"
-                android:textColor="@color/tertiary"
                 android:textSize="16dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="start"/>
 
@@ -429,21 +454,21 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mona_sans_semibold"
                 android:text="Rp. 167000"
-                android:textColor="@color/tertiary"
                 android:textSize="14dp"
+                android:textColor="@color/tertiary"
                 android:layout_weight="1"
                 android:gravity="end"/>
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_detail_pesanan"
             android:layout_width="255dp"
             android:layout_height="50dp"
             android:fontFamily="@font/mona_sans_semibold"
-            android:backgroundTint="@color/primary"
             android:text="Selesai"
             android:textSize="14dp"
+            android:textColor="@color/white"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
