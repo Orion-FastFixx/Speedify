@@ -45,4 +45,7 @@
     <string name="btn_pay">Bayar</string>
     <string name="subtotal">Subtotal</string>
     <string name="admin_fee">Biaya Admin</string>
+    <string name="dummy_rating">4.5</string>
+    <string name="dummy_review">(5K+) .</string>
+    <string name="rating_review">Rating dan Ulasan</string>
 </resources>
