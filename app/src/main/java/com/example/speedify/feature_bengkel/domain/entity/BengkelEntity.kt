@@ -3,6 +3,8 @@ package com.example.speedify.feature_bengkel.domain.entity
 import androidx.annotation.DrawableRes
 import com.example.speedify.R
 
+
+
 data class BengkelEntity(
     val id: String,
     val nama: String,

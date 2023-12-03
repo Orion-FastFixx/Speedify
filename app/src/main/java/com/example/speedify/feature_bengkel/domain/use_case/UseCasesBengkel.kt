@@ -5,5 +5,6 @@ data class UseCasesBengkel(
     val getAllBengkelMobil: GetAllBengkelMobil,
     val getNearestBengkelMobil: GetNearestBengkelMobil,
     val getTheBestBengkelMobil: GetTheBestBengkelMobil,
-    val getAllBengkelMotor: GetAllBengkelMotor
+    val getAllBengkelMotor: GetAllBengkelMotor,
+    val getAllLayanan: GetAllLayanan
 )

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipToPadding="false"
@@ -68,7 +67,7 @@
             style="@style/MonaSemiBold20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sriwijaya Motor"
+            android:text="@string/example_title_detail_bengkel"
             android:textColor="@color/charleston_green" />
 
         <TextView
@@ -77,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Bengkel Mobil" />
+            android:text="@string/example_subtitle_bengkel" />
 
     </LinearLayout>
 
@@ -96,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Layanan"
+        android:text="@string/services"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_summary" />
 
@@ -105,18 +104,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Nominal"
+        android:text="@string/nominal"
         android:textColor="@color/brandeis_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_summary" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_item_services"
+    <LinearLayout
+        android:id="@+id/ll_dynamic_services"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_order_summary"
-        tools:listitem="@layout/item_services_component" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_order_summary">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_subtotal_services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_dynamic_services">
+
+        <TextView
+            android:id="@+id/tv_subtotal_service"
+            style="@style/MonaRegular14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/subtotal" />
+
+        <TextView
+            android:id="@+id/tv_subtotal_price_service"
+            style="@style/MonaRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_subtotal_price" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_admin_price_services"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_subtotal_services">
+
+        <TextView
+            android:id="@+id/tv_admin_fee_service"
+            style="@style/MonaRegular14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/admin_fee" />
+
+        <TextView
+            android:id="@+id/tv_nominal_admin_fee_service"
+            style="@style/MonaRegular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_item_price" />
+    </LinearLayout>
 
 
     <com.google.android.material.divider.MaterialDivider
@@ -127,7 +179,7 @@
         app:dividerColor="@color/american_silver"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_item_services" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_admin_price_services" />
 
     <LinearLayout
         android:id="@+id/ll_user_location_checkout"
@@ -165,7 +217,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Detail Lokasi (Patokan)"
+        android:text="@string/location_detail"
         android:textColor="@color/dim_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_user_location_checkout" />
@@ -178,15 +230,18 @@
         app:boxBackgroundColor="@android:color/transparent"
         app:boxStrokeColor="@color/black"
         app:boxStrokeWidthFocused="1dp"
+        app:endIconMode="clear_text"
         app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_location_checkout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleDetailLocationEditText"
+            style="@style/MonaSemiBold16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="0dp"
@@ -200,28 +255,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Nama Lengkap"
+        android:text="@string/full_name"
         android:textColor="@color/dim_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleDetailLocationEditTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titleFullnameEditTextLayout"
+        android:id="@+id/titleFullNameEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@android:color/transparent"
         app:boxStrokeColor="@color/black"
         app:boxStrokeWidthFocused="1dp"
+        app:endIconMode="clear_text"
         app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_checkout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titleFullnameEditText"
+            android:id="@+id/titleFullNameEditText"
+            style="@style/MonaSemiBold16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:imeOptions="actionNext"
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="0dp"
@@ -235,10 +293,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Detail Keluhan"
+        android:text="@string/detail_complaint"
         android:textColor="@color/dim_gray"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleFullnameEditTextLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/titleFullNameEditTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleDetailComplaintEditTextLayout"
@@ -248,15 +306,18 @@
         app:boxBackgroundColor="@android:color/transparent"
         app:boxStrokeColor="@color/black"
         app:boxStrokeWidthFocused="1dp"
+        app:endIconMode="clear_text"
         app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_detail_complaint_checkout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/titleDetailComplaintEditText"
+            style="@style/MonaSemiBold16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:imeOptions="actionDone"
             android:inputType="text"
             android:paddingVertical="8dp"
             android:paddingStart="0dp"
@@ -269,11 +330,11 @@
         style="@style/MonaSemiBold20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:text="@string/choose_services"
         android:textColor="@color/charleston_green"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDetailComplaintEditTextLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/titleDetailComplaintEditTextLayout" />
 
     <LinearLayout
         android:id="@+id/ll_payment_method"
@@ -292,20 +353,38 @@
             android:contentDescription="@string/icon"
             android:src="@drawable/ic_cash" />
 
-        <TextView
-            android:id="@+id/tv_nominal_payment_method"
-            style="@style/MonaRegular14"
+        <LinearLayout
+            android:id="@+id/ll_nominal_payment_method"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_weight="1"
-            android:text="Cash"
-            android:textColor="@color/charleston_green" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nominal_payment_method"
+                style="@style/MonaRegular14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/example_payment_method"
+                android:textColor="@color/charleston_green" />
+
+            <TextView
+                android:id="@+id/tv_nominal_balance"
+                style="@style/MonaRegular12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/dummy_nominal" />
+
+        </LinearLayout>
+
 
         <ImageView
             android:id="@+id/ic_arrow_right_payment_method"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:contentDescription="@string/icon"
             android:src="@drawable/ic_arrow_right_light" />
 
     </LinearLayout>
@@ -322,20 +401,21 @@
 
     <TextView
         android:id="@+id/tv_total"
-        style="@style/MonaRegular16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Total"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider_two_checkout" />
-
-    <TextView
         style="@style/MonaSemiBold16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Rp100.000"
+        android:text="@string/example_total_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider_two_checkout" />
+
+    <TextView
+        android:id="@+id/tv_total_price"
+        style="@style/MonaSemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/example_total_price_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider_two_checkout" />
 
@@ -345,7 +425,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="96dp"
         android:backgroundTint="@color/cinnabar"
-        android:text="Bayar"
+        android:text="@string/btn_pay"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

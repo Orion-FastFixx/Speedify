@@ -1,9 +1,11 @@
 package com.example.speedify.feature_bengkel.presentation.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCardBengkelOneBinding
 import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
+import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
 
@@ -38,6 +40,15 @@ class SectionOneAdapter :
         binding.tvDurationCardOne.text = item.waktu
         binding.tvRatingCardOne.text = item.rating.toString()
         binding.tvReviewCardOne.text = String.format("(%s reviews)", item.review)
+
+        binding.root.setOnClickListener {
+            binding.root.context.startActivity(
+                Intent(
+                    binding.root.context,
+                    DetailBengkelActivity::class.java
+                )
+            )
+        }
     }
 
     interface OnItemClickCallback {

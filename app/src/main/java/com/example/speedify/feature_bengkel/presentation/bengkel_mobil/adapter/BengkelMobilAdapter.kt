@@ -1,10 +1,12 @@
 package com.example.speedify.feature_bengkel.presentation.bengkel_mobil.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCardBengkelTwoBinding
 import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
 import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
+import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
 
@@ -43,6 +45,15 @@ class BengkelMobilAdapter :
         binding.tvCityCardTwo.text = item.kota
         binding.tvDistanceCardTwo.text = String.format("%s Km dari Lokasi Anda", item.lokasi)
         binding.tvPriceCardTwo.text = String.format("Jasa Mulai dari Rp. %s", item.harga)
+
+        binding.root.setOnClickListener {
+            binding.root.context.startActivity(
+                Intent(
+                    binding.root.context,
+                    DetailBengkelActivity::class.java
+                )
+            )
+        }
     }
 
     interface OnItemClickCallback {

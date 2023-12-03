@@ -14,6 +14,7 @@ import com.example.speedify.feature_bengkel.data.repository.BengkelRepositoryImp
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllBengkelMotor
+import com.example.speedify.feature_bengkel.domain.use_case.GetAllLayanan
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllPromotion
 import com.example.speedify.feature_bengkel.domain.use_case.GetNearestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMobil
@@ -58,7 +59,8 @@ object SpeedifyModule {
             getAllBengkelMobil = GetAllBengkelMobil(repository),
             getNearestBengkelMobil = GetNearestBengkelMobil(repository),
             getTheBestBengkelMobil = GetTheBestBengkelMobil(repository),
-            getAllBengkelMotor = GetAllBengkelMotor(repository)
+            getAllBengkelMotor = GetAllBengkelMotor(repository),
+            getAllLayanan = GetAllLayanan(repository)
         )
     }
 
