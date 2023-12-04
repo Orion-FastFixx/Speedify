@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_education"
-        android:name="com.example.speedify.feature_education.presentation.EducationFragment"
+        android:name="com.example.speedify.feature_education.presentation.education.EducationFragment"
         android:label="@string/title_education"
         tools:layout="@layout/fragment_education" />
 

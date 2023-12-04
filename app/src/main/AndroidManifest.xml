@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Speedify"
         tools:targetApi="31">
         <activity
+            android:name=".feature_education.presentation.detail_education.DetailEducationActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity"
             android:exported="false" />
         <activity
