@@ -1,4 +1,4 @@
-package com.example.speedify.feature_bengkel.presentation.checkout_bengkel
+package com.example.speedify.feature_payment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.speedify.R
 import com.example.speedify.databinding.ActivityPaymentMethodsBinding
+import com.example.speedify.feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity
 
 class PaymentMethodsActivity : AppCompatActivity() {
 
