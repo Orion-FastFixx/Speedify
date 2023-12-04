@@ -19,7 +19,9 @@
             android:name=".feature_education.presentation.detail_education.DetailEducationActivity"
             android:exported="false" />
         <activity
-            android:name=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity"
+            android:name=".feature_payment.PaymentMethodsActivity"
+            android:exported="false"/>
+        <activity
             android:name=".feature_profile.presentation.kendaraan.EditKendaraanMobilActivity"
             android:exported="false"/>
         <activity
@@ -50,15 +52,7 @@
             android:name=".feature_profile.presentation.ProfileFragment"
             android:exported="false" />
         <activity
-            android:name=".payment.payment_methods"
-            android:exported="false"
-            android:label="@string/title_activity_payment_methods"
-            android:theme="@style/Theme.Speedify" />
-        <activity
-            android:name=".payment.payment_done"
-            android:exported="false" />
-        <activity
-            android:name=".feature_consultation.presentation.order_montir.orderMontir"
+            android:name=".feature_consultation.presentation.order_montir.OrderMontir"
             android:exported="false" />
         <activity
             android:name=".feature_activity.presentation.detail_pesanan.DetailPesananActivity"
