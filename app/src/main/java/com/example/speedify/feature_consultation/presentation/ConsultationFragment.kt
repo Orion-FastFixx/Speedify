@@ -12,12 +12,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
 import com.example.speedify.databinding.FragmentConsultationBinding
-import com.example.speedify.feature_activity.domain.entity.PesananEntity
-import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
-import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
-import com.example.speedify.feature_consultation.presentation.order_montir.orderMontir
+import com.example.speedify.feature_consultation.presentation.order_montir.OrderMontir
 import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,7 +59,7 @@ class ConsultationFragment : Fragment() {
         montirAdapter.setOnItemClickCallback(object : MontirAdapter.OnItemClickCallback {
             override fun onItemClicked(data: MontirEntity) {
                 // Tanggapi klik item di sini
-                val intent = Intent(requireContext(), orderMontir::class.java)
+                val intent = Intent(requireContext(), OrderMontir::class.java)
                 startActivity(intent)
             }
         })
