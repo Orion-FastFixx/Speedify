@@ -20,12 +20,54 @@
             android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity"
+            android:name=".feature_profile.presentation.kendaraan.EditKendaraanMobilActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature_consultation.presentation.chat_montir.ChatMontirActivity"
             android:exported="false" />
         <activity
-            android:name=".feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity"
+            android:name=".feature_profile.presentation.privacy_policy.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.kendaraan.EditKendaraanMotorActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".feature_profile.presentation.kendaraan.DataKendaraanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.ContactActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.edit_password.EditPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_profile.presentation.edit_profile.EditProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".feature_profile.presentation.ProfileFragment"
+            android:exported="false" />
+        <activity
+            android:name=".payment.payment_methods"
+            android:exported="false"
+            android:label="@string/title_activity_payment_methods"
+            android:theme="@style/Theme.Speedify" />
+        <activity
+            android:name=".payment.payment_done"
+            android:exported="false" />
+        <activity
+            android:name=".feature_consultation.presentation.order_montir.orderMontir"
+            android:exported="false" />
+        <activity
+            android:name=".feature_activity.presentation.detail_pesanan.DetailPesananActivity"
             android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity"
             android:exported="false" />
         <activity
             android:name=".feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity"

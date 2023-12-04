@@ -7,9 +7,6 @@ import androidx.lifecycle.Lifecycle
 import com.example.speedify.feature_activity.presentation.CancelFragment
 import com.example.speedify.feature_activity.presentation.ProsesFragment
 import com.example.speedify.feature_activity.presentation.RiwayatFragment
-import com.example.speedify.feature_consultation.presentation.TeratasFragment
-import com.example.speedify.feature_consultation.presentation.TerpercayaFragment
-import com.example.speedify.feature_consultation.presentation.TersediaFragment
 
 
 class PesananViewPagerAdapter(

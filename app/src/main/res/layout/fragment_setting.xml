@@ -3,19 +3,329 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".feature_setting.presentation.SettingFragment">
+    tools:context=".feature_profile.presentation.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Hello Setting" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:id="@+id/cl_detail_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                style="@style/MonaSemiBold16"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginStart="45dp"
+                android:fontFamily="@font/mona_sans_bold"
+                android:text="@string/title_profile"
+                android:textColor="@color/tertiary"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="center"
+                android:layout_weight="3"
+                android:layout_gravity="start"/>
+
+            <ImageView
+                android:id="@+id/ic_setting"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="6dp"
+                android:backgroundTint="@color/transparent"
+                android:contentDescription="@string/icon"
+                android:src="@drawable/ic_setting"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_weight="1"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgPesanan"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImg"
+            android:src="@drawable/img_hafiz"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1">
+
+
+            <TextView
+                android:id="@+id/namaProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MonaSemiBold18"
+                android:textColor="@color/tertiary"
+                android:text="@string/example_nama_profile"
+                />
+
+            <TextView
+                android:id="@+id/statusProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:background="@color/succes"
+                style="@style/MonaRegular12"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white"
+                android:text="Verified"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ic_next"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/layoutMenu1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/layout">
+
+        <ImageView
+            android:id="@+id/ic_contact"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_contact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium14"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu1_profile"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_contact"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/layoutMenu1"/>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/line2">
+
+        <ImageView
+            android:id="@+id/ic_kebijakan"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_kebijakan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/kebijakan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium14"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu2_profile"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_kebijakan"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/layoutMenu2"/>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/line3">
+
+        <ImageView
+            android:id="@+id/ic_data_kendaraan"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/data_kendaraan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium14"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu3_profile"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_data_kendaraan"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/layoutMenu3"/>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/line4">
+
+        <ImageView
+            android:id="@+id/ic_keamanan_privasi"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/keamanan_privasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/MonaMedium14"
+            android:layout_marginTop="9dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/menu4_profile"
+            android:textColor="@color/tertiary"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:id="@+id/ic_next_keamanan_privasi"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

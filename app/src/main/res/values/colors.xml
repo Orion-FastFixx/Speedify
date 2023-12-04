@@ -8,11 +8,13 @@
     <color name="primary">#EC3D3D</color>
     <color name="second">#F2F2F2</color>
     <color name="tertiary">#252629</color>
+    <color name="succes">#00B154</color>
     <color name="quick_silver">#FFA4A4A4</color>
     <color name="dim_gray">#FF6B6D6D</color>
     <color name="silver_sand">#FFC4C4C4</color>
     <color name="transparent">#00000000</color>
     <color name="light_grey">#FFb5b5b5</color>
+    <color name="star">#F69736</color>
     <color name="brandeis_blue">#FF0066FF</color>
     <color name="cultured">#FFf6f6f6</color>
     <color name="roman_silver">#FF8b9096</color>

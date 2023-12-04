@@ -2,14 +2,14 @@ package com.example.speedify.feature_activity.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.speedify.databinding.CardActivityBinding
+import com.example.speedify.databinding.ItemActivityBinding
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.utils.BaseAdapter
 import com.example.speedify.utils.DiffCallbackListener
 
 class PesananAdapter :
-    BaseAdapter<PesananEntity, CardActivityBinding>(diffCallbackListener) {
+    BaseAdapter<PesananEntity, ItemActivityBinding>(diffCallbackListener) {
 
     companion object {
         val diffCallbackListener = object : DiffCallbackListener<PesananEntity> {
@@ -18,21 +18,32 @@ class PesananAdapter :
         }
     }
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(callback: OnItemClickCallback) {
+        onItemClickCallback = callback
+    }
+
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =
-        CardActivityBinding.inflate(inflater, container, false)
+        ItemActivityBinding.inflate(inflater, container, false)
 
     override fun bind(
-        binding: CardActivityBinding,
+        binding: ItemActivityBinding,
         item: PesananEntity,
         position: Int,
         count: Int
     ) {
         binding.imgPesanan.setImageResource(item.imgPesanan)
-        binding.tgl.text = item.tgl.toString()
         binding.namaBengkel.text = item.namaBengkel
-        binding.kendala.text = item.kendala
-        binding.codeConfirm.text = item.codeConfirm.toString()
-        binding.harga.text = item.harga.toString()
+        binding.tujuan.text = item.tujuan
+        binding.tgl.text = String.format("%s, %s", item.tgl.toLocalDate(), item.tgl.toLocalTime());
+        binding.harga.text = String.format("Rp. %s", item.harga)
+        binding.ratingBar.rating = item.rating.toFloat()
+
+        binding.root.setOnClickListener {
+            onItemClickCallback?.onItemClicked(item)
+        }
+
     }
 
     interface OnItemClickCallback {

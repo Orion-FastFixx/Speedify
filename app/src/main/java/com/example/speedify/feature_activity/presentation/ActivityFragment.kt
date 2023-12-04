@@ -9,12 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.speedify.R
 import com.example.speedify.databinding.FragmentActivityBinding
-import com.example.speedify.databinding.FragmentConsultationBinding
 import com.example.speedify.feature_activity.presentation.adapter.PesananViewPagerAdapter
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
-import com.example.speedify.feature_consultation.presentation.ConsultationFragment
-import com.example.speedify.feature_consultation.presentation.adapter.MontirViewPagerAdapter
-import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

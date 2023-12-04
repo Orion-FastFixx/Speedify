@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:clipToPadding="false"
-    android:paddingHorizontal="16dp"
-    tools:context=".feature_bengkel.presentation.checkout_bengkel.PaymentMethodsActivity">
+    android:paddingHorizontal="15dp"
+    tools:context=".payment.payment_methods">
 
     <include
         android:id="@+id/payment_methods_bengkel"

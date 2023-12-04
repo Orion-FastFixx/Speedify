@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10sp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgPesanan"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/circleImg"
+            android:src="@drawable/pesanan2"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
+
+
+            <TextView
+                android:id="@+id/namaBengkel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mona_sans_semibold"
+                android:textSize="14dp"
+                android:text="Sriwijaya Mobil"
+                android:textColor="@color/tertiary"/>
+
+            <TextView
+                android:id="@+id/tujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/mona_sans_semibold"
+                android:textSize="14dp"
+                android:text="Kalidoni"
+                android:textColor="@color/tertiary"/>
+
+
+                <TextView
+                    android:id="@+id/tgl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mona_sans_regular"
+                    android:layout_marginTop="6dp"
+                    android:textSize="12sp"
+                    android:text="12 Juli 2023, 10.33"
+                    android:textColor="@color/tertiary"/>
+
+
+            <TextView
+                android:id="@+id/more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mona_sans_semibold"
+                android:layout_marginTop="15dp"
+                android:textSize="12dp"
+                android:text="Detail"
+                android:textColor="@color/tertiary"
+                />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/harga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mona_sans_medium"
+            android:textSize="15dp"
+            android:text="RP. 167.000"
+            android:textColor="@color/tertiary"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="59dp"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="4"
+            android:progressTint="@color/star"
+            style="?android:attr/ratingBarStyleSmall"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ask"
+            />
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
