@@ -1,9 +1,9 @@
 package com.example.speedify.feature_authentication.presentation.sign_in
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.speedify.R
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.speedify.databinding.ActivitySignInBinding
 import com.example.speedify.feature_authentication.presentation.sign_up.SignUpActivity
 
@@ -20,8 +20,19 @@ class SignInActivity : AppCompatActivity() {
         dynamicConfiguration()
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        super.onBackPressedDispatcher.onBackPressed()
+        finishAffinity()
+    }
+
     private fun dynamicConfiguration() {
-    //     go to register page
+        //     hide username field
+        binding.fieldAuth.tvUsername.visibility = View.GONE
+        binding.fieldAuth.authUsernameTextLayout.visibility = View.GONE
+
+        //     go to register page
         binding.fieldBtn.btnRegis.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)

@@ -28,7 +28,7 @@
 
     <include
         android:id="@+id/field_btn"
-        layout="@layout/btn_auth_component"
+        layout="@layout/btn_signin_component"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"

@@ -3,6 +3,7 @@ package com.example.speedify.feature_authentication.presentation.sign_up
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.speedify.R
 import com.example.speedify.databinding.ActivitySignUpBinding
 import com.example.speedify.feature_authentication.presentation.sign_in.SignInActivity
 
@@ -26,10 +27,9 @@ class SignUpActivity : AppCompatActivity() {
         iconBack.setOnClickListener {
             onBackPressed()
         }
-        //     go to login page
+        //    go to back to sign in page
         binding.fieldBtn.btnLogin.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
     }
 }
