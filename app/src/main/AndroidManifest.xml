@@ -16,14 +16,20 @@
         android:theme="@style/Theme.Speedify"
         tools:targetApi="31">
         <activity
+            android:name=".feature_authentication.presentation.sign_up.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".feature_authentication.presentation.sign_in.SignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature_education.presentation.detail_education.DetailEducationActivity"
             android:exported="false" />
         <activity
             android:name=".feature_payment.PaymentMethodsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".feature_profile.presentation.kendaraan.EditKendaraanMobilActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".feature_consultation.presentation.chat_montir.ChatMontirActivity"
             android:exported="false" />
@@ -32,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".feature_profile.presentation.kendaraan.EditKendaraanMotorActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".feature_profile.presentation.kendaraan.DataKendaraanActivity"
             android:exported="false" />
