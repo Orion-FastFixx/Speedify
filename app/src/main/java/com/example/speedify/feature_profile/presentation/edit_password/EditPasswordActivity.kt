@@ -3,10 +3,9 @@ package com.example.speedify.feature_profile.presentation.edit_password
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.TextView
 import com.example.speedify.databinding.ActivityEditPasswordBinding
-import com.example.speedify.feature_profile.presentation.SettingActivity
+import com.example.speedify.feature_profile.presentation.setting.SettingActivity
 
 class EditPasswordActivity : AppCompatActivity() {
 

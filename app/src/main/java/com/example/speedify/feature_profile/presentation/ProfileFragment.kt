@@ -10,6 +10,7 @@ import com.example.speedify.databinding.FragmentSettingBinding
 import com.example.speedify.feature_profile.presentation.edit_profile.EditProfileActivity
 import com.example.speedify.feature_profile.presentation.kendaraan.DataKendaraanActivity
 import com.example.speedify.feature_profile.presentation.privacy_policy.PrivacyPolicyActivity
+import com.example.speedify.feature_profile.presentation.setting.SettingActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

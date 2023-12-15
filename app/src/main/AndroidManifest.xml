@@ -57,7 +57,7 @@
             android:name=".feature_profile.presentation.edit_password.EditPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".feature_profile.presentation.SettingActivity"
+            android:name=".feature_profile.presentation.setting.SettingActivity"
             android:exported="false" />
         <activity
             android:name=".feature_profile.presentation.edit_profile.EditProfileActivity"
