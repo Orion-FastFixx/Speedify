@@ -124,10 +124,11 @@ class SignInActivity : AppCompatActivity() {
                             userDataStore.saveUserToken(state.user.user.token)
 
                             // If the user is not null, go to the main activity
-                            Intent(this@SignInActivity, MainActivity::class.java).also {
-                                startActivity(it)
-                                finish()
-                            }
+                            val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            finish()
                         }
                     }
                 }

@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.databinding.FragmentBengkelHomeBinding
 import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionOneAdapter
@@ -18,6 +20,8 @@ import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.BengkelMo
 import com.example.speedify.feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity
 import com.example.speedify.feature_bengkel.presentation.home.view_model.BengkelHomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BengkelHomeFragment : Fragment() {
@@ -25,6 +29,9 @@ class BengkelHomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: BengkelHomeViewModel by viewModels()
+
+    @Inject
+    lateinit var userDataStore: UserDataStoreImpl
 
     private val promotionAdapter by lazy {
         PromotionAdapter()
@@ -69,6 +76,8 @@ class BengkelHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
 
+        // retrieveToken()
+
         val btnBengkelMobil = binding.btnBengkelMobil
         val btnBengkelMotor = binding.btnBengkelMotor
 
@@ -98,6 +107,20 @@ class BengkelHomeFragment : Fragment() {
             adapter = sectionTwoAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun retrieveToken() {
+        lifecycleScope.launch {
+            val userPreferences = userDataStore.getUser()
+            val token = userPreferences.token
+            if (token.isNullOrEmpty()) {
+                // Handle case where token is null or empty
+                Log.d(TAG, "Token is not available")
+            } else {
+                // Use the token for your API calls or other purposes
+                Log.d(TAG, "Retrieved token: $token")
+            }
         }
     }
 }
