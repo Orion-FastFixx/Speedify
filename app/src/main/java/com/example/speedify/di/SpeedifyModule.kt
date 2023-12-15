@@ -15,6 +15,7 @@ import com.example.speedify.feature_authentication.data.repository.AuthRepositor
 import com.example.speedify.feature_authentication.domain.interface_repository.AuthRepository
 import com.example.speedify.feature_authentication.domain.use_case.GetCurrentUser
 import com.example.speedify.feature_authentication.domain.use_case.SignIn
+import com.example.speedify.feature_authentication.domain.use_case.SignOut
 import com.example.speedify.feature_authentication.domain.use_case.SignUp
 import com.example.speedify.feature_authentication.domain.use_case.UseCasesAuth
 import com.example.speedify.feature_bengkel.data.repository.BengkelRepositoryImpl
@@ -131,7 +132,8 @@ object SpeedifyModule {
         return UseCasesAuth(
             signIn = SignIn(repository),
             signUp = SignUp(repository),
-            getCurrentUser = GetCurrentUser(repository)
+            getCurrentUser = GetCurrentUser(repository),
+            signOut = SignOut(repository)
         )
     }
 }
