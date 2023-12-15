@@ -1,6 +1,7 @@
 package com.example.speedify.feature_authentication.data.remote
 
 import com.example.speedify.feature_authentication.data.model.LoginResponse
+import com.example.speedify.feature_authentication.data.model.LogoutResponse
 import com.example.speedify.feature_authentication.data.model.RegisterResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -10,7 +11,7 @@ interface AuthApi {
     @FormUrlEncoded
     @POST("auth/signin")
     suspend fun signIn(
-        @Field("email") email: String,
+        @Field("identifier") email: String,
         @Field("password") password: String
     ): LoginResponse
 
@@ -22,4 +23,7 @@ interface AuthApi {
         @Field("username") username: String,
         @Field("role_id") roleId: Int
     ): RegisterResponse
+
+    @POST("auth/signout")
+    suspend fun signOut(): LogoutResponse
 }

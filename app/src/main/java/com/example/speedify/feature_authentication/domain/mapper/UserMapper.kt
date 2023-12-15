@@ -1,14 +1,15 @@
 package com.example.speedify.feature_authentication.domain.mapper
 
 import com.example.speedify.core.domain.entity.UserPreferences
+import com.example.speedify.feature_authentication.data.model.LoginResponse
 import com.example.speedify.feature_authentication.data.model.User
 
-fun userToUserPreferences(user: User, token: String): UserPreferences {
+fun userToUserPreferences(user: LoginResponse, token: String): UserPreferences {
     return UserPreferences(
-        id = user.id,
-        name = user.username,
-        email = user.email,
-        roleId = user.roleId,
+        id = user.user.id,
+        name = user.user.username,
+        email = user.user.email,
+        roleId = user.user.roleId,
         token = token
     )
 }

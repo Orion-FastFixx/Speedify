@@ -113,4 +113,9 @@
     <string name="sign_up">Daftar</string>
     <string name="welcome_back_greeting">Selamat Datang Kembali.</string>
     <string name="welcome_greeting">Selamat datang.</string>
+    <string name="fill_in_all_fields">Wajib masukan semua field</string>
+    <string name="invalid_email">Masukan alamat email yang valid.</string>
+    <string name="invalid_password">Kata sandi minimal 8 karakter.</string>
+    <string name="no_internet_connection">Apakah anda offline? Periksa koneksi internet Anda, lalu coba lagi.</string>
+    <string name="check_credentials">Periksa email dan sandi Anda, lalu coba lagi.</string>
 </resources>
