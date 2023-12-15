@@ -1,16 +1,21 @@
 package com.example.speedify.feature_authentication.presentation.sign_up
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.speedify.core.utils.animateVisibility
 import com.example.speedify.databinding.ActivitySignUpBinding
 import com.example.speedify.feature_authentication.presentation.sign_in.SignInActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
@@ -25,33 +30,16 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dynamicConfiguration()
 
-        val state = viewModel.signUpState.value
 
-        if (state.isLoading) {
-            Log.d(TAG, "Loading")
-            // You can show a loading indicator if needed
-        } else if (state.error != null) {
-            Snackbar.make(
-                binding.root,
-                "Sorry, there was a problem with your request ",
-                Snackbar.LENGTH_SHORT
-            ).show()
-            // Handle error, show error message, etc.
-        } else {
-            state.user?.let {
-                Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show()
+        setAction()
 
-                Intent(this, SignInActivity::class.java).also {
-                    startActivity(it)
-                    finish()
-                }
-            }
-        }
+        binding.fieldAuth.authEmailEditText.addTextChangedListener(emailWatcher)
+        binding.fieldAuth.authPasswordEditText.addTextChangedListener(passwordWatcher)
+        observeRegisterResult()
     }
 
-    private fun dynamicConfiguration() {
+    private fun setAction() {
         //      Back button
         val iconBack = binding.icBack
         iconBack.setOnClickListener {
@@ -73,6 +61,9 @@ class SignUpActivity : AppCompatActivity() {
         val email = binding.fieldAuth.authEmailEditText.text.toString().trim()
         val password = binding.fieldAuth.authPasswordEditText.text.toString().trim()
 
+        val emailTextLayout = binding.fieldAuth.authEmailTextLayout
+        val passwordTextLayout = binding.fieldAuth.authPasswordTextLayout
+
         // Check if the fields are not empty
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
@@ -81,19 +72,102 @@ class SignUpActivity : AppCompatActivity() {
 
         // Check if the email is valid
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
+            emailTextLayout.error = "Invalid email format"
             return
+        } else {
+            emailTextLayout.error = null
         }
 
         // Check if the password is at least 8 characters
         if (password.length < 8) {
-            Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT)
-                .show()
+            passwordTextLayout.error = "Password must be at least 8 characters"
             return
+        } else {
+            passwordTextLayout.error = null
         }
-
         // Call the signUp function in the ViewModel
         viewModel.signUp(email, password, username)
+    }
+
+    private fun observeRegisterResult() {
+        // Observe the signUpState using repeatOnLifecycle
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.signUpState.collect { state ->
+                    if (state.isLoading) {
+                        // Show loading indicator
+                        setLoadingState(true)
+                    } else {
+                        setLoadingState(false)
+                        if (state.error != null) {
+                            // If there is an error, show it
+                            Snackbar.make(
+                                binding.root,
+                                "Sorry, there was a problem with your request: ${state.error}",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        } else if (state.user != null) {
+                            // If sign-up is successful, show a success message and redirect to sign-in
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                "Sign up successful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Intent(this@SignUpActivity, SignInActivity::class.java).also {
+                                startActivity(it)
+                                finish()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            fieldAuth.authUsernameEditText.isEnabled = !isLoading
+            fieldAuth.authEmailEditText.isEnabled = !isLoading
+            fieldAuth.authPasswordEditText.isEnabled = !isLoading
+
+            if (isLoading) {
+                viewLoading.animateVisibility(true)
+            } else {
+                viewLoading.animateVisibility(false)
+            }
+        }
+    }
+
+    private val passwordWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            // Not used, but must be implemented
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            // Not used, but must be implemented
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            if (s != null && s.isNotEmpty()) {
+                binding.fieldAuth.authPasswordTextLayout.error = null
+            }
+        }
+    }
+
+    private val emailWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            // Not used, but must be implemented
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            // Not used, but must be implemented
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            if (s != null && s.isNotEmpty()) {
+                binding.fieldAuth.authEmailTextLayout.error = null
+            }
+        }
     }
 
     override fun onDestroy() {
