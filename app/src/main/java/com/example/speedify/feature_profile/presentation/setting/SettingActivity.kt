@@ -70,8 +70,6 @@ class SettingActivity : AppCompatActivity() {
                             }
                             // Navigate to the Login screen
                             val intent = Intent(this@SettingActivity, SignInActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
                             finish()
 
