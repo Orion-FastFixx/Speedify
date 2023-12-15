@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.speedify.R
 import com.example.speedify.core.utils.animateVisibility
+import com.example.speedify.core.utils.isInternetAvailable
 import com.example.speedify.databinding.ActivitySignUpBinding
 import com.example.speedify.feature_authentication.presentation.sign_in.SignInActivity
 import com.google.android.material.snackbar.Snackbar
@@ -64,15 +66,22 @@ class SignUpActivity : AppCompatActivity() {
         val emailTextLayout = binding.fieldAuth.authEmailTextLayout
         val passwordTextLayout = binding.fieldAuth.authPasswordTextLayout
 
+        // Check network availability first
+        if (!isInternetAvailable(this)) {
+            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+
         // Check if the fields are not empty
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.fill_in_all_fields), Toast.LENGTH_SHORT).show()
             return
         }
 
         // Check if the email is valid
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailTextLayout.error = "Invalid email format"
+            emailTextLayout.error = getString(R.string.invalid_email)
             return
         } else {
             emailTextLayout.error = null
@@ -80,7 +89,7 @@ class SignUpActivity : AppCompatActivity() {
 
         // Check if the password is at least 8 characters
         if (password.length < 8) {
-            passwordTextLayout.error = "Password must be at least 8 characters"
+            passwordTextLayout.error = getString(R.string.invalid_password)
             return
         } else {
             passwordTextLayout.error = null
@@ -93,32 +102,41 @@ class SignUpActivity : AppCompatActivity() {
         // Observe the signUpState using repeatOnLifecycle
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.signUpState.collect { state ->
-                    if (state.isLoading) {
-                        // Show loading indicator
-                        setLoadingState(true)
-                    } else {
-                        setLoadingState(false)
-                        if (state.error != null) {
-                            // If there is an error, show it
-                            Snackbar.make(
-                                binding.root,
-                                "Sorry, there was a problem with your request: ${state.error}",
-                                Snackbar.LENGTH_SHORT
-                            ).show()
-                        } else if (state.user != null) {
-                            // If sign-up is successful, show a success message and redirect to sign-in
-                            Toast.makeText(
-                                this@SignUpActivity,
-                                "Sign up successful",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            Intent(this@SignUpActivity, SignInActivity::class.java).also {
-                                startActivity(it)
-                                finish()
+                try {
+                    viewModel.signUpState.collect { state ->
+                        if (state.isLoading) {
+                            // Show loading indicator
+                            setLoadingState(true)
+                        } else {
+                            setLoadingState(false)
+                            if (state.error != null) {
+                                // If there is an error, show it
+                                Snackbar.make(
+                                    binding.root,
+                                    "Sorry, there was a problem with your request: ${state.error}",
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                            } else if (state.user != null) {
+                                // If sign-up is successful, show a success message and redirect to sign-in
+                                Toast.makeText(
+                                    this@SignUpActivity,
+                                    "Sign up successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                Intent(this@SignUpActivity, SignInActivity::class.java).also {
+                                    startActivity(it)
+                                    finish()
+                                }
                             }
                         }
                     }
+                } catch (e: Exception) {
+                    // Handle the exception
+                    Snackbar.make(
+                        binding.root,
+                        "An unexpected error occurred: ${e.localizedMessage}",
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         }

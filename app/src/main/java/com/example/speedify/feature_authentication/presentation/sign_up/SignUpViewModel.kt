@@ -17,7 +17,7 @@ class SignUpViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _signUpState = MutableStateFlow(SignUpState())
-    var signUpState = _signUpState.asStateFlow()
+    val signUpState = _signUpState.asStateFlow()
 
     fun signUp(email: String, password: String, username: String) = viewModelScope.launch {
         val pengendaraRole = 2

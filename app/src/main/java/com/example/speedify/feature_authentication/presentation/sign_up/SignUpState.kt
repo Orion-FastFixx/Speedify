@@ -6,6 +6,5 @@ import com.example.speedify.feature_authentication.data.model.UserRegister
 data class SignUpState(
     val isLoading: Boolean = false,
     val error: String? = null,
-    val isSubmitting: Boolean = false,
     val user: RegisterResponse? = null,
 )
