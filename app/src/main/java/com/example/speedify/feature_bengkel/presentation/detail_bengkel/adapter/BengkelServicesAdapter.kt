@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCheckboxBengkelServicesBinding
 import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
-import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
-import com.example.speedify.utils.BaseAdapter
-import com.example.speedify.utils.DiffCallbackListener
-import com.example.speedify.utils.currencyFormat
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
+import com.example.speedify.core.utils.BaseAdapter
+import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.currencyFormat
 
 class BengkelServicesAdapter :
     BaseAdapter<LayananEntity, ItemCheckboxBengkelServicesBinding>(diffCallbackListener) {

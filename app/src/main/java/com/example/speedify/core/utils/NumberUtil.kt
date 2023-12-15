@@ -1,4 +1,4 @@
-package com.example.speedify.utils
+package com.example.speedify.core.utils
 
 import java.text.NumberFormat
 import java.util.Locale

@@ -7,7 +7,7 @@ import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
 import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 
 class BengkelRepositoryImpl private constructor() : BengkelRepository {
     override suspend fun getALlPromotion(): LiveData<ResultState<List<PromotionEntity>>> =

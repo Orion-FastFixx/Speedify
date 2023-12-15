@@ -13,7 +13,7 @@ import com.example.speedify.R
 import com.example.speedify.databinding.FragmentTipsBinding
 import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import com.example.speedify.feature_education.presentation.education.view_model.EducationViewModel
-import com.example.speedify.utils.GridSpacingItemDecoration
+import com.example.speedify.core.utils.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

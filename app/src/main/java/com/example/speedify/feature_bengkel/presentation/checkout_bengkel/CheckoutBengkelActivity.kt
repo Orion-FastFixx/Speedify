@@ -15,8 +15,8 @@ import com.example.speedify.R
 import com.example.speedify.databinding.ActivityCheckoutBengkelBinding
 import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_payment.PaymentMethodsActivity
-import com.example.speedify.utils.currencyFormat
-import com.example.speedify.utils.currencyFormatWithoutRp
+import com.example.speedify.core.utils.currencyFormat
+import com.example.speedify.core.utils.currencyFormatWithoutRp
 import java.io.Serializable
 
 class CheckoutBengkelActivity : AppCompatActivity() {

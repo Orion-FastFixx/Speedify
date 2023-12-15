@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentBengkelHomeBinding
-import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionOneAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionTwoAdapter
 import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.BengkelMobilActivity

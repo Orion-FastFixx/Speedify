@@ -1,4 +1,4 @@
-package com.example.speedify.utils
+package com.example.speedify.core.utils
 
 import android.graphics.Rect
 import android.view.View

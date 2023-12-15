@@ -1,12 +1,12 @@
-package com.example.speedify.feature_bengkel.presentation.adapter
+package com.example.speedify.feature_bengkel.presentation.home.adapter
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemPromotionBinding
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
-import com.example.speedify.utils.BaseAdapter
-import com.example.speedify.utils.DiffCallbackListener
+import com.example.speedify.core.utils.BaseAdapter
+import com.example.speedify.core.utils.DiffCallbackListener
 
 class PromotionAdapter : BaseAdapter<PromotionEntity, ItemPromotionBinding>(diffCallBackListener) {
     companion object {

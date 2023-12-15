@@ -1,4 +1,4 @@
-package com.example.speedify.utils
+package com.example.speedify.core.utils
 
 sealed class ResultState<out R> private constructor() {
     data class Success<out T>(val data: T) : ResultState<T>()

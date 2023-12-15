@@ -3,10 +3,9 @@ package com.example.speedify.feature_consultation.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.CardMontirBinding
-import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_consultation.domain.entity.MontirEntity
-import com.example.speedify.utils.BaseAdapter
-import com.example.speedify.utils.DiffCallbackListener
+import com.example.speedify.core.utils.BaseAdapter
+import com.example.speedify.core.utils.DiffCallbackListener
 
 class MontirAdapter :
     BaseAdapter<MontirEntity, CardMontirBinding>(diffCallbackListener) {

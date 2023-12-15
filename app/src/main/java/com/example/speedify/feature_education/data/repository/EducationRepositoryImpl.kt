@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.speedify.feature_education.data.datasource.EducationDataSource
 import com.example.speedify.feature_education.domain.entity.EducationEntity
 import com.example.speedify.feature_education.domain.interface_repository.EducationRepository
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 
 class EducationRepositoryImpl private constructor() : EducationRepository {
     override suspend fun getAllEducation(): LiveData<ResultState<List<EducationEntity>>> =
