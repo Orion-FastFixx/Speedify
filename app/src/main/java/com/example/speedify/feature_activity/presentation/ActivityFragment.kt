@@ -22,7 +22,6 @@ class ActivityFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    private val viewModel: PesananViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
