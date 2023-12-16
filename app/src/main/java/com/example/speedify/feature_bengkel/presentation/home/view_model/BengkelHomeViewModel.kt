@@ -3,9 +3,9 @@ package com.example.speedify.feature_bengkel.presentation.home.view_model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
+import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
 import com.example.speedify.feature_bengkel.presentation.home.BengkelHomeState
-import com.example.speedify.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,7 +43,7 @@ class BengkelHomeViewModel @Inject constructor(
                             promotion = it.data
                         )
 
-                        getNearestBengkelMobil()
+                        getTheBestBengkelMobil()
 
                     }
 
@@ -58,9 +58,9 @@ class BengkelHomeViewModel @Inject constructor(
         }
     }
 
-    fun getNearestBengkelMobil() {
+    fun getBengkelMobilWithHighReview() {
         viewModelScope.launch {
-            useCases.getNearestBengkelMobil().asFlow().collect() {
+            useCases.getBengkelMobilWithHighReview().asFlow().collect() {
                 when (it) {
                     is ResultState.Loading -> {
                         _bengkelHomeState.value = _bengkelHomeState.value.copy(
@@ -73,7 +73,7 @@ class BengkelHomeViewModel @Inject constructor(
                         _bengkelHomeState.value = _bengkelHomeState.value.copy(
                             isLoading = false,
                             error = null,
-                            nearestBengkelMobil = it.data
+                            bengkelMobilwithHighReview = it.data
                         )
 
                         getTheBestBengkelMobil()
@@ -106,6 +106,70 @@ class BengkelHomeViewModel @Inject constructor(
                             isLoading = false,
                             error = null,
                             theBestBengkelMobil = it.data
+                        )
+
+                        getOfficialBengkelMobil()
+                    }
+
+                    is ResultState.Error -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getOfficialBengkelMobil() {
+        viewModelScope.launch {
+            useCases.getOfficialBengkelMobil().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            officialBengkelMobil = it.data
+                        )
+
+                        getPublicBengkelMobil()
+                    }
+
+                    is ResultState.Error -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getPublicBengkelMobil() {
+        viewModelScope.launch {
+            useCases.getPublicBengkelMobil().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _bengkelHomeState.value = _bengkelHomeState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            publicBengkelMobil = it.data
                         )
                     }
 

@@ -1,14 +1,15 @@
 package com.example.speedify.feature_education.presentation.education.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCardEducationBinding
-import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 import com.example.speedify.feature_education.domain.entity.EducationEntity
 import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
-import com.example.speedify.utils.BaseAdapter
-import com.example.speedify.utils.DiffCallbackListener
+import com.example.speedify.core.utils.BaseAdapter
+import com.example.speedify.core.utils.DiffCallbackListener
 
 class EducationAdapter :
     BaseAdapter<EducationEntity, ItemCardEducationBinding>(diffCallbackListener) {
@@ -33,7 +34,8 @@ class EducationAdapter :
         binding: ItemCardEducationBinding,
         item: EducationEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context
     ) {
         binding.imgCardEducation.setImageResource(item.gambar)
         binding.tvCardTitleEducation.text = item.nama

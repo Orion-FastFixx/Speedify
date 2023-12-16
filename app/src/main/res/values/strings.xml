@@ -109,4 +109,13 @@
     <string name="rating_review">Rating dan Ulasan</string>
     <string name="dummy_header_title_education">Vanbelt Motor</string>
     <string name="dummy_content_two">Siapkan peralatan yang Anda butuhkan, seperti kunci T ukuran 8mm, kunci shock ukuran 22 mm, obeng bermata plus, kain lap, vanbelt baru, dan palu.\n\nBuka cover CVT yang berada di bawah jok penumpang dengan menggunakan kunci T ukuran 8 mm.\n\nBuka bak CVT dengan melepas semua baut yang mengikatnya menggunakan kunci T ukuran 8 mm. Lepas bak CVT secara perlahan dengan cara menekannya ke bawah sembari menekan kick starter.\n\nLepas ring pulley bagian depan dan kipas pulley depan dengan menggunakan obeng bermata plus.\n\nLepas vanbelt lama dengan cara menariknya keluar dari pulley belakang dan pulley depan. Periksa kondisi vanbelt lama, jika ada kerusakan atau retak, maka Anda harus menggantinya dengan yang baru.\n\nPasang vanbelt baru dengan cara menyelipkannya pada bagian atas pulley belakang, kemudian putar ke bawah untuk memasukkannya ke dalam slot yang benar. Pastikan vanbelt baru tidak terganjal oleh mur pengunci pulley depan.\n\nPasang kembali ring pulley bagian depan dan kipas pulley depan dengan cara menekannya ke bawah sampai rapat dengan bosh rumah roller. Kencangkan mur pengunci pulley depan dengan menggunakan kunci shock ukuran 22 mm.\n\nPasang kembali bak CVT dengan cara menempatkannya pada posisi yang tepat, kemudian kencangkan semua baut yang mengikatnya dengan menggunakan kunci T ukuran 8 mm.\n\nPasang kembali cover CVT dengan cara menempatkannya pada posisi yang tepat, kemudian kencangkan semua baut yang mengikatnya dengan menggunakan kunci T ukuran 8 mm.\n\nSelesai. Anda dapat mencoba menyalakan motor Anda dan merasakan perbedaan performanya setelah mengganti vanbelt.</string>
+    <string name="sign_in">Masuk</string>
+    <string name="sign_up">Daftar</string>
+    <string name="welcome_back_greeting">Selamat Datang Kembali.</string>
+    <string name="welcome_greeting">Selamat datang.</string>
+    <string name="fill_in_all_fields">Wajib masukan semua field</string>
+    <string name="invalid_email">Masukan alamat email yang valid.</string>
+    <string name="invalid_password">Kata sandi minimal 8 karakter.</string>
+    <string name="no_internet_connection">Apakah anda offline? Periksa koneksi internet Anda, lalu coba lagi.</string>
+    <string name="check_credentials">Periksa email dan sandi Anda, lalu coba lagi.</string>
 </resources>

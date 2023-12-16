@@ -19,4 +19,8 @@
     <color name="cultured">#FFf6f6f6</color>
     <color name="roman_silver">#FF8b9096</color>
     <color name="bright_maroon">#FFBC2D24</color>
+    <color name="lightSilver">#FFD9D9D9</color>
+    <color name="mediumSilver">#FF858585</color>
+    <color name="black_50">#80000000</color>
+
 </resources>

@@ -9,7 +9,7 @@ import com.example.speedify.feature_bengkel.domain.entity.dummyPromotion
 
 interface LocalDataSource {
     fun getAllPromotion(): List<PromotionEntity>?
-    fun getAllBengkel(): List<BengkelEntity>?
+    // fun getAllBengkel(): List<BengkelEntity>?
     fun getAllLayanan(): List<LayananEntity>?
 }
 
@@ -18,9 +18,9 @@ object BengkelDataSource : LocalDataSource {
         return dummyPromotion
     }
 
-    override fun getAllBengkel(): List<BengkelEntity> {
-        return dummyBengkel
-    }
+    // override fun getAllBengkel(): List<BengkelEntity> {
+    //     return dummyBengkel
+    // }
 
     override fun getAllLayanan(): List<LayananEntity> {
         return dummyLayanan

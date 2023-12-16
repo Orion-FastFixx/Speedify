@@ -126,7 +126,21 @@
     <style name="circleImg">
         <item name="cornerSize">50%</item>
     </style>
-    <!-- Base application theme. -->
+
+    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <!-- Customize your error text appearance -->
+        <item name="errorTextAppearance">@style/ErrorText</item>
+        <!-- Customize your error color -->
+        <item name="errorTextColor">@color/bright_maroon</item>
+    </style>
+
+    <style name="ErrorText" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textColor">@color/bright_maroon</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
 
     <!--    <style name="Theme.Speedify" parent="Base.Theme.Speedify" />-->
 </resources>

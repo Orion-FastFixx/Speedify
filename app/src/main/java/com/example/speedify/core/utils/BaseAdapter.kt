@@ -1,4 +1,4 @@
-package com.example.speedify.utils
+package com.example.speedify.core.utils
 
 import android.content.Context
 import android.util.TypedValue
@@ -33,12 +33,12 @@ abstract class BaseAdapter<T, V : ViewBinding>(
 
     fun getItems() = _items
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseAdapter.BaseViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return BaseViewHolder(createViewHolder(LayoutInflater.from(parent.context), parent))
     }
 
-    override fun onBindViewHolder(holder: BaseAdapter.BaseViewHolder, position: Int) {
-        bind(holder.binding as V, _items[position], position, _items.size)
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        bind(holder.binding as V, _items[position], position, _items.size, holder.itemView.context)
 
 
         // Check if it's a horizontal LinearLayoutManager and if it's the last item
@@ -53,7 +53,7 @@ abstract class BaseAdapter<T, V : ViewBinding>(
 
     abstract fun createViewHolder(inflater: LayoutInflater, container: ViewGroup): ViewBinding
 
-    abstract fun bind(binding: V, item: T, position: Int, count: Int)
+    abstract fun bind(binding: V, item: T, position: Int, count: Int, context: Context)
 
     class BaseViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 

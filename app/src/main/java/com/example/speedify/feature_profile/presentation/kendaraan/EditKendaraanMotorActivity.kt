@@ -7,7 +7,6 @@ import android.text.InputType
 import android.widget.EditText
 import android.widget.TextView
 import com.example.speedify.databinding.ActivityEditKendaraanBinding
-import com.example.speedify.feature_profile.presentation.SettingActivity
 
 class EditKendaraanMotorActivity : AppCompatActivity() {
 

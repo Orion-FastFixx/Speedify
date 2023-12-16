@@ -9,15 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.databinding.FragmentBengkelHomeBinding
-import com.example.speedify.feature_bengkel.presentation.adapter.PromotionAdapter
-import com.example.speedify.feature_bengkel.presentation.adapter.SectionOneAdapter
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionTwoAdapter
 import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.BengkelMobilActivity
 import com.example.speedify.feature_bengkel.presentation.bengkel_motor.BengkelMotorActivity
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
+import com.example.speedify.feature_bengkel.presentation.home.adapter.SectionOneAdapter
+import com.example.speedify.feature_bengkel.presentation.home.adapter.SectionThreeAdapter
 import com.example.speedify.feature_bengkel.presentation.home.view_model.BengkelHomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class BengkelHomeFragment : Fragment() {
@@ -38,36 +43,24 @@ class BengkelHomeFragment : Fragment() {
         SectionTwoAdapter()
     }
 
+    private val sectionThreeAdapter by lazy {
+        SectionThreeAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentBengkelHomeBinding.inflate(inflater, container, false)
-
-        val state = viewModel.bengkelState.value
-
-        if (state.isLoading) {
-            Log.d(TAG, "BengkelHome:   Loading")
-        } else if (state.error != null) {
-            Log.e(TAG, "BengkelHome:   ${state.error}")
-        } else {
-            state.promotion?.let {
-                promotionAdapter.setItems(it)
-            }
-            state.nearestBengkelMobil?.let {
-                sectionOneAdapter.setItems(it)
-            }
-            state.theBestBengkelMobil?.let {
-                sectionTwoAdapter.setItems(it)
-            }
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        observeBengkelState()
+
 
         val btnBengkelMobil = binding.btnBengkelMobil
         val btnBengkelMotor = binding.btnBengkelMotor
@@ -98,6 +91,40 @@ class BengkelHomeFragment : Fragment() {
             adapter = sectionTwoAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+        binding.rvSectionThree.apply {
+            adapter = sectionThreeAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    private fun observeBengkelState() {
+        lifecycleScope.launch {
+            try {
+                viewModel.bengkelState.collect() { state ->
+                    if (state.isLoading) {
+                        Log.d(TAG, "BengkelHome:   Loading")
+                    } else if (state.error != null) {
+                        Log.e(TAG, "BengkelHome:   ${state.error}")
+                    } else {
+                        state.promotion?.let {
+                            promotionAdapter.setItems(it)
+                        }
+                        state.theBestBengkelMobil?.let {
+                            sectionOneAdapter.setItems(it)
+                        }
+                        state.officialBengkelMobil?.let {
+                            sectionTwoAdapter.setItems(it)
+                        }
+                        state.publicBengkelMobil?.let {
+                            sectionThreeAdapter.setItems(it)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "observeBengkelState: ${e.message}")
+            }
         }
     }
 }

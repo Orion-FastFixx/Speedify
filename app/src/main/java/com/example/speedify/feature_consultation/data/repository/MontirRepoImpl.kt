@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.speedify.feature_consultation.data.datasource.MontirDataSource
 import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 
 class MontirRepoImpl private constructor() : MontirRepo {
 

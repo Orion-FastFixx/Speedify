@@ -7,7 +7,7 @@ import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.domain.entity.Status
 import com.example.speedify.feature_activity.domain.interface_repositoty.PesananRepo
 
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 
 class PesananRepoImpl private constructor() : PesananRepo {
 

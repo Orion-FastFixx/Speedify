@@ -6,7 +6,7 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.speedify.feature_consultation.domain.use_case.MontirUseCase
 import com.example.speedify.feature_consultation.presentation.MontirState
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

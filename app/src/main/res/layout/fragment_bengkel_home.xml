@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Jarak Terdekat"
+            android:text="Pilihan Terbaik"
             android:textColor="@color/charleston_green"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_promotions" />
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Terbanyak Dipilih"
+            android:text="Resmi dan Bersertifikat"
             android:textColor="@color/charleston_green"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_section_one" />
@@ -183,11 +183,55 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_section_two"
             tools:listitem="@layout/item_card_bengkel_one" />
 
+        <TextView
+            android:id="@+id/tv_section_three"
+            style="@style/MonaSemiBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Andalan Pengendara"
+            android:textColor="@color/charleston_green"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_section_two" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_section_three"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_section_three"
+            tools:listitem="@layout/item_card_bengkel_one" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_section_four"-->
+<!--            style="@style/MonaSemiBold16"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="Andalan Pengendara"-->
+<!--            android:textColor="@color/charleston_green"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rv_section_three" />-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_section_four"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_section_four"-->
+<!--            tools:listitem="@layout/item_card_bengkel_one" />-->
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_section_two" />
+            app:layout_constraintTop_toBottomOf="@id/rv_section_three" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

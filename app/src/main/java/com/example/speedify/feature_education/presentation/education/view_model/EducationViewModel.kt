@@ -5,7 +5,7 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.example.speedify.feature_education.domain.use_case.UseCasesEducation
 import com.example.speedify.feature_education.presentation.education.EducationState
-import com.example.speedify.utils.ResultState
+import com.example.speedify.core.utils.ResultState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
