@@ -32,7 +32,7 @@ class PesananAdapter :
         item: PesananEntity,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.imgPesanan.setImageResource(item.imgPesanan)
         binding.namaBengkel.text = item.namaBengkel

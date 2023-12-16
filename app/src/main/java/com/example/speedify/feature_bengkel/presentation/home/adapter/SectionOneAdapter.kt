@@ -42,19 +42,15 @@ class SectionOneAdapter :
         item: DataItem,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.apply {
-            if (context != null) {
-                val gson = Gson()
-                val type = object : TypeToken<List<String>>() {}.type
-                val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+            val gson = Gson()
+            val type = object : TypeToken<List<String>>() {}.type
+            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
 
-                val example = "https://images.unsplash.com/photo-1701122640209-26d07d4f35ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-
-                if (imageUrls.isNotEmpty()) {
-                    imgCardOne.setImageFromUrl(context, example)
-                }
+            if (imageUrls.isNotEmpty()) {
+                imgCardOne.setImageFromUrl(context, imageUrls[0])
             }
             tvTitleCardOne.text = item.namaBengkel
             tvDistanceCardOne.text = "2.1 km"

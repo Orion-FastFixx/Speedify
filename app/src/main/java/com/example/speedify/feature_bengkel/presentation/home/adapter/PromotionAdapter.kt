@@ -31,7 +31,7 @@ class PromotionAdapter : BaseAdapter<PromotionEntity, ItemPromotionBinding>(diff
         item: PromotionEntity,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.imgPromotion.setImageResource(item.foto)
     }

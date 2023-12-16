@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.example.speedify.feature_bengkel.data.model.DataItem
 
 abstract class BaseAdapter<T, V : ViewBinding>(
     private val diffCallbackListener:
@@ -39,7 +38,7 @@ abstract class BaseAdapter<T, V : ViewBinding>(
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        bind(holder.binding as V, _items[position], position, _items.size)
+        bind(holder.binding as V, _items[position], position, _items.size, holder.itemView.context)
 
 
         // Check if it's a horizontal LinearLayoutManager and if it's the last item
@@ -54,7 +53,7 @@ abstract class BaseAdapter<T, V : ViewBinding>(
 
     abstract fun createViewHolder(inflater: LayoutInflater, container: ViewGroup): ViewBinding
 
-    abstract fun bind(binding: V, item: T, position: Int, count: Int, context: Context? = null)
+    abstract fun bind(binding: V, item: T, position: Int, count: Int, context: Context)
 
     class BaseViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 

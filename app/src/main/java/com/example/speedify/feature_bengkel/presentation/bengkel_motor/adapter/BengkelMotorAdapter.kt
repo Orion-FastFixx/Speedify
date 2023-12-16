@@ -39,17 +39,15 @@ class BengkelMotorAdapter :
         item: DataItem,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.apply {
-            if (context != null) {
-                val gson = Gson()
-                val type = object : TypeToken<List<String>>() {}.type
-                val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+            val gson = Gson()
+            val type = object : TypeToken<List<String>>() {}.type
+            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
 
-                if (imageUrls.isNotEmpty()) {
-                    imgCardTwo.setImageFromUrl(context, imageUrls[0])
-                }
+            if (imageUrls.isNotEmpty()) {
+                imgCardTwo.setImageFromUrl(context, imageUrls[0])
             }
             tvTypeBengkelCardTwo.text = item.jenisBengkel
             tvTitleCardTwo.text = item.namaBengkel

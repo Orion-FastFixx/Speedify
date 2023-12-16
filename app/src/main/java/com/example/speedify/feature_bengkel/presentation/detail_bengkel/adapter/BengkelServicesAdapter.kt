@@ -36,7 +36,7 @@ class BengkelServicesAdapter :
         item: LayananEntity,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.cbItemDetailBengkel.apply {
             text = item.item_name

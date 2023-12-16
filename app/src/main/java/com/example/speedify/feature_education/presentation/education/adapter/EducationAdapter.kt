@@ -35,7 +35,7 @@ class EducationAdapter :
         item: EducationEntity,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.imgCardEducation.setImageResource(item.gambar)
         binding.tvCardTitleEducation.text = item.nama

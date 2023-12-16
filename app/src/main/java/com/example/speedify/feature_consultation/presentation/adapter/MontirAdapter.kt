@@ -32,7 +32,7 @@ class MontirAdapter :
         item: MontirEntity,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.imgMontir.setImageResource(item.imgMontir)
         binding.jenisMontir.text = item.jenisMontir

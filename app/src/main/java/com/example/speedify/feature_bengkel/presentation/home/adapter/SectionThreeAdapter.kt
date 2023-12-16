@@ -41,17 +41,15 @@ class SectionThreeAdapter :
         item: DataItem,
         position: Int,
         count: Int,
-        context: Context?
+        context: Context
     ) {
         binding.apply {
-            if (context != null) {
-                val gson = Gson()
-                val type = object : TypeToken<List<String>>() {}.type
-                val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+            val gson = Gson()
+            val type = object : TypeToken<List<String>>() {}.type
+            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
 
-                if (imageUrls.isNotEmpty()) {
-                    imgCardOne.setImageFromUrl(context, imageUrls[0])
-                }
+            if (imageUrls.isNotEmpty()) {
+                imgCardOne.setImageFromUrl(context, imageUrls[0])
             }
             tvTitleCardOne.text = item.namaBengkel
             tvDistanceCardOne.text = "2.1 km"
