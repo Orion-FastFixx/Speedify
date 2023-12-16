@@ -17,7 +17,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.internal.managers.FragmentComponentManager
 
-class SectionOneAdapter :
+class SectionThreeAdapter :
     BaseAdapter<DataItem, ItemCardBengkelOneBinding>(diffCallbackListener) {
 
     companion object {

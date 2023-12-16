@@ -5,8 +5,8 @@ import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
 
-class GetAllBengkelMobil(private val repository: BengkelRepository) {
+class GetOfficialBengkelMobil(private val repository: BengkelRepository) {
     suspend operator fun invoke(): LiveData<ResultState<List<DataItem>>> {
-        return repository.getAllBengkelMobil()
+        return repository.getOfficialBengkelMobil()
     }
 }

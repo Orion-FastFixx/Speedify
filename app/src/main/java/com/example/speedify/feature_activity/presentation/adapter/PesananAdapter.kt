@@ -1,5 +1,6 @@
 package com.example.speedify.feature_activity.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemActivityBinding
@@ -30,7 +31,8 @@ class PesananAdapter :
         binding: ItemActivityBinding,
         item: PesananEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
     ) {
         binding.imgPesanan.setImageResource(item.imgPesanan)
         binding.namaBengkel.text = item.namaBengkel

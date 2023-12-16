@@ -1,5 +1,6 @@
 package com.example.speedify.feature_bengkel.presentation.detail_bengkel.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCheckboxBengkelServicesBinding
@@ -34,7 +35,8 @@ class BengkelServicesAdapter :
         binding: ItemCheckboxBengkelServicesBinding,
         item: LayananEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
     ) {
         binding.cbItemDetailBengkel.apply {
             text = item.item_name

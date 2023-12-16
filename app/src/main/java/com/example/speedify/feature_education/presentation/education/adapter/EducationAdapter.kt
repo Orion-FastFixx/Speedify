@@ -1,5 +1,6 @@
 package com.example.speedify.feature_education.presentation.education.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -33,7 +34,8 @@ class EducationAdapter :
         binding: ItemCardEducationBinding,
         item: EducationEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
     ) {
         binding.imgCardEducation.setImageResource(item.gambar)
         binding.tvCardTitleEducation.text = item.nama

@@ -10,15 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.speedify.R
 import com.example.speedify.databinding.FragmentProsesBinding
-import com.example.speedify.databinding.FragmentTersediaBinding
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
-import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
-import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

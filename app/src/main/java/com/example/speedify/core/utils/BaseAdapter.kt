@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.example.speedify.feature_bengkel.data.model.DataItem
 
 abstract class BaseAdapter<T, V : ViewBinding>(
     private val diffCallbackListener:
@@ -53,7 +54,7 @@ abstract class BaseAdapter<T, V : ViewBinding>(
 
     abstract fun createViewHolder(inflater: LayoutInflater, container: ViewGroup): ViewBinding
 
-    abstract fun bind(binding: V, item: T, position: Int, count: Int)
+    abstract fun bind(binding: V, item: T, position: Int, count: Int, context: Context? = null)
 
     class BaseViewHolder(val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 

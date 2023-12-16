@@ -9,10 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.speedify.R
 import com.example.speedify.databinding.FragmentCancelBinding
-import com.example.speedify.databinding.FragmentProsesBinding
-import com.example.speedify.databinding.FragmentRiwayatBinding
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import dagger.hilt.android.AndroidEntryPoint

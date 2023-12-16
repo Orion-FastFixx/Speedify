@@ -1,6 +1,7 @@
 package com.example.speedify.feature_bengkel.presentation.home.adapter
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemPromotionBinding
@@ -29,7 +30,8 @@ class PromotionAdapter : BaseAdapter<PromotionEntity, ItemPromotionBinding>(diff
         binding: ItemPromotionBinding,
         item: PromotionEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
     ) {
         binding.imgPromotion.setImageResource(item.foto)
     }

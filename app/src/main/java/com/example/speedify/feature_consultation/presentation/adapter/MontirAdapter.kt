@@ -1,5 +1,6 @@
 package com.example.speedify.feature_consultation.presentation.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.CardMontirBinding
@@ -30,7 +31,8 @@ class MontirAdapter :
         binding: CardMontirBinding,
         item: MontirEntity,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
     ) {
         binding.imgMontir.setImageResource(item.imgMontir)
         binding.jenisMontir.text = item.jenisMontir

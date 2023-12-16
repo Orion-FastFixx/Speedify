@@ -1,5 +1,6 @@
 package com.example.speedify.feature_bengkel.presentation.bengkel_mobil.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,13 +10,17 @@ import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionA
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.setImageFromUrl
+import com.example.speedify.feature_bengkel.data.model.DataItem
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class BengkelMobilAdapter :
-    BaseAdapter<BengkelEntity, ItemCardBengkelTwoBinding>(diffCallbackListener) {
+    BaseAdapter<DataItem, ItemCardBengkelTwoBinding>(diffCallbackListener) {
 
     companion object {
-        val diffCallbackListener = object : DiffCallbackListener<BengkelEntity> {
-            override fun areItemsTheSame(oldItem: BengkelEntity, newItem: BengkelEntity) =
+        val diffCallbackListener = object : DiffCallbackListener<DataItem> {
+            override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem) =
                 oldItem.id == newItem.id
         }
     }
@@ -31,20 +36,32 @@ class BengkelMobilAdapter :
 
     override fun bind(
         binding: ItemCardBengkelTwoBinding,
-        item: BengkelEntity,
+        item: DataItem,
         position: Int,
-        count: Int
+        count: Int,
+        context: Context?
+
     ) {
-        binding.imgCardTwo.setImageResource(item.foto)
-        binding.tvTypeBengkelCardTwo.text = item.jenis_bengkel
-        binding.tvTitleCardTwo.text = item.nama
-        binding.tvRatingCardTwo.text = item.rating.toString()
-        binding.tvReviewCardTwo.text = String.format("(%s reviews)", item.review)
-        binding.tvDurationCardTwo.text = item.waktu
-        binding.tvAreaCardTwo.text = String.format("%s, ", item.kecamatan)
-        binding.tvCityCardTwo.text = item.kota
-        binding.tvDistanceCardTwo.text = String.format("%s Km dari Lokasi Anda", item.lokasi)
-        binding.tvPriceCardTwo.text = String.format("Jasa Mulai dari Rp. %s", item.harga)
+        binding.apply {
+            if (context != null) {
+                val gson = Gson()
+                val type = object : TypeToken<List<String>>() {}.type
+                val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+
+                if (imageUrls.isNotEmpty()) {
+                    imgCardTwo.setImageFromUrl(context, imageUrls[0])
+                }
+            }
+            tvTypeBengkelCardTwo.text = item.jenisBengkel
+            tvTitleCardTwo.text = item.namaBengkel
+            tvRatingCardTwo.text = item.rating.firstOrNull()?.averageRating.toString()
+            tvReviewCardTwo.text = String.format("(%s reviews)", item.rating.firstOrNull()?.reviewCount.toString())
+            tvDurationCardTwo.text = "15 mins"
+            tvAreaCardTwo.text = item.alamat
+            tvCityCardTwo.text = item.lokasi
+            tvDistanceCardTwo.text = "2.1 Km dari Lokasi Anda"
+            tvPriceCardTwo.text = "Jasa Mulai dari Rp30.000"
+        }
 
         binding.root.setOnClickListener {
             binding.root.context.startActivity(
@@ -57,6 +74,6 @@ class BengkelMobilAdapter :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: BengkelEntity)
+        fun onItemClicked(data: DataItem)
     }
 }
