@@ -31,9 +31,6 @@ class BengkelHomeFragment : Fragment() {
 
     private val viewModel: BengkelHomeViewModel by viewModels()
 
-    @Inject
-    lateinit var userDataStore: UserDataStoreImpl
-
     private val promotionAdapter by lazy {
         PromotionAdapter()
     }

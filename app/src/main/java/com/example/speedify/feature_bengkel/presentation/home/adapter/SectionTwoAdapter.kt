@@ -57,9 +57,11 @@ class SectionTwoAdapter :
             tvTitleCardOne.text = item.namaBengkel
             tvDistanceCardOne.text = "2.1 km"
             tvDurationCardOne.text = "15 mins"
-            tvRatingCardOne.text = item.rating.firstOrNull()?.averageRating.toString()
-            tvReviewCardOne.text =
-                String.format("(%s reviews)", item.rating.firstOrNull()?.reviewCount.toString())
+            tvRatingCardOne.text = item.rating.firstOrNull()?.averageRating?.toString() ?: "0"
+            tvReviewCardOne.text = String.format(
+                "(%s reviews)",
+                item.rating.firstOrNull()?.reviewCount?.toString() ?: "0"
+            )
 
             root.setOnClickListener {
                 val optionsCompat: ActivityOptionsCompat =

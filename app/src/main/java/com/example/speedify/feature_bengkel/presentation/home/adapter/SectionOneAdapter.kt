@@ -20,6 +20,7 @@ import dagger.hilt.android.internal.managers.FragmentComponentManager
 class SectionOneAdapter :
     BaseAdapter<DataItem, ItemCardBengkelOneBinding>(diffCallbackListener) {
 
+
     companion object {
         val diffCallbackListener = object : DiffCallbackListener<DataItem> {
             override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem) =
@@ -49,16 +50,20 @@ class SectionOneAdapter :
                 val type = object : TypeToken<List<String>>() {}.type
                 val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
 
+                val example = "https://images.unsplash.com/photo-1701122640209-26d07d4f35ed?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
                 if (imageUrls.isNotEmpty()) {
-                    imgCardOne.setImageFromUrl(context, imageUrls[0])
+                    imgCardOne.setImageFromUrl(context, example)
                 }
             }
             tvTitleCardOne.text = item.namaBengkel
             tvDistanceCardOne.text = "2.1 km"
             tvDurationCardOne.text = "15 mins"
-            tvRatingCardOne.text = item.rating.firstOrNull()?.averageRating.toString()
-            tvReviewCardOne.text =
-                String.format("(%s reviews)", item.rating.firstOrNull()?.reviewCount.toString())
+            tvRatingCardOne.text = item.rating.firstOrNull()?.averageRating?.toString() ?: "0"
+            tvReviewCardOne.text = String.format(
+                "(%s reviews)",
+                item.rating.firstOrNull()?.reviewCount?.toString() ?: "0"
+            )
 
             root.setOnClickListener {
                 val optionsCompat: ActivityOptionsCompat =
