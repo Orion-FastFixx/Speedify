@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mona_sans_light"
-                    android:text="Halo, "
+                    android:text="@string/greeting"
                     android:textSize="18sp" />
 
                 <TextView
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/mona_sans_medium"
-                    android:text="Orion!"
+                    android:text="@string/username"
                     android:textSize="18sp" />
             </LinearLayout>
 

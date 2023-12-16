@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.R
 import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.databinding.FragmentBengkelHomeBinding
 import com.example.speedify.feature_bengkel.presentation.adapter.SectionTwoAdapter
@@ -30,6 +31,9 @@ class BengkelHomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: BengkelHomeViewModel by viewModels()
+
+    @Inject
+    lateinit var userDataStore: UserDataStoreImpl
 
     private val promotionAdapter by lazy {
         PromotionAdapter()
@@ -60,6 +64,7 @@ class BengkelHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         observeBengkelState()
+        dynamicConfigurations()
 
 
         val btnBengkelMobil = binding.btnBengkelMobil
@@ -125,6 +130,15 @@ class BengkelHomeFragment : Fragment() {
             } catch (e: Exception) {
                 Log.e(TAG, "observeBengkelState: ${e.message}")
             }
+        }
+    }
+
+    private fun dynamicConfigurations() {
+        lifecycleScope.launch {
+            val userPreferences = userDataStore.getUser()
+            val userName = userPreferences.name
+
+            binding.tvUserName.text = getString(R.string.username, "", userName)
         }
     }
 }
