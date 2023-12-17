@@ -4,16 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.speedify.databinding.ItemCardBengkelTwoBinding
-import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
-import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
-import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.fromJson
 import com.example.speedify.core.utils.setImageFromUrl
+import com.example.speedify.databinding.ItemCardBengkelTwoBinding
 import com.example.speedify.feature_bengkel.data.model.DataItem
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 
 class BengkelMobilAdapter :
     BaseAdapter<DataItem, ItemCardBengkelTwoBinding>(diffCallbackListener) {
@@ -43,31 +41,29 @@ class BengkelMobilAdapter :
 
     ) {
         binding.apply {
-            val gson = Gson()
-            val type = object : TypeToken<List<String>>() {}.type
-            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+            val imageUrls: List<String> = fromJson(item.fotoUrl)
 
             if (imageUrls.isNotEmpty()) {
                 imgCardTwo.setImageFromUrl(context, imageUrls[0])
             }
             tvTypeBengkelCardTwo.text = item.jenisBengkel
             tvTitleCardTwo.text = item.namaBengkel
-            tvRatingCardTwo.text = item.rating.firstOrNull()?.averageRating.toString()
-            tvReviewCardTwo.text = String.format("(%s reviews)", item.rating.firstOrNull()?.reviewCount.toString())
+            tvRatingCardTwo.text = item.rating.firstOrNull()?.averageRating?.toString() ?: "0"
+            tvReviewCardTwo.text = String.format(
+                "(%s reviews)",
+                item.rating.firstOrNull()?.reviewCount?.toString() ?: "0"
+            )
             tvDurationCardTwo.text = "15 mins"
             tvAreaCardTwo.text = item.alamat
             tvCityCardTwo.text = item.lokasi
             tvDistanceCardTwo.text = "2.1 Km dari Lokasi Anda"
             tvPriceCardTwo.text = "Jasa Mulai dari Rp30.000"
-        }
 
-        binding.root.setOnClickListener {
-            binding.root.context.startActivity(
-                Intent(
-                    binding.root.context,
-                    DetailBengkelActivity::class.java
-                )
-            )
+            root.setOnClickListener {
+                val intent = Intent(context, DetailBengkelActivity::class.java)
+                intent.putExtra(DetailBengkelActivity.EXTRA_BENGKEL_ID, item.id)
+                context.startActivity(intent)
+            }
         }
     }
 

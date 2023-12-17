@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:clipToPadding="false"
     android:paddingHorizontal="16dp">
 
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -249,6 +251,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -287,6 +290,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -325,6 +329,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="text"
