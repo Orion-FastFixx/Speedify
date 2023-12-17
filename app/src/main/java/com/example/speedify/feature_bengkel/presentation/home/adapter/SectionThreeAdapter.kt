@@ -9,6 +9,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.fromJson
 import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.databinding.ItemCardBengkelOneBinding
 import com.example.speedify.feature_bengkel.data.model.DataItem
@@ -44,9 +45,7 @@ class SectionThreeAdapter :
         context: Context
     ) {
         binding.apply {
-            val gson = Gson()
-            val type = object : TypeToken<List<String>>() {}.type
-            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+            val imageUrls: List<String> = fromJson(item.fotoUrl)
 
             if (imageUrls.isNotEmpty()) {
                 imgCardOne.setImageFromUrl(context, imageUrls[0])
@@ -61,20 +60,9 @@ class SectionThreeAdapter :
             )
 
             root.setOnClickListener {
-                val optionsCompat: ActivityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        FragmentComponentManager.findActivity(it.context) as Activity,
-                        Pair(imgCardOne, "img_card_one"),
-                        Pair(tvTitleCardOne, "title_card_one"),
-                        Pair(tvDistanceCardOne, "distance_card_one"),
-                        Pair(tvDurationCardOne, "duration_card_one"),
-                        Pair(tvRatingCardOne, "rating_card_one"),
-                        Pair(tvReviewCardOne, "review_card_one")
-                    )
-
-                Intent(context, DetailBengkelActivity::class.java).also { intent ->
-                    context?.startActivity(intent, optionsCompat.toBundle())
-                }
+                val intent = Intent(context, DetailBengkelActivity::class.java)
+                intent.putExtra(DetailBengkelActivity.EXTRA_BENGKEL_ID, item.id)
+                context.startActivity(intent)
             }
         }
     }
