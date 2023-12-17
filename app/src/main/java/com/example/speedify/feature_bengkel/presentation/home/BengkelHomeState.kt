@@ -1,9 +1,7 @@
 package com.example.speedify.feature_bengkel.presentation.home
 
 import com.example.speedify.feature_bengkel.data.model.DataItem
-import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
-import com.example.speedify.feature_bengkel.domain.use_case.GetOfficialBengkelMobil
 
 data class BengkelHomeState(
     val isLoading: Boolean = true,

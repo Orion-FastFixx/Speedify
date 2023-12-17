@@ -7,9 +7,9 @@ import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.data.datasource.BengkelDataSource
 import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.data.model.DetailBengkel
+import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.data.remote.BengkelApi
-import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
 import javax.inject.Inject
@@ -20,6 +20,7 @@ class BengkelRepositoryImpl @Inject constructor(
 ) : BengkelRepository {
     override suspend fun getALlPromotion(): LiveData<ResultState<List<PromotionEntity>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val response = BengkelDataSource.getAllPromotion()
                 emit(ResultState.Success(response))
@@ -30,6 +31,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getAllBengkelMobil(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -51,6 +53,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getTheBestBengkelMobil(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -74,6 +77,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getOfficialBengkelMobil(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -94,6 +98,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getPublicBengkelMobil(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -114,6 +119,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getBengkelMobilWithHighReview(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -135,6 +141,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getBengkelMotorWithHighReview(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -156,6 +163,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getTheBestBengkelMotor(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -179,6 +187,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getOfficialBengkelMotor(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -199,6 +208,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getPublicBengkelMotor(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -219,6 +229,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getAllBengkelMotor(): LiveData<ResultState<List<DataItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -238,18 +249,9 @@ class BengkelRepositoryImpl @Inject constructor(
             }
         }
 
-    override suspend fun getAllLayanan(): LiveData<ResultState<List<LayananEntity>>> =
-        liveData {
-            try {
-                val response = BengkelDataSource.getAllLayanan()
-                emit(ResultState.Success(response))
-            } catch (e: Exception) {
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
     override suspend fun getDetailBengkel(id: Int): LiveData<ResultState<DetailBengkel>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -267,6 +269,7 @@ class BengkelRepositoryImpl @Inject constructor(
 
     override suspend fun getLayananBengkel(id: Int): LiveData<ResultState<List<ServicesItem>>> =
         liveData {
+            emit(ResultState.Loading)
             try {
                 val userPreferences = dataStore.getUser()
                 val token = userPreferences.token
@@ -278,6 +281,37 @@ class BengkelRepositoryImpl @Inject constructor(
                 val response = bengkelApi.getDetailBengkel(token, id)
                 val services = response.data.services
                 emit(ResultState.Success(services))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun orderBengkelService(
+        bengkelId: Int,
+        serviceId: List<Int>,
+        additionalInfo: String,
+        fullName: String,
+        complaint: String
+    ): LiveData<ResultState<OrderBengkelServiceResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = bengkelApi.orderBengkelService(
+                    token = token,
+                    bengkelId = bengkelId,
+                    serviceId = serviceId,
+                    additionalInfo = additionalInfo,
+                    fullName = fullName,
+                    complaint = complaint
+                )
+                emit(ResultState.Success(response))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }

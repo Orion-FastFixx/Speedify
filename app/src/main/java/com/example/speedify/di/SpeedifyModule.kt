@@ -23,7 +23,6 @@ import com.example.speedify.feature_bengkel.data.repository.BengkelRepositoryImp
 import com.example.speedify.feature_bengkel.domain.interface_repository.BengkelRepository
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllBengkelMotor
-import com.example.speedify.feature_bengkel.domain.use_case.GetAllLayanan
 import com.example.speedify.feature_bengkel.domain.use_case.GetAllPromotion
 import com.example.speedify.feature_bengkel.domain.use_case.GetBengkelMobilWithHighReview
 import com.example.speedify.feature_bengkel.domain.use_case.GetBengkelMotorWithHighReview
@@ -35,6 +34,7 @@ import com.example.speedify.feature_bengkel.domain.use_case.GetPublicBengkelMobi
 import com.example.speedify.feature_bengkel.domain.use_case.GetPublicBengkelMotor
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMotor
+import com.example.speedify.feature_bengkel.domain.use_case.OrderBengkelService
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
 import com.example.speedify.feature_consultation.data.repository.MontirRepoImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
@@ -101,9 +101,9 @@ object SpeedifyModule {
             getPublicBengkelMotor = GetPublicBengkelMotor(repository),
             getBengkelMotorWithHighReview = GetBengkelMotorWithHighReview(repository),
             getTheBestBengkelMotor = GetTheBestBengkelMotor(repository),
-            getAllLayanan = GetAllLayanan(repository),
             getDetailBengkel = GetDetailBengkel(repository),
-            getLayananBengkel = GetLayananBengkel(repository)
+            getLayananBengkel = GetLayananBengkel(repository),
+            orderBengkelService = OrderBengkelService(repository)
         )
     }
 
