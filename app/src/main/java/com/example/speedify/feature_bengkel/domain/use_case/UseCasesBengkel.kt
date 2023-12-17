@@ -12,5 +12,7 @@ data class UseCasesBengkel(
     val getPublicBengkelMotor: GetPublicBengkelMotor,
     val getBengkelMotorWithHighReview: GetBengkelMotorWithHighReview,
     val getTheBestBengkelMotor: GetTheBestBengkelMotor,
-    val getAllLayanan: GetAllLayanan
+    val getAllLayanan: GetAllLayanan,
+    val getDetailBengkel: GetDetailBengkel,
+    val getLayananBengkel: GetLayananBengkel
 )

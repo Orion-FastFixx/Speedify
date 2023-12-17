@@ -16,6 +16,6 @@ interface BengkelApi {
     @GET("pengendara/get-detail-bengkel/{id}")
     suspend fun getDetailBengkel(
         @Header("Authorization") token: String,
-        @Path("id") id: String
+        @Path("id") id: Int
     ): DetailBengkelResponse
 }

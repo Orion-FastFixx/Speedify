@@ -9,13 +9,17 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
+import com.example.speedify.core.utils.fromJson
+import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.databinding.ActivityDetailBengkelBinding
 import com.example.speedify.feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.adapter.BengkelServicesAdapter
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.view_model.DetailBengkelViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.io.Serializable
 
 @AndroidEntryPoint
@@ -36,20 +40,17 @@ class DetailBengkelActivity : AppCompatActivity() {
         _binding = ActivityDetailBengkelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val state = viewModel.detailBengkelState.value
+        val bengkelId = intent.getIntExtra(EXTRA_BENGKEL_ID, 0)
 
-        initAdapter()
-
-        if (state.isLoading) {
-            Log.d(ContentValues.TAG, "DetailBengkel:   Loading")
-        } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "DetailBengkel:   ${state.error}")
+        if (bengkelId != 0) {
+            viewModel.getDetailBengkel(bengkelId)
+            viewModel.getLayananBengkel(bengkelId)
         } else {
-            state.layanan?.let {
-                bengkelServicesAdapter.setItems(it)
-            }
+            Log.e(ContentValues.TAG, "Bengkel ID is not provided")
         }
 
+        observeDetailBengkel()
+        initAdapter()
         setupTextChangeListeners()
         updateButtonState()
         sendUserData()
@@ -57,6 +58,54 @@ class DetailBengkelActivity : AppCompatActivity() {
         val iconBack = binding.icBack
         iconBack.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun observeDetailBengkel() {
+        lifecycleScope.launch {
+            try {
+                viewModel.detailBengkelState.collect { state ->
+                    if (state.isLoading) {
+                        Log.d(ContentValues.TAG, "DetailBengkel:   Loading")
+                    } else if (state.error != null) {
+                        Log.e(ContentValues.TAG, "DetailBengkel:   ${state.error}")
+                    } else {
+                        state.layanan?.let {
+                            bengkelServicesAdapter.setItems(it)
+                        }
+
+                        binding.apply {
+                            tvTitleToolbar.text = state.detailBengkel?.namaBengkel
+
+                            // image
+                            val imageUrls = state.detailBengkel?.fotoUrl ?: "[]"
+                            val image: List<String> = fromJson(imageUrls)
+                            if (image.isNotEmpty()) {
+                                ivDetailBengkel.setImageFromUrl(
+                                    this@DetailBengkelActivity,
+                                    image[0]
+                                )
+                            }
+                            //     end image
+
+                            tvTitleDetailBengkel.text = state.detailBengkel?.namaBengkel
+                            tvDescriptionDetailBengkel.text = state.detailBengkel?.deskripsi
+                            tvRatingDetailBengkel.text =
+                                state.detailBengkel?.rating?.firstOrNull()?.averageRating?.toString()
+                                    ?: "0"
+                            tvReviewDetailBengkel.text = String.format(
+                                "(%s reviews)",
+                                state.detailBengkel?.rating?.firstOrNull()?.reviewCount?.toString()
+                                    ?: "0"
+                            )
+                        }
+                    }
+
+                }
+
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "observeDetailBengkel: ${e.message}")
+            }
         }
     }
 
@@ -156,5 +205,10 @@ class DetailBengkelActivity : AppCompatActivity() {
             layoutManager =
                 LinearLayoutManager(this@DetailBengkelActivity, LinearLayoutManager.VERTICAL, false)
         }
+    }
+
+
+    companion object {
+        const val EXTRA_BENGKEL_ID = "BENGKEL_ID"
     }
 }

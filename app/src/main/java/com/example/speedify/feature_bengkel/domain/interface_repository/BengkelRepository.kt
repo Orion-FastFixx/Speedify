@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.data.model.DetailBengkel
+import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
 
@@ -21,5 +22,6 @@ interface BengkelRepository {
     suspend fun getPublicBengkelMotor(): LiveData<ResultState<List<DataItem>>>
     suspend fun getAllBengkelMotor(): LiveData<ResultState<List<DataItem>>>
     suspend fun getAllLayanan(): LiveData<ResultState<List<LayananEntity>>>
-    // suspend fun getDetailBengkel(id: Int): LiveData<ResultState<DetailBengkel>>
+    suspend fun getDetailBengkel(id: Int): LiveData<ResultState<DetailBengkel>>
+    suspend fun getLayananBengkel(id: Int): LiveData<ResultState<List<ServicesItem>>>
 }

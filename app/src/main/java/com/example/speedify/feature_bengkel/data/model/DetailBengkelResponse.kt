@@ -1,22 +1,20 @@
 package com.example.speedify.feature_bengkel.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class DetailBengkelResponse(
 
-    @field:SerializedName("detail_bengkel")
-    val detailBengkel: DetailBengkel,
+    @field:SerializedName("data")
+    val data: DetailBengkel,
 
     @field:SerializedName("message")
     val message: String
-)
+) : Parcelable
 
-data class HargaLayanan(
-
-    @field:SerializedName("harga")
-    val harga: Int
-)
-
+@Parcelize
 data class ServicesItem(
 
     @field:SerializedName("layanan")
@@ -27,8 +25,9 @@ data class ServicesItem(
 
     @field:SerializedName("id")
     val id: Int
-)
+) : Parcelable
 
+@Parcelize
 data class DetailBengkel(
 
     @field:SerializedName("foto_url")
@@ -55,6 +54,7 @@ data class DetailBengkel(
     @field:SerializedName("rating")
     val rating: List<RatingItemDetailBengkel>,
 
+
     @field:SerializedName("id")
     val id: Int,
 
@@ -66,13 +66,21 @@ data class DetailBengkel(
 
     @field:SerializedName("alamat")
     val alamat: String
-)
+) : Parcelable
 
+@Parcelize
 data class RatingItemDetailBengkel(
 
     @field:SerializedName("review_count")
     val reviewCount: Int,
 
     @field:SerializedName("average_rating")
-    val averageRating: Any
-)
+    val averageRating: Number
+) : Parcelable
+
+@Parcelize
+data class HargaLayanan(
+
+    @field:SerializedName("harga")
+    val harga: Int
+) : Parcelable

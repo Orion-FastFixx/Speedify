@@ -3,24 +3,25 @@ package com.example.speedify.feature_bengkel.presentation.detail_bengkel.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.speedify.databinding.ItemCheckboxBengkelServicesBinding
-import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
-import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
 import com.example.speedify.core.utils.currencyFormat
+import com.example.speedify.core.utils.toCamelCase
+import com.example.speedify.databinding.ItemCheckboxBengkelServicesBinding
+import com.example.speedify.feature_bengkel.data.model.ServicesItem
+import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 
 class BengkelServicesAdapter :
-    BaseAdapter<LayananEntity, ItemCheckboxBengkelServicesBinding>(diffCallbackListener) {
+    BaseAdapter<ServicesItem, ItemCheckboxBengkelServicesBinding>(diffCallbackListener) {
 
     companion object {
-        val diffCallbackListener = object : DiffCallbackListener<LayananEntity> {
-            override fun areItemsTheSame(oldItem: LayananEntity, newItem: LayananEntity) =
-                oldItem.item_name == newItem.item_name
+        val diffCallbackListener = object : DiffCallbackListener<ServicesItem> {
+            override fun areItemsTheSame(oldItem: ServicesItem, newItem: ServicesItem) =
+                oldItem.id == newItem.id
         }
     }
 
-    private val selectedServices = mutableListOf<LayananEntity>()
+    private val selectedServices = mutableListOf<ServicesItem>()
 
     private lateinit var onItemClickCallback: PromotionAdapter.OnItemClickCallback
 
@@ -33,13 +34,13 @@ class BengkelServicesAdapter :
 
     override fun bind(
         binding: ItemCheckboxBengkelServicesBinding,
-        item: LayananEntity,
+        item: ServicesItem,
         position: Int,
         count: Int,
         context: Context
     ) {
         binding.cbItemDetailBengkel.apply {
-            text = item.item_name
+            text = item.layanan.toCamelCase()
             isChecked = selectedServices.contains(item)
 
             setOnClickListener {
@@ -50,14 +51,14 @@ class BengkelServicesAdapter :
                 }
             }
         }
-        val formattedPrice = item.harga.currencyFormat()
+        val formattedPrice = item.hargaLayanan.harga.currencyFormat()
         binding.tvItemPriceDetailBengkel.text = formattedPrice
     }
 
     // Method to get the selected services
-    fun getSelectedServices(): List<LayananEntity> = selectedServices
+    fun getSelectedServices(): List<ServicesItem> = selectedServices
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: LayananEntity)
+        fun onItemClicked(data: ServicesItem)
     }
 }

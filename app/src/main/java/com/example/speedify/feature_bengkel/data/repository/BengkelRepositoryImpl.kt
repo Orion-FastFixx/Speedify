@@ -6,6 +6,8 @@ import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.data.datasource.BengkelDataSource
 import com.example.speedify.feature_bengkel.data.model.DataItem
+import com.example.speedify.feature_bengkel.data.model.DetailBengkel
+import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.data.remote.BengkelApi
 import com.example.speedify.feature_bengkel.domain.entity.LayananEntity
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
@@ -241,6 +243,41 @@ class BengkelRepositoryImpl @Inject constructor(
             try {
                 val response = BengkelDataSource.getAllLayanan()
                 emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getDetailBengkel(id: Int): LiveData<ResultState<DetailBengkel>> =
+        liveData {
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = bengkelApi.getDetailBengkel(token, id)
+                emit(ResultState.Success(response.data))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getLayananBengkel(id: Int): LiveData<ResultState<List<ServicesItem>>> =
+        liveData {
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = bengkelApi.getDetailBengkel(token, id)
+                val services = response.data.services
+                emit(ResultState.Success(services))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }
