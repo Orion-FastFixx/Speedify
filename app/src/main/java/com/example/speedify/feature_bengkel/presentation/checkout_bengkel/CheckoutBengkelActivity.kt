@@ -4,14 +4,25 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.speedify.MainActivity
 import com.example.speedify.R
+import com.example.speedify.core.utils.currencyFormat
+import com.example.speedify.core.utils.currencyFormatWithoutRp
+import com.example.speedify.core.utils.toCamelCase
 import com.example.speedify.databinding.ActivityCheckoutBengkelBinding
+import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
+import com.example.speedify.feature_bengkel.data.model.ServicesItemCheckout
 import com.example.speedify.feature_payment.PaymentMethodsActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CheckoutBengkelActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityCheckoutBengkelBinding
@@ -22,8 +33,14 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityCheckoutBengkelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         dynamicConfiguration()
+        orderTimeOut()
+
+        val orderData = intent.getParcelableExtra<OrderBengkelServiceResponse>(EXTRA_ORDER_DATA)
+        if (orderData != null) {
+            displayOrderDetails(orderData)
+            displaySelectedServicesAndPrice(orderData.data.services, orderData)
+        }
     }
 
     private fun dynamicConfiguration() {
@@ -70,6 +87,69 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 //      End back button
     }
 
+    private fun displayOrderDetails(orderData: OrderBengkelServiceResponse) {
+        val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText
+        val userName = binding.checkoutBengkel.titleFullNameEditText
+        val detailComplaints = binding.checkoutBengkel.titleDetailComplaintEditText
+
+//        get field data from DetailBengkelActivity
+        val location = orderData.data.additionalInfo.preciseLocation
+        val name = orderData.data.additionalInfo.fullName
+        val complaints = orderData.data.additionalInfo.complaint
+
+        //      set field data to CheckoutBengkelActivity
+        detailLocation.setText(location)
+        userName.setText(name)
+        detailComplaints.setText(complaints)
+
+    }
+
+    private fun displaySelectedServicesAndPrice(
+        services: List<ServicesItemCheckout>,
+        orderData: OrderBengkelServiceResponse
+    ) {
+//      LinearLayout for services in CheckoutBengkelActivity
+        val servicesLayout = binding.checkoutBengkel.llDynamicServices
+        servicesLayout.removeAllViews()
+
+        // init subtotal price view
+        val subtotalPriceView = binding.checkoutBengkel.tvSubtotalPriceService
+
+        // Set admin fee
+        val adminFeeNominalView = binding.checkoutBengkel.tvNominalAdminFeeService
+        val adminFee = 1000
+        adminFeeNominalView.text = String.format("%s", adminFee)
+
+        // init total price view
+        val totalPriceView = binding.checkoutBengkel.tvTotalPrice
+
+        val inflater = LayoutInflater.from(this)
+        var subtotalPrice = 0
+        for (service in services) {
+            val serviceView =
+                inflater.inflate(R.layout.item_services_component, servicesLayout, false)
+            val serviceName = serviceView.findViewById<TextView>(R.id.tv_name_service)
+            val servicePrice = serviceView.findViewById<TextView>(R.id.tv_price_service)
+
+            serviceName.text = service.layanan.toCamelCase()
+
+            val formattedServicePrice = service.orderServices.price.currencyFormatWithoutRp()
+            servicePrice.text = formattedServicePrice
+
+            subtotalPrice += service.orderServices.price
+
+            servicesLayout.addView(serviceView)
+        }
+        // Set subtotal price
+        val formattedSubtotalPrice = subtotalPrice.currencyFormat()
+        subtotalPriceView.text = formattedSubtotalPrice
+
+        // Set total price
+        val totalPrice = orderData.data.totalHarga
+        val formattedTotalPrice = totalPrice.currencyFormat()
+        totalPriceView.text = formattedTotalPrice
+    }
+
     //   Get data from PaymentMethodsActivity
     private val paymentMethodResultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -81,88 +161,6 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 }
             }
         }
-
-//     private fun getUserData() {
-//         val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText
-//         val userName = binding.checkoutBengkel.titleFullNameEditText
-//         val detailComplaints = binding.checkoutBengkel.titleDetailComplaintEditText
-//
-// //        get field data from DetailBengkelActivity
-//         val location = intent.getStringExtra(DETAIL_LOCATION)
-//         val name = intent.getStringExtra(USER_NAME)
-//         val complaints = intent.getStringExtra(DETAIL_COMPLAINT)
-//
-//         val selectedServices: ArrayList<LayananEntity> =
-//             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//                 // For newer SDKs (Adjust the SDK version as per your requirement)
-//                 val rawServices = intent.getSerializableExtra(SELECTED_SERVICES)
-//                 safelyCastToLayananEntityList(rawServices)
-//             } else {
-//                 // For older SDKs
-//                 @Suppress("DEPRECATION") val rawServices =
-//                     intent.getSerializableExtra(SELECTED_SERVICES)
-//                 safelyCastToLayananEntityList(rawServices)
-//             }
-//
-// //      set field data to CheckoutBengkelActivity
-//         detailLocation.setText(location)
-//         userName.setText(name)
-//         detailComplaints.setText(complaints)
-//         displaySelectedServicesAndPrice(selectedServices)
-//     }
-//
-//     //   Cast to LayananEntity
-//     private fun safelyCastToLayananEntityList(rawServices: Serializable?): ArrayList<LayananEntity> {
-//         return if (rawServices is List<*>) {
-//             rawServices.filterIsInstance<LayananEntity>() as ArrayList<LayananEntity>
-//         } else {
-//             arrayListOf() // Empty list if casting fails
-//         }
-//     }
-//
-//     private fun displaySelectedServicesAndPrice(selectedServices: ArrayList<LayananEntity>) {
-// //      LinearLayout for services in CheckoutBengkelActivity
-//         val servicesLayout = binding.checkoutBengkel.llDynamicServices
-//         servicesLayout.removeAllViews()
-//
-//         // init subtotal price view
-//         val subtotalPriceView = binding.checkoutBengkel.tvSubtotalPriceService
-//
-//         // Set admin fee
-//         val adminFeeNominalView = binding.checkoutBengkel.tvNominalAdminFeeService
-//         val adminFee = 1000
-//         adminFeeNominalView.text = String.format("%s", adminFee)
-//
-//
-//         // init total price view
-//         val totalPriceView = binding.checkoutBengkel.tvTotalPrice
-//
-//         val inflater = LayoutInflater.from(this)
-//         var subtotalPrice = 0
-//         for (service in selectedServices) {
-//             val serviceView =
-//                 inflater.inflate(R.layout.item_services_component, servicesLayout, false)
-//             val serviceName = serviceView.findViewById<TextView>(R.id.tv_name_service)
-//             val servicePrice = serviceView.findViewById<TextView>(R.id.tv_price_service)
-//
-//             serviceName.text = service.item_name
-//
-//             val formattedServicePrice = service.harga.currencyFormatWithoutRp()
-//             servicePrice.text = formattedServicePrice
-//
-//             subtotalPrice += service.harga
-//
-//             servicesLayout.addView(serviceView)
-//         }
-//         // Set subtotal price
-//         val formattedSubtotalPrice = subtotalPrice.currencyFormat()
-//         subtotalPriceView.text = formattedSubtotalPrice
-//
-//         // Set total price
-//         val totalPrice = subtotalPrice + adminFee
-//         val formattedTotalPrice = totalPrice.currencyFormat()
-//         totalPriceView.text = formattedTotalPrice
-//     }
 
     private fun setupTextChangeListeners() {
         binding.checkoutBengkel.titleDetailLocationEditText.addTextChangedListener { updateButtonState() }
@@ -243,49 +241,36 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 binding.checkoutBengkel.titleDetailComplaintEditText.error = "Field harus diisi"
                 isEmptyField = true
             }
-
-//             if (!isEmptyField) {
-//                 val selectedServices: ArrayList<LayananEntity> =
-//                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//                         // For newer SDKs (Adjust the SDK version as per your requirement)
-//                         val rawServices = intent.getSerializableExtra(SELECTED_SERVICES)
-//                         safelyCastToLayananEntityList(rawServices)
-//                     } else {
-//                         // For older SDKs
-//                         @Suppress("DEPRECATION") val rawServices =
-//                             intent.getSerializableExtra(SELECTED_SERVICES)
-//                         safelyCastToLayananEntityList(rawServices)
-//                     }
-//
-//                 val totalPrice = selectedServices.sumOf { it.harga } + 1000
-//
-// // Building the string with all services
-//                 val stringBuilder = StringBuilder()
-//                 for (service in selectedServices) {
-//                     stringBuilder.append("Layanan: ${service.item_name} \nHarga: ${service.harga}\n")
-//                 }
-//
-// // Create the complete message
-//                 val completeMessage =
-//                     "Nama: $userName \nLokasi: $detailLocation \nKeluhan: $detailComplaints \n\n${stringBuilder.toString() + "Total: $totalPrice"}"
-//
-// // Create and start the intent
-//                 val intent = Intent(Intent.ACTION_SEND).apply {
-//                     type = "text/plain"
-//                     putExtra(Intent.EXTRA_TEXT, completeMessage)
-//                 }
-//                 startActivity(intent)
-//             }
         }
+    }
+
+    private fun orderTimeOut() {
+        val timeout = binding.checkoutBengkel.tvTimeout
+        val fiveMinutesInMillis = 1 * 60 * 1000L // 5 minutes in milliseconds
+
+        //     timer for 5 minutes
+        val timer = object : CountDownTimer(fiveMinutesInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 60000
+                val seconds = millisUntilFinished % 60000 / 1000
+                timeout.text = String.format("%02d:%02d", minutes, seconds)
+            }
+
+            override fun onFinish() {
+                timeout.text = getString(R.string.timeout)
+
+                val intent = Intent(this@CheckoutBengkelActivity, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+            }
+        }
+        timer.start()
     }
 
 
     companion object {
-        const val DETAIL_LOCATION = "key_location"
-        const val USER_NAME = "key_name"
-        const val DETAIL_COMPLAINT = "key_complaint"
-        const val SELECTED_SERVICES = "key_selected_services"
         const val PAYMENT_METHOD_NAME = "key_payment_method_name"
         const val BALANCE = "key_balance"
+        const val EXTRA_ORDER_DATA = "EXTRA_ORDER_DATA"
     }
 }

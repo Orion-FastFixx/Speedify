@@ -80,4 +80,46 @@ class DetailBengkelViewModel @Inject constructor(
             }
         }
     }
+
+    fun orderBengkelService(
+        bengkelId: Int,
+        serviceId: List<Int>,
+        additionalInfo: String,
+        fullName: String,
+        complaint: String,
+    ) {
+        viewModelScope.launch {
+            useCases.orderBengkelService(
+                bengkelId,
+                serviceId,
+                additionalInfo,
+                fullName,
+                complaint
+            ).asFlow().collect() { result ->
+                when (result) {
+                    is ResultState.Loading -> {
+                        _detailBengkelState.value = _detailBengkelState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _detailBengkelState.value = _detailBengkelState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            orderBengkelService = result.data
+                        )
+                    }
+
+                    is ResultState.Error -> {
+                        _detailBengkelState.value = _detailBengkelState.value.copy(
+                            isLoading = false,
+                            error = result.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
 }

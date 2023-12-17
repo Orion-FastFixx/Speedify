@@ -4,6 +4,7 @@ import com.example.speedify.feature_bengkel.data.model.BengkelAllResponse
 import com.example.speedify.feature_bengkel.data.model.DetailBengkelResponse
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -22,6 +23,7 @@ interface BengkelApi {
         @Path("id") id: Int
     ): DetailBengkelResponse
 
+    @FormUrlEncoded
     @POST("pengendara/order-bengkel-service")
     suspend fun orderBengkelService(
         @Header("Authorization") token: String,

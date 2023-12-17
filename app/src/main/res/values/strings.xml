@@ -120,4 +120,6 @@
     <string name="check_credentials">Periksa email dan sandi Anda, lalu coba lagi.</string>
     <string name="greeting">Halo,</string>
     <string name="username">%1$s %2$s!</string>
+    <string name="title_timeout">Batas Akhir Pembayaran</string>
+    <string name="timeout">00:00</string>
 </resources>

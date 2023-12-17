@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class OrderBengkelServiceResponse(
 
 	@field:SerializedName("data")
-	val data: Data,
+	val data: OrderBengkelService,
 
 	@field:SerializedName("message")
 	val message: String
@@ -28,7 +28,7 @@ data class AdditionalInfo(
 ) : Parcelable
 
 @Parcelize
-data class Data(
+data class OrderBengkelService(
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,
@@ -51,6 +51,29 @@ data class Data(
 	@field:SerializedName("bengkel_id")
 	val bengkelId: Int,
 
+	@field:SerializedName("services")
+	val services: List<ServicesItemCheckout>,
+
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
+) : Parcelable
+
+@Parcelize
+data class ServicesItemCheckout(
+
+	@field:SerializedName("layanan")
+	val layanan: String,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("order_services")
+	val orderServices: OrderServices
+) : Parcelable
+
+@Parcelize
+data class OrderServices(
+
+	@field:SerializedName("price")
+	val price: Int
 ) : Parcelable
