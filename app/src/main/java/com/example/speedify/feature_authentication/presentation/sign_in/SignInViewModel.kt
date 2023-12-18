@@ -39,6 +39,10 @@ class SignInViewModel @Inject constructor(
                             ApiConfig.TOKEN = token // Set the token for API calls
                         }
 
+                        result.data.user.refreshToken.let { tokenRefresh ->
+                            userDataStoreRepository.refreshToken(tokenRefresh) // Save the refresh token
+                        }
+
                         _signInState.value = _signInState.value.copy(
                             isLoading = false,
                             error = null,

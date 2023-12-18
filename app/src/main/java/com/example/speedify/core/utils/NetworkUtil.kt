@@ -3,6 +3,7 @@ package com.example.speedify.core.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 
 fun isInternetAvailable(context: Context): Boolean {
     var result = false

@@ -6,17 +6,24 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
+import com.example.speedify.core.data.local.UserDataStoreImpl
+import com.example.speedify.core.utils.fromJson
+import com.example.speedify.core.utils.isInternetAvailable
+import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.databinding.ActivityDetailBengkelBinding
 import com.example.speedify.feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.adapter.BengkelServicesAdapter
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.view_model.DetailBengkelViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.Serializable
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailBengkelActivity : AppCompatActivity() {
@@ -31,32 +38,42 @@ class DetailBengkelActivity : AppCompatActivity() {
         BengkelServicesAdapter()
     }
 
+    @Inject
+    lateinit var userDataStore: UserDataStoreImpl
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailBengkelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val state = viewModel.detailBengkelState.value
+        val bengkelId = intent.getIntExtra(EXTRA_BENGKEL_ID, 0)
 
-        initAdapter()
-
-        if (state.isLoading) {
-            Log.d(ContentValues.TAG, "DetailBengkel:   Loading")
-        } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "DetailBengkel:   ${state.error}")
+        if (bengkelId != 0) {
+            viewModel.getDetailBengkel(bengkelId)
+            viewModel.getLayananBengkel(bengkelId)
         } else {
-            state.layanan?.let {
-                bengkelServicesAdapter.setItems(it)
-            }
+            Log.e(ContentValues.TAG, "Bengkel ID is not provided")
         }
 
+        setDefaultUserName()
+        observeDetailBengkel()
+        initAdapter()
         setupTextChangeListeners()
         updateButtonState()
-        sendUserData()
+        setAction()
+        observeOrderServiceResult()
 
         val iconBack = binding.icBack
         iconBack.setOnClickListener {
             onBackPressed()
+        }
+    }
+
+    private fun initAdapter() {
+        binding.rvItemServices.apply {
+            adapter = bengkelServicesAdapter
+            layoutManager =
+                LinearLayoutManager(this@DetailBengkelActivity, LinearLayoutManager.VERTICAL, false)
         }
     }
 
@@ -94,67 +111,148 @@ class DetailBengkelActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendUserData() {
-        val placeOrder = binding.btnPlaceOrderDetailBengkel
+    private fun setAction() {
+        binding.btnPlaceOrderDetailBengkel.setOnClickListener {
+            orderBengkelService()
+        }
+    }
 
-        placeOrder.setOnClickListener {
-            val detailLocation = binding.titleDetailLocationEditText.text.toString()
-            val userName = binding.titleFullNameEditText.text.toString()
-            val detailComplaints = binding.titleDetailComplaintEditText.text.toString()
-            val selectedServices = bengkelServicesAdapter.getSelectedServices()
+    private fun setDefaultUserName() {
+        lifecycleScope.launch {
+            val userPreferences = userDataStore.getUser()
+            val userName = userPreferences.name ?: ""
+            binding.titleFullNameEditText.setText(userName)
+        }
+    }
 
+    private fun orderBengkelService() {
+        val detailLocation = binding.titleDetailLocationEditText.text.toString().trim()
+        val fullName = binding.titleFullNameEditText.text.toString().trim()
+        val detailComplaints = binding.titleDetailComplaintEditText.text.toString().trim()
+        val selectedServices = bengkelServicesAdapter.getSelectedServices()
 
-            var isEmptyField = false
-            if (detailLocation.isEmpty()) {
-                binding.titleDetailLocationEditText.error = "Field tidak boleh kosong"
-                isEmptyField = true
-            }
+        // Check network availability first
+        if (!isInternetAvailable(this)) {
+            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
 
-            if (userName.isEmpty()) {
-                binding.titleFullNameEditText.error = "Field tidak boleh kosong"
-                isEmptyField = true
-            }
+        var isEmptyField = false
+        if (detailLocation.isEmpty()) {
+            binding.titleDetailLocationEditText.error = "Field tidak boleh kosong"
+            isEmptyField = true
+        }
 
-            if (detailComplaints.isEmpty()) {
-                binding.titleDetailComplaintEditText.error = "Field tidak boleh kosong"
-                isEmptyField = true
-            }
+        if (fullName.isEmpty()) {
+            binding.titleFullNameEditText.error = "Field tidak boleh kosong"
+            isEmptyField = true
+        }
 
-            if (selectedServices.isEmpty()) {
-                binding.tvError.text = "Pilihlah setidaknya satu"
-                binding.tvError.visibility = View.VISIBLE
-                isEmptyField = true
-            } else {
-                updateServiceError()
-            }
+        if (detailComplaints.isEmpty()) {
+            binding.titleDetailComplaintEditText.error = "Field tidak boleh kosong"
+            isEmptyField = true
+        }
 
-            if (!isEmptyField) {
-                val intent = Intent(this, CheckoutBengkelActivity::class.java).apply {
-                    putExtra(
-                        CheckoutBengkelActivity.DETAIL_LOCATION,
-                        detailLocation
-                    )
-                    putExtra(CheckoutBengkelActivity.USER_NAME, userName)
-                    putExtra(
-                        CheckoutBengkelActivity.DETAIL_COMPLAINT,
-                        detailComplaints
-                    )
-                    putExtra(
-                        CheckoutBengkelActivity.SELECTED_SERVICES,
-                        ArrayList(selectedServices) as Serializable
-                    )
+        if (selectedServices.isEmpty()) {
+            binding.tvError.text = "Pilihlah setidaknya satu"
+            binding.tvError.visibility = View.VISIBLE
+            isEmptyField = true
+        } else {
+            updateServiceError()
+        }
+
+        if (!isEmptyField) {
+            val serviceIds = selectedServices.map { it.id }
+            val bengkelId = intent.getIntExtra(EXTRA_BENGKEL_ID, 0)
+
+            viewModel.orderBengkelService(
+                bengkelId = bengkelId,
+                serviceId = serviceIds,
+                additionalInfo = detailLocation,
+                fullName = fullName,
+                complaint = detailComplaints
+            )
+        }
+    }
+
+    private fun observeDetailBengkel() {
+        lifecycleScope.launch {
+            try {
+                viewModel.detailBengkelState.collect { state ->
+                    if (state.isLoading) {
+                        Log.d(ContentValues.TAG, "DetailBengkel:   Loading")
+                    } else if (state.error != null) {
+                        Log.e(ContentValues.TAG, "DetailBengkel:   ${state.error}")
+                    } else {
+                        state.layanan?.let {
+                            bengkelServicesAdapter.setItems(it)
+                        }
+
+                        binding.apply {
+                            tvTitleToolbar.text = state.detailBengkel?.namaBengkel
+
+                            // image
+                            val imageUrls = state.detailBengkel?.fotoUrl ?: "[]"
+                            val image: List<String> = fromJson(imageUrls)
+                            if (image.isNotEmpty()) {
+                                ivDetailBengkel.setImageFromUrl(
+                                    this@DetailBengkelActivity,
+                                    image[0]
+                                )
+                            }
+                            //     end image
+
+                            tvTitleDetailBengkel.text = state.detailBengkel?.namaBengkel
+                            tvDescriptionDetailBengkel.text = state.detailBengkel?.deskripsi
+                            tvRatingDetailBengkel.text =
+                                state.detailBengkel?.rating?.firstOrNull()?.averageRating?.toString()
+                                    ?: "0"
+                            tvReviewDetailBengkel.text = String.format(
+                                "(%s reviews)",
+                                state.detailBengkel?.rating?.firstOrNull()?.reviewCount?.toString()
+                                    ?: "0"
+                            )
+                        }
+                    }
+
                 }
 
-                startActivity(intent)
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "observeDetailBengkel: ${e.message}")
             }
         }
     }
 
-    private fun initAdapter() {
-        binding.rvItemServices.apply {
-            adapter = bengkelServicesAdapter
-            layoutManager =
-                LinearLayoutManager(this@DetailBengkelActivity, LinearLayoutManager.VERTICAL, false)
+    private fun observeOrderServiceResult() {
+        lifecycleScope.launch {
+            try {
+                viewModel.detailBengkelState.collect { state ->
+                    if (state.isLoading) {
+                        // Show loading indicator
+                        // setLoadingState(true)
+                    } else if (state.error != null) {
+                        // Handle error
+                        // setLoadingState(false)
+                        Toast.makeText(this@DetailBengkelActivity, state.error, Toast.LENGTH_LONG)
+                            .show()
+                    } else if (state.orderBengkelService != null) {
+                        // Order service successful
+                        // setLoadingState(false)
+                        val intent = Intent(this@DetailBengkelActivity, CheckoutBengkelActivity::class.java)
+                        intent.putExtra(CheckoutBengkelActivity.EXTRA_ORDER_DATA, state.orderBengkelService)
+                        startActivity(intent)
+                    }
+                }
+            } catch (e: Exception) {
+                // Handle the exception
+                Log.e(ContentValues.TAG, "observeOrderServiceResult: ${e.message}")
+            }
         }
+    }
+
+
+    companion object {
+        const val EXTRA_BENGKEL_ID = "BENGKEL_ID"
     }
 }

@@ -1,8 +1,6 @@
 package com.example.speedify.feature_activity.presentation
 
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
-import com.example.speedify.feature_bengkel.domain.entity.BengkelEntity
-import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 
 data class PesananState(
     val isLoading: Boolean = true,

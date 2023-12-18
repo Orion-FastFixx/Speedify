@@ -17,7 +17,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/authUsernameTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        style="@style/Custom.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -54,7 +54,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/authEmailTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        style="@style/Custom.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
@@ -91,7 +91,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/authPasswordTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        style="@style/Custom.FilledBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"

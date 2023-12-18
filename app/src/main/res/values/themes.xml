@@ -127,7 +127,7 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+    <style name="Custom.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
         <!-- Customize your error text appearance -->
         <item name="errorTextAppearance">@style/ErrorText</item>
         <!-- Customize your error color -->

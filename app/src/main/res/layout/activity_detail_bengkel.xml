@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingHorizontal="16dp">
@@ -15,6 +17,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
+            android:background="@color/white"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -129,8 +132,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:textColor="@color/brandeis_blue"
-                android:text="@string/rating_review" />
+                android:text="@string/rating_review"
+                android:textColor="@color/brandeis_blue" />
         </LinearLayout>
 
 
@@ -244,6 +247,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -283,6 +287,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -321,6 +326,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="text"

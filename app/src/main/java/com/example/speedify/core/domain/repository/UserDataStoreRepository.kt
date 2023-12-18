@@ -7,5 +7,5 @@ interface UserDataStoreRepository {
     suspend fun saveUserLogin(user: UserPreferences)
     suspend fun clearUserLogin()
     suspend fun saveUserToken(token: String)
-
+    suspend fun refreshToken(refreshToken: String)
 }

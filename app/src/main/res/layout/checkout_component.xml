@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:clipToPadding="false"
     android:paddingHorizontal="16dp">
 
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -249,6 +251,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -287,6 +290,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -325,6 +329,7 @@
                 style="@style/MonaSemiBold16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:ems="10"
                 android:imeOptions="actionDone"
                 android:inputType="text"
@@ -430,6 +435,30 @@
         android:text="@string/example_total_price_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider_two_checkout" />
+
+    <TextView
+        android:id="@+id/tv_title_timeout"
+        style="@style/MonaMedium16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/title_timeout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total" />
+
+    <TextView
+        android:id="@+id/tv_timeout"
+        style="@style/MonaSemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/background_timer"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="8dp"
+        android:text="@string/timeout"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_total_price" />
 
     <Button
         android:id="@+id/btn_pay_checkout"
