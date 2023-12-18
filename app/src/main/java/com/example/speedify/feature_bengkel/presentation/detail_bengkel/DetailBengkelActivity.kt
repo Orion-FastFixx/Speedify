@@ -84,13 +84,15 @@ class DetailBengkelActivity : AppCompatActivity() {
         binding.titleDetailComplaintEditText.addTextChangedListener { updateButtonState() }
     }
 
-    private fun updateButtonState() {
+    fun updateButtonState() {
         val isLocationEmpty = binding.titleDetailLocationEditText.text.isNullOrEmpty()
         val isNameEmpty = binding.titleFullNameEditText.text.isNullOrEmpty()
         val isComplaintsEmpty = binding.titleDetailComplaintEditText.text.isNullOrEmpty()
+        val isServiceEmpty = bengkelServicesAdapter.getSelectedServices().isEmpty()
 
         // Button should be enabled only if all fields are filled
-        val isButtonEnabled = !isLocationEmpty && !isNameEmpty && !isComplaintsEmpty
+        val isButtonEnabled =
+            !isLocationEmpty && !isNameEmpty && !isComplaintsEmpty && !isServiceEmpty
 
         binding.btnPlaceOrderDetailBengkel.apply {
             isEnabled = isButtonEnabled // Enable or disable the button
