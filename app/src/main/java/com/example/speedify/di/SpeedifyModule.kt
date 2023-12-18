@@ -73,8 +73,11 @@ object SpeedifyModule {
     }
 
     @Provides
-    fun provideBengkelApi(@ApplicationContext context: Context): BengkelApi =
-        ApiConfig.getApiService(context)
+    fun provideBengkelApi(
+        @ApplicationContext context: Context,
+        dataStore: UserDataStoreImpl
+    ): BengkelApi =
+        ApiConfig.getApiService(context, dataStore)
 
 
     @Provides
@@ -139,8 +142,11 @@ object SpeedifyModule {
     }
 
     @Provides
-    fun provideAuthApi(@ApplicationContext context: Context): AuthApi =
-        ApiConfig.getApiService(context)
+    fun provideAuthApi(
+        @ApplicationContext context: Context,
+        dataStore: UserDataStoreImpl
+    ): AuthApi =
+        ApiConfig.getApiService(context, dataStore)
 
     @Provides
     @Singleton

@@ -21,6 +21,7 @@ class UserDataStoreImpl @Inject constructor(private val dataStore: DataStore<Pre
                 email = it[EMAIL_KEY] ?: "",
                 roleId = it[ROLEID_KEY] ?: 0,
                 token = it[TOKEN_KEY] ?: "",
+                refreshToken = it[REFRESH_TOKEN_KEY] ?: ""
             )
         }.first()
         return user
@@ -33,6 +34,7 @@ class UserDataStoreImpl @Inject constructor(private val dataStore: DataStore<Pre
             preferences[EMAIL_KEY] = user.email ?: ""
             preferences[ROLEID_KEY] = user.roleId ?: 0
             preferences[TOKEN_KEY] = user.token ?: ""
+            preferences[REFRESH_TOKEN_KEY] = user.refreshToken ?: ""
         }
     }
 
@@ -43,6 +45,7 @@ class UserDataStoreImpl @Inject constructor(private val dataStore: DataStore<Pre
             preferences[EMAIL_KEY] = ""
             preferences[ROLEID_KEY] = 0
             preferences[TOKEN_KEY] = ""
+            preferences[REFRESH_TOKEN_KEY] = ""
         }
     }
 
@@ -52,8 +55,15 @@ class UserDataStoreImpl @Inject constructor(private val dataStore: DataStore<Pre
         }
     }
 
+    override suspend fun refreshToken(refreshToken: String) {
+        dataStore.edit { preferences ->
+            preferences[REFRESH_TOKEN_KEY] = refreshToken
+        }
+    }
+
     companion object {
         val TOKEN_KEY = stringPreferencesKey("token")
+        val REFRESH_TOKEN_KEY = stringPreferencesKey("refreshToken")
         private val NAME_KEY = stringPreferencesKey("name")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val ROLEID_KEY = intPreferencesKey("roleId")

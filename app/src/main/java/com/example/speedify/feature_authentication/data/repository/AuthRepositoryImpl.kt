@@ -29,9 +29,10 @@ class AuthRepositoryImpl @Inject constructor(
             try {
                 val loginResponse = authenticator.signIn(email, password)
                 val token = loginResponse.user.token
+                val refreshToken = loginResponse.user.refreshToken
 
                 // save user to datastore
-                val userPreference = userToUserPreferences(loginResponse, token)
+                val userPreference = userToUserPreferences(loginResponse, token, refreshToken)
                 userPreference.let { dataStore.saveUserLogin(it) }
                 ApiConfig.TOKEN = token
                 emit(ResultState.Success(loginResponse))
@@ -70,8 +71,9 @@ class AuthRepositoryImpl @Inject constructor(
                 }
 
                 val token = userDataStore.token ?: ""
+                val refreshToken = userDataStore.refreshToken ?: ""
 
-                val user = userPreferencesToUser(userDataStore, token)
+                val user = userPreferencesToUser(userDataStore, token, refreshToken)
                 dataStore.saveUserToken(token)
                 ApiConfig.TOKEN = token
                 emit(ResultState.Success(user))

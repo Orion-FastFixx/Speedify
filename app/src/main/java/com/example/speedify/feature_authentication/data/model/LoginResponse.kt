@@ -26,5 +26,8 @@ data class User(
 	val username: String,
 
 	@field:SerializedName("token")
-	val token: String
+	val token: String,
+
+	@field:SerializedName("refreshToken")
+	val refreshToken: String
 )
