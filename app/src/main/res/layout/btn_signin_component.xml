@@ -4,16 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+
+    <FrameLayout
         android:id="@+id/btn_login"
-        style="@style/MonaSemiBold16"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:backgroundTint="@color/cinnabar"
-        android:text="@string/sign_in"
-        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/btn_background">
+
+        <TextView
+            android:id="@+id/tv_login"
+            style="@style/MonaSemiBold16"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/sign_in"
+            android:textColor="@color/white" />
+
+        <ProgressBar
+            android:id="@+id/progress_login"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone" />
+    </FrameLayout>
 
     <Button
         android:id="@+id/btn_regis"

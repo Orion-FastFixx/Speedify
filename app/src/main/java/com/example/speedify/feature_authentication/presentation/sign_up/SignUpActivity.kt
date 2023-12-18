@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -148,11 +149,9 @@ class SignUpActivity : AppCompatActivity() {
             fieldAuth.authEmailEditText.isEnabled = !isLoading
             fieldAuth.authPasswordEditText.isEnabled = !isLoading
 
-            if (isLoading) {
-                viewLoading.animateVisibility(true)
-            } else {
-                viewLoading.animateVisibility(false)
-            }
+            fieldBtn.btnRegis.isEnabled = !isLoading
+            fieldBtn.tvRegis.visibility = if (isLoading) View.GONE else View.VISIBLE
+            fieldBtn.progressRegis.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 

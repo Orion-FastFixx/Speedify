@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.speedify.MainActivity
 import com.example.speedify.R
 import com.example.speedify.core.data.local.UserDataStoreImpl
-import com.example.speedify.core.utils.animateVisibility
 import com.example.speedify.core.utils.isInternetAvailable
 import com.example.speedify.databinding.ActivitySignInBinding
 import com.example.speedify.feature_authentication.presentation.sign_up.SignUpActivity
@@ -147,11 +146,9 @@ class SignInActivity : AppCompatActivity() {
             fieldAuth.authEmailEditText.isEnabled = !isLoading
             fieldAuth.authPasswordEditText.isEnabled = !isLoading
 
-            if (isLoading) {
-                viewLoading.animateVisibility(true)
-            } else {
-                viewLoading.animateVisibility(false)
-            }
+            fieldBtn.btnLogin.isEnabled = !isLoading
+            fieldBtn.tvLogin.visibility = if (isLoading) View.GONE else View.VISIBLE
+            fieldBtn.progressLogin.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 
