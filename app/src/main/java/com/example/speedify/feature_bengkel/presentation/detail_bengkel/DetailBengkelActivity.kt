@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
 import com.example.speedify.core.data.local.UserDataStoreImpl
+import com.example.speedify.core.utils.OrderTimeManager
 import com.example.speedify.core.utils.fromJson
 import com.example.speedify.core.utils.isInternetAvailable
 import com.example.speedify.core.utils.setImageFromUrl
@@ -91,14 +92,12 @@ class DetailBengkelActivity : AppCompatActivity() {
         // Button should be enabled only if all fields are filled
         val isButtonEnabled = !isLocationEmpty && !isNameEmpty && !isComplaintsEmpty
 
-        // Set button color
-        val buttonColor = if (isButtonEnabled) {
-            getColor(R.color.cinnabar)
-        } else {
-            getColor(R.color.roman_silver)
+        binding.btnPlaceOrderDetailBengkel.apply {
+            isEnabled = isButtonEnabled // Enable or disable the button
+            setBackgroundResource(if (isButtonEnabled) R.drawable.btn_background else R.drawable.btn_background_inactive)
         }
-        binding.btnPlaceOrderDetailBengkel.setBackgroundColor(buttonColor)
-        binding.btnPlaceOrderDetailBengkel.setTextColor(Color.WHITE)
+        binding.tvPlaceOrderDetailBengkel.setTextColor(Color.WHITE)
+        binding.tvPlaceOrderDetailBengkel.visibility = View.VISIBLE
     }
 
     private fun updateServiceError() {
@@ -112,8 +111,18 @@ class DetailBengkelActivity : AppCompatActivity() {
     }
 
     private fun setAction() {
+        val bengkelId = intent.getIntExtra(EXTRA_BENGKEL_ID, 0)
+
         binding.btnPlaceOrderDetailBengkel.setOnClickListener {
-            orderBengkelService()
+            if (OrderTimeManager.isTimerRunning && OrderTimeManager.currentBengkelId == bengkelId) {
+                redirectToCheckout(bengkelId)
+            } else {
+                if (binding.btnPlaceOrderDetailBengkel.isEnabled) {
+                    setLoadingState(true)
+                    OrderTimeManager.resetTimer(bengkelId)
+                    orderBengkelService()
+                }
+            }
         }
     }
 
@@ -233,14 +242,22 @@ class DetailBengkelActivity : AppCompatActivity() {
                         // setLoadingState(true)
                     } else if (state.error != null) {
                         // Handle error
-                        // setLoadingState(false)
+                        setLoadingState(false)
                         Toast.makeText(this@DetailBengkelActivity, state.error, Toast.LENGTH_LONG)
                             .show()
                     } else if (state.orderBengkelService != null) {
                         // Order service successful
-                        // setLoadingState(false)
-                        val intent = Intent(this@DetailBengkelActivity, CheckoutBengkelActivity::class.java)
-                        intent.putExtra(CheckoutBengkelActivity.EXTRA_ORDER_DATA, state.orderBengkelService)
+                        setLoadingState(false)
+                        val intent =
+                            Intent(this@DetailBengkelActivity, CheckoutBengkelActivity::class.java)
+                        intent.putExtra(
+                            CheckoutBengkelActivity.EXTRA_ORDER_DATA,
+                            state.orderBengkelService
+                        )
+                        intent.putExtra(
+                            CheckoutBengkelActivity.EXTRA_DETAIL_BENGKEL,
+                            state.detailBengkel
+                        )
                         startActivity(intent)
                     }
                 }
@@ -248,6 +265,39 @@ class DetailBengkelActivity : AppCompatActivity() {
                 // Handle the exception
                 Log.e(ContentValues.TAG, "observeOrderServiceResult: ${e.message}")
             }
+        }
+    }
+
+    private fun redirectToCheckout(bengkelId: Int) {
+        if (OrderTimeManager.currentBengkelId == bengkelId) {
+            lifecycleScope.launch {
+                viewModel.detailBengkelState.collect { state ->
+                    val intent =
+                        Intent(this@DetailBengkelActivity, CheckoutBengkelActivity::class.java)
+                    intent.putExtra(
+                        CheckoutBengkelActivity.EXTRA_ORDER_DATA,
+                        state.orderBengkelService
+                    )
+                    intent.putExtra(
+                        CheckoutBengkelActivity.EXTRA_DETAIL_BENGKEL,
+                        state.detailBengkel
+                    )
+                    startActivity(intent)
+                }
+            }
+        }
+
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            titleDetailLocationEditText.isEnabled = !isLoading
+            titleFullNameEditText.isEnabled = !isLoading
+            titleDetailComplaintEditText.isEnabled = !isLoading
+
+            btnPlaceOrderDetailBengkel.isEnabled = !isLoading
+            tvPlaceOrderDetailBengkel.visibility = if (isLoading) View.GONE else View.VISIBLE
+            progressPlaceOrderDetailBengkel.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
     }
 

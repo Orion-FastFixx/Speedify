@@ -9,17 +9,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:clipToPadding="false"
         android:paddingHorizontal="16dp">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:background="@color/white"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -336,17 +336,46 @@
                 android:textColor="@color/charleston_green" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <!--        <Button-->
+        <!--            android:id="@+id/btn_place_order_detail_bengkel"-->
+        <!--            android:layout_width="312dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:layout_marginTop="32dp"-->
+        <!--            android:backgroundTint="@color/cinnabar"-->
+        <!--            android:text="Lanjutkan Pembayaran"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/titleDetailComplaintEditTextLayout" />-->
+
+        <FrameLayout
             android:id="@+id/btn_place_order_detail_bengkel"
             android:layout_width="312dp"
             android:layout_height="60dp"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/cinnabar"
-            android:text="Lanjutkan Pembayaran"
-            android:textSize="16sp"
+            android:background="@drawable/btn_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleDetailComplaintEditTextLayout" />
+            app:layout_constraintTop_toBottomOf="@id/titleDetailComplaintEditTextLayout">
+
+            <TextView
+                android:id="@+id/tv_place_order_detail_bengkel"
+                style="@style/MonaSemiBold16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/place_order"
+                android:textColor="@color/white" />
+
+            <ProgressBar
+                android:id="@+id/progress_place_order_detail_bengkel"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone" />
+        </FrameLayout>
 
         <Space
             android:layout_width="match_parent"

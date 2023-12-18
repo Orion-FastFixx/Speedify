@@ -122,4 +122,5 @@
     <string name="username">%1$s %2$s!</string>
     <string name="title_timeout">Batas Akhir Pembayaran</string>
     <string name="timeout">00:00</string>
+    <string name="place_order">Lanjutkan Pembayaran</string>
 </resources>
