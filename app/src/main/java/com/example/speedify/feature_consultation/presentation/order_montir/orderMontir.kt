@@ -35,7 +35,7 @@ class OrderMontir : AppCompatActivity() {
     private fun dynamicConfiguration() {
         // set appbar title
         val title = binding.orderMontir.tvTitleToolbar
-        title.text = "Bengkel Umum"
+            title.text = "Bengkel Umum"
         // end set appbar title
 
         //     set mitra info

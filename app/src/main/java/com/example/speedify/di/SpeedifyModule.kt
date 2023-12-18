@@ -34,15 +34,19 @@ import com.example.speedify.feature_bengkel.domain.use_case.GetPublicBengkelMoto
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMotor
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
+import com.example.speedify.feature_consultation.data.remote.MontirApi
 import com.example.speedify.feature_consultation.data.repository.MontirRepoImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
 import com.example.speedify.feature_consultation.domain.use_case.GetAllMontir
-import com.example.speedify.feature_consultation.domain.use_case.GetTheBestMontir
-import com.example.speedify.feature_consultation.domain.use_case.GetTrustedMontir
 import com.example.speedify.feature_consultation.domain.use_case.MontirUseCase
+import com.example.speedify.feature_education.data.remote.EducationApi
 import com.example.speedify.feature_education.data.repository.EducationRepositoryImpl
 import com.example.speedify.feature_education.domain.interface_repository.EducationRepository
 import com.example.speedify.feature_education.domain.use_case.GetAllEducation
+import com.example.speedify.feature_education.domain.use_case.GetEducationExterior
+import com.example.speedify.feature_education.domain.use_case.GetEducationInterior
+import com.example.speedify.feature_education.domain.use_case.GetEducationMesin
+import com.example.speedify.feature_education.domain.use_case.GetEducationTips
 import com.example.speedify.feature_education.domain.use_case.UseCasesEducation
 import dagger.Module
 import dagger.Provides
@@ -54,19 +58,26 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object SpeedifyModule {
+
+    @Provides
+    fun provideMontirApi(@ApplicationContext context: Context): MontirApi =
+        ApiConfig.getApiService(context)
+
     @Provides
     @Singleton
-    fun provideMontirRepository(): MontirRepo {
-        return MontirRepoImpl.getInstance()
+    fun provideMontirRepository(
+        montirApi: MontirApi,
+        dataStore: UserDataStoreImpl
+    ): MontirRepo {
+        return MontirRepoImpl(montirApi, dataStore)
     }
+
 
     @Provides
     @Singleton
     fun provideMontirUseCase(repository: MontirRepo): MontirUseCase {
         return MontirUseCase(
             getAllMontir = GetAllMontir(repository),
-            getTheBestMontir = GetTheBestMontir(repository),
-            getTrustedMontir = GetTrustedMontir(repository)
         )
     }
 
@@ -121,16 +132,27 @@ object SpeedifyModule {
     }
 
     @Provides
+    fun provideEducationApi(@ApplicationContext context: Context): EducationApi =
+        ApiConfig.getApiService(context)
+
+    @Provides
     @Singleton
-    fun provideEducationRepository(): EducationRepository {
-        return EducationRepositoryImpl.getInstance()
+    fun provideEducationRepository(
+        educationApi: EducationApi,
+        dataStore: UserDataStoreImpl
+    ): EducationRepository {
+        return EducationRepositoryImpl(educationApi, dataStore)
     }
 
     @Provides
     @Singleton
     fun provideEducationUsesCases(repository: EducationRepository): UseCasesEducation {
         return UseCasesEducation(
-            getAllEducation = GetAllEducation(repository)
+            getAllEducation = GetAllEducation(repository),
+            getEducationTips = GetEducationTips(repository),
+            getEducationInterior = GetEducationInterior(repository),
+            getEducationExterior = GetEducationExterior(repository),
+            getEducationMesin = GetEducationMesin(repository)
         )
     }
 

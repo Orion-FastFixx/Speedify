@@ -29,7 +29,6 @@ class AuthRepositoryImpl @Inject constructor(
             try {
                 val loginResponse = authenticator.signIn(email, password)
                 val token = loginResponse.user.token
-
                 // save user to datastore
                 val userPreference = userToUserPreferences(loginResponse, token)
                 userPreference.let { dataStore.saveUserLogin(it) }
