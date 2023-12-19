@@ -35,6 +35,7 @@ import com.example.speedify.feature_bengkel.domain.use_case.GetPublicBengkelMoto
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMobil
 import com.example.speedify.feature_bengkel.domain.use_case.GetTheBestBengkelMotor
 import com.example.speedify.feature_bengkel.domain.use_case.OrderBengkelService
+import com.example.speedify.feature_bengkel.domain.use_case.PayOrderService
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
 import com.example.speedify.feature_consultation.data.remote.MontirApi
 import com.example.speedify.feature_consultation.data.repository.MontirRepoImpl
@@ -123,7 +124,8 @@ object SpeedifyModule {
             getTheBestBengkelMotor = GetTheBestBengkelMotor(repository),
             getDetailBengkel = GetDetailBengkel(repository),
             getLayananBengkel = GetLayananBengkel(repository),
-            orderBengkelService = OrderBengkelService(repository)
+            orderBengkelService = OrderBengkelService(repository),
+            payOrderService = PayOrderService(repository)
         )
     }
 

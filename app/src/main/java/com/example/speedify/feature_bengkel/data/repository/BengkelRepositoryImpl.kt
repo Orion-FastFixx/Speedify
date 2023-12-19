@@ -7,8 +7,8 @@ import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_bengkel.data.datasource.BengkelDataSource
 import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.data.model.DetailBengkel
-import com.example.speedify.feature_bengkel.data.model.OrderBengkelService
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
+import com.example.speedify.feature_bengkel.data.model.PayOrderResponse
 import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.data.remote.BengkelApi
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
@@ -311,6 +311,31 @@ class BengkelRepositoryImpl @Inject constructor(
                     additionalInfo = additionalInfo,
                     fullName = fullName,
                     complaint = complaint
+                )
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun payOrder(
+        orderId: Int,
+        paymentMethodId: Int
+    ): LiveData<ResultState<PayOrderResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = bengkelApi.payOrder(
+                    token = token,
+                    orderId = orderId,
+                    paymentMethodId = paymentMethodId
                 )
                 emit(ResultState.Success(response))
             } catch (e: Exception) {

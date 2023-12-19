@@ -9,6 +9,7 @@ import com.example.speedify.core.utils.currencyFormat
 import com.example.speedify.core.utils.toCamelCase
 import com.example.speedify.databinding.ItemCheckboxBengkelServicesBinding
 import com.example.speedify.feature_bengkel.data.model.ServicesItem
+import com.example.speedify.feature_bengkel.presentation.detail_bengkel.DetailBengkelActivity
 import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
 
 class BengkelServicesAdapter :
@@ -49,6 +50,8 @@ class BengkelServicesAdapter :
                 } else {
                     selectedServices.remove(item)
                 }
+                //     updateButtonState()
+                (context as? DetailBengkelActivity)?.updateButtonState()
             }
         }
         val formattedPrice = item.hargaLayanan.harga.currencyFormat()

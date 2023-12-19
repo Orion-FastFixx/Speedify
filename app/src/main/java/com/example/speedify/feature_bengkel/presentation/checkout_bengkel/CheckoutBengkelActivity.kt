@@ -1,26 +1,37 @@
 package com.example.speedify.feature_bengkel.presentation.checkout_bengkel
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import com.example.speedify.MainActivity
 import com.example.speedify.R
+import com.example.speedify.core.utils.OrderTimeManager
 import com.example.speedify.core.utils.currencyFormat
 import com.example.speedify.core.utils.currencyFormatWithoutRp
+import com.example.speedify.core.utils.fromJson
+import com.example.speedify.core.utils.isInternetAvailable
+import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.core.utils.toCamelCase
 import com.example.speedify.databinding.ActivityCheckoutBengkelBinding
+import com.example.speedify.feature_bengkel.data.model.DetailBengkel
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.ServicesItemCheckout
 import com.example.speedify.feature_payment.PaymentMethodsActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CheckoutBengkelActivity : AppCompatActivity() {
@@ -29,11 +40,17 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 
     private val binding get() = _binding
 
+    private val viewModel: CheckoutBengkelViewModel by viewModels()
+
+    private var paymentMethodId: Int = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityCheckoutBengkelBinding.inflate(layoutInflater)
         setContentView(binding.root)
         dynamicConfiguration()
+        setAction()
+        observePayServiceResult()
         orderTimeOut()
 
         val orderData = intent.getParcelableExtra<OrderBengkelServiceResponse>(EXTRA_ORDER_DATA)
@@ -54,10 +71,6 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         paymentMethod.text = getString(R.string.payment_method)
 //        End set text payment method
 
-//      Get user data
-//         getUserData()
-//      End get user data
-
 //      Go to Payment Methods
         val morePayment = binding.checkoutBengkel.icArrowRightPaymentMethod
         morePayment.setOnClickListener {
@@ -76,7 +89,6 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 //      Button pay
         setupTextChangeListeners()
         updateButtonState()
-        payService()
 //      End button pay
 
 //      Back button
@@ -88,6 +100,13 @@ class CheckoutBengkelActivity : AppCompatActivity() {
     }
 
     private fun displayOrderDetails(orderData: OrderBengkelServiceResponse) {
+
+        val detailBengkel = intent.getParcelableExtra<DetailBengkel>(EXTRA_DETAIL_BENGKEL)
+
+        val titleToolbar = binding.checkoutBengkel.tvTitleToolbar
+        val bengkelImg = binding.checkoutBengkel.civCheckout
+        val titleBengkel = binding.checkoutBengkel.tvTitleCheckout
+        val subtitleBengkel = binding.checkoutBengkel.tvSubtitleCheckout
         val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText
         val userName = binding.checkoutBengkel.titleFullNameEditText
         val detailComplaints = binding.checkoutBengkel.titleDetailComplaintEditText
@@ -96,11 +115,23 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         val location = orderData.data.additionalInfo.preciseLocation
         val name = orderData.data.additionalInfo.fullName
         val complaints = orderData.data.additionalInfo.complaint
+        val bengkelName = detailBengkel?.namaBengkel
+        val jenisBengkel = detailBengkel?.jenisBengkel
+
+        val imageUrls = detailBengkel?.fotoUrl ?: "[]"
+        val imageBengkel: List<String> = fromJson(imageUrls)
+
 
         //      set field data to CheckoutBengkelActivity
         detailLocation.setText(location)
         userName.setText(name)
         detailComplaints.setText(complaints)
+        titleToolbar.text = bengkelName
+        titleBengkel.text = bengkelName
+        subtitleBengkel.text = jenisBengkel
+        if (imageBengkel.isNotEmpty()) {
+            bengkelImg.setImageFromUrl(this@CheckoutBengkelActivity, imageBengkel[0])
+        }
 
     }
 
@@ -199,6 +230,7 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 paymentMethodIcon.setImageResource(R.drawable.ic_cash)
                 paymentMethodView.text = "Cash"
                 balanceView.visibility = View.GONE
+                paymentMethodId = 1
             }
 
             "OVO" -> {
@@ -206,6 +238,7 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 paymentMethodView.text = "OVO"
                 balanceView.visibility = View.VISIBLE
                 balanceView.text = balance
+                paymentMethodId = 2
             }
 
             "GoPay" -> {
@@ -213,44 +246,99 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                 paymentMethodView.text = "GoPay"
                 balanceView.visibility = View.VISIBLE
                 balanceView.text = balance
+                paymentMethodId = 2
             }
         }
     }
 
+    private fun setAction() {
+        binding.checkoutBengkel.btnPayCheckout.setOnClickListener {
+            payService()
+        }
+    }
+
     private fun payService() {
-        val payService = binding.checkoutBengkel.btnPayCheckout
+        val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText.text.toString().trim()
+        val userName = binding.checkoutBengkel.titleFullNameEditText.text.toString().trim()
+        val detailComplaints = binding.checkoutBengkel.titleDetailComplaintEditText.text.toString().trim()
 
-        payService.setOnClickListener {
-            val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText.text.toString()
-            val userName = binding.checkoutBengkel.titleFullNameEditText.text.toString()
-            val detailComplaints =
-                binding.checkoutBengkel.titleDetailComplaintEditText.text.toString()
+        // Reset errors
+        binding.checkoutBengkel.titleDetailLocationEditText.error = null
+        binding.checkoutBengkel.titleFullNameEditText.error = null
+        binding.checkoutBengkel.titleDetailComplaintEditText.error = null
 
-            var isEmptyField = false
-            if (detailLocation.isEmpty()) {
-                binding.checkoutBengkel.titleDetailLocationEditText.error = "Field harus diisi"
-                isEmptyField = true
-            }
+        // Check network availability first
+        if (!isInternetAvailable(this)) {
+            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            if (userName.isEmpty()) {
-                binding.checkoutBengkel.titleFullNameEditText.error = "Field harus diisi"
-                isEmptyField = true
-            }
+        var isEmptyField = false
+        if (detailLocation.isEmpty()) {
+            binding.checkoutBengkel.titleDetailLocationEditText.error = "Field harus diisi"
+            isEmptyField = true
+        }
 
-            if (detailComplaints.isEmpty()) {
-                binding.checkoutBengkel.titleDetailComplaintEditText.error = "Field harus diisi"
-                isEmptyField = true
+        if (userName.isEmpty()) {
+            binding.checkoutBengkel.titleFullNameEditText.error = "Field harus diisi"
+            isEmptyField = true
+        }
+
+        if (detailComplaints.isEmpty()) {
+            binding.checkoutBengkel.titleDetailComplaintEditText.error = "Field harus diisi"
+            isEmptyField = true
+        }
+
+        if (!isEmptyField) {
+            val orderData = intent.getParcelableExtra<OrderBengkelServiceResponse>(EXTRA_ORDER_DATA)
+            val orderId = orderData?.data?.id ?: 0
+            viewModel.payOrderService(orderId, paymentMethodId)
+        }
+    }
+
+    private fun observePayServiceResult() {
+        lifecycleScope.launch {
+            try {
+                viewModel.checkoutBengkelState.collect { state ->
+                    if (state.isLoading) {
+                        Log.d(TAG, "observePayServiceResult:    isLoading")
+                    } else if (state.error != null) {
+                        Log.d(TAG, "observePayServiceResult:    error")
+                    } else if (state.payOrderResponse != null) {
+                        Toast.makeText(
+                            this@CheckoutBengkelActivity,
+                            state.payOrderResponse.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val intent = Intent(this@CheckoutBengkelActivity, MainActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                        }
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e(TAG, "observePayServiceResult: ${e.message} ")
             }
         }
     }
 
     private fun orderTimeOut() {
         val timeout = binding.checkoutBengkel.tvTimeout
-        val fiveMinutesInMillis = 1 * 60 * 1000L // 5 minutes in milliseconds
+
+        val timeToCountDown: Long = if (OrderTimeManager.isTimerRunning) {
+            OrderTimeManager.remainingTimeInMilliSeconds
+        } else {
+            OrderTimeManager.remainingTimeInMilliSeconds =
+                (5 * 60 + 5) * 1000   // 5 minutes and 5 seconds
+            OrderTimeManager.remainingTimeInMilliSeconds
+        }
 
         //     timer for 5 minutes
-        val timer = object : CountDownTimer(fiveMinutesInMillis, 1000) {
+        val timer = object : CountDownTimer(timeToCountDown, 1000) {
             override fun onTick(millisUntilFinished: Long) {
+                OrderTimeManager.remainingTimeInMilliSeconds = millisUntilFinished
                 val minutes = millisUntilFinished / 60000
                 val seconds = millisUntilFinished % 60000 / 1000
                 timeout.text = String.format("%02d:%02d", minutes, seconds)
@@ -258,13 +346,20 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 timeout.text = getString(R.string.timeout)
+                OrderTimeManager.isTimerRunning = false
 
-                val intent = Intent(this@CheckoutBengkelActivity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                val intent = Intent(this@CheckoutBengkelActivity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                }
                 startActivity(intent)
+                finish()
             }
         }
+        val orderData = intent.getParcelableExtra<OrderBengkelServiceResponse>(EXTRA_ORDER_DATA)
+
         timer.start()
+        OrderTimeManager.isTimerRunning = true
+        OrderTimeManager.currentBengkelId = orderData?.data?.bengkelId ?: 0
     }
 
 
@@ -272,5 +367,6 @@ class CheckoutBengkelActivity : AppCompatActivity() {
         const val PAYMENT_METHOD_NAME = "key_payment_method_name"
         const val BALANCE = "key_balance"
         const val EXTRA_ORDER_DATA = "EXTRA_ORDER_DATA"
+        const val EXTRA_DETAIL_BENGKEL = "EXTRA_DETAIL_BENGKEL"
     }
 }
