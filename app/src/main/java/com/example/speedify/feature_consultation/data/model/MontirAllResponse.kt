@@ -23,7 +23,7 @@ data class DaftarItem(
 	val nama: String,
 
 	@field:SerializedName("pengalaman")
-	val pengalaman: Any,
+	val pengalaman: Any?,
 
 	@field:SerializedName("rating")
 	val rating: List<RatingItem>,
