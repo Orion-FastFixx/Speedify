@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.speedify.R
+import com.example.speedify.core.utils.GridSpacingItemDecoration
+import com.example.speedify.core.utils.animateVisibility
 import com.example.speedify.databinding.FragmentInteriorBinding
 import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import com.example.speedify.feature_education.presentation.education.view_model.EducationViewModel
-import com.example.speedify.core.utils.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class InteriorFragment : Fragment() {
@@ -41,16 +44,41 @@ class InteriorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
+        observeInterior()
+    }
 
-        val state = viewModel.educationState.value
+    private fun observeInterior() {
+        lifecycleScope.launch {
+            try {
+                viewModel.educationState.collect { state ->
+                    if (state.isLoading) {
+                        setLoadingState(true)
+                        Log.d(ContentValues.TAG, "Education:   Loading")
+                    } else if (state.error != null) {
+                        setLoadingState(false)
+                        Log.e(ContentValues.TAG, "Education:   ${state.error}")
+                    } else {
+                        setLoadingState(false)
+                        state.educationInterior?.let {
+                            educationAdapter.setItems(it)
+                        }
+                    }
+                }
 
-        if (state.isLoading) {
-            Log.d(ContentValues.TAG, "Education:   Loading")
-        } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "Education:   ${state.error}")
-        } else {
-            state.educationInterior?.let {
-                educationAdapter.setItems(it)
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "observeExterior: ${e.message}")
+            }
+        }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                viewLoading.animateVisibility(true)
+                rvInteriorEducation.animateVisibility(false)
+            } else {
+                viewLoading.animateVisibility(false)
+                rvInteriorEducation.animateVisibility(true)
             }
         }
     }

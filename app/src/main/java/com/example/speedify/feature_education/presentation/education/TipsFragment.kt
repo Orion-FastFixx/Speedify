@@ -1,7 +1,6 @@
 package com.example.speedify.feature_education.presentation.education
 
 import android.content.ContentValues
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,18 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.speedify.R
+import com.example.speedify.core.utils.GridSpacingItemDecoration
+import com.example.speedify.core.utils.animateVisibility
 import com.example.speedify.databinding.FragmentTipsBinding
 import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import com.example.speedify.feature_education.presentation.education.view_model.EducationViewModel
-import com.example.speedify.core.utils.GridSpacingItemDecoration
-import com.example.speedify.feature_activity.domain.entity.PesananEntity
-import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
-import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
-import com.example.speedify.feature_education.data.model.ContentItem
-import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TipsFragment : Fragment() {
@@ -47,26 +44,50 @@ class TipsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
 
-        val state = viewModel.educationState.value
+        observeTips()
 
-        if (state.isLoading) {
-            Log.d(ContentValues.TAG, "Education:   Loading")
-        } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "Education:   ${state.error}")
-        } else {
-            state.educationTips?.let {
-                educationAdapter.setItems(it)
+        // educationAdapter.setOnItemClickCallback(object : EducationAdapter.OnItemClickCallback {
+        //     override fun onItemClicked(data: ContentItem) {
+        //         // Tanggapi klik item di sini
+        //         val intent = Intent(requireContext(), DetailEducationActivity::class.java)
+        //         intent.putExtra("EDUCATION_ID", data.id)
+        //         startActivity(intent)
+        //     }
+        // })
+    }
+
+    private fun observeTips() {
+        lifecycleScope.launch {
+            try {
+                viewModel.educationState.collect { state ->
+                    if (state.isLoading) {
+                        Log.d(ContentValues.TAG, "Education:   Loading")
+                    } else if (state.error != null) {
+                        Log.e(ContentValues.TAG, "Education:   ${state.error}")
+                    } else {
+                        setLoadingState(false)
+                        state.educationTips?.let {
+                            educationAdapter.setItems(it)
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "observeExterior: ${e.message}")
             }
         }
+    }
 
-        educationAdapter.setOnItemClickCallback(object : EducationAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ContentItem) {
-                // Tanggapi klik item di sini
-                val intent = Intent(requireContext(), DetailEducationActivity::class.java)
-                intent.putExtra("EDUCATION_ID", data.id)
-                startActivity(intent)
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                viewLoading.animateVisibility(true)
+                rvTipsEducation.animateVisibility(false)
+            } else {
+                viewLoading.animateVisibility(false)
+                rvTipsEducation.animateVisibility(true)
             }
-        })
+        }
     }
 
     private fun initAdapter() {
