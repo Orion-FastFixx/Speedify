@@ -2,57 +2,85 @@ package com.example.speedify.feature_consultation.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.example.speedify.feature_consultation.data.datasource.MontirDataSource
-import com.example.speedify.feature_consultation.domain.entity.MontirEntity
+import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
 import com.example.speedify.core.utils.ResultState
+import com.example.speedify.feature_consultation.data.model.PayOrderMontirResponse
+import com.example.speedify.feature_consultation.data.model.DaftarItem
+import com.example.speedify.feature_consultation.data.model.OrderMontirServiceResponse
+import com.example.speedify.feature_consultation.data.remote.MontirApi
+import javax.inject.Inject
 
-class MontirRepoImpl private constructor() : MontirRepo {
+class MontirRepoImpl @Inject constructor(
+    private val montirApi: MontirApi,
+    private val dataStore: UserDataStoreImpl
+) : MontirRepo {
 
-    override suspend fun getAllMontir(): LiveData<ResultState<List<MontirEntity>>> =
+    override suspend fun getAllMontir(): LiveData<ResultState<List<DaftarItem>>> =
         liveData {
             try {
-                val response = MontirDataSource.getAllMontir()
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+                val response = montirApi.getAllMontir(token)
+                val daftarItems = response.data
+                emit(ResultState.Success(daftarItems))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun orderMontirService(
+        montirId: Int,
+        serviceId: List<Int>,
+    ): LiveData<ResultState<OrderMontirServiceResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = montirApi.orderMontirService(
+                    token = token,
+                    montirId = montirId,
+                    serviceId = serviceId,
+                )
                 emit(ResultState.Success(response))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }
         }
 
-    override suspend fun getTheBestMontir(): LiveData<ResultState<List<MontirEntity>>> =
+    override suspend fun payOrder(
+        orderId: Int,
+        paymentMethodId: Int
+    ): LiveData<ResultState<PayOrderMontirResponse>> =
         liveData {
-            try{
-                val response = MontirDataSource.getAllMontir()
-                val filteredResponse =
-                    response.filter{it.jlhRating.toDouble() >= 4.5 }
-                        .sortedByDescending { it.jlhRating.toDouble() }
-                emit(ResultState.Success(filteredResponse))
-            }catch (e: Exception){
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-
-    override suspend fun getTrustedMontir(): LiveData<ResultState<List<MontirEntity>>> =
-        liveData {
-            try{
-                val response = MontirDataSource.getAllMontir()
-                val filteredResponse =
-                    response.filter{it.jlhCostumer.toInt() >= 50 }
-                        .sortedByDescending { it.jlhCostumer.toInt() }
-                emit(ResultState.Success(filteredResponse))
-            }catch (e: Exception){
-                emit(ResultState.Error(e.message.toString()))
-            }
-        }
-    companion object {
-        @Volatile
-        private var instance: MontirRepoImpl? = null
-
-        fun getInstance(): MontirRepoImpl =
-            instance ?: synchronized(this) {
-                instance ?: MontirRepoImpl().apply {
-                    instance = this
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
                 }
+
+                val response = montirApi.payOrder(
+                    token = token,
+                    orderId = orderId,
+                    paymentMethodId = paymentMethodId
+                )
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
             }
-    }
+        }
+
 }

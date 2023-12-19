@@ -14,7 +14,7 @@
         android:background="@color/white">
 
         <ImageView
-            android:id="@+id/img_card_education"
+            android:id="@+id/img_education"
             android:layout_width="match_parent"
             android:layout_height="156dp"
             android:contentDescription="@string/dummy_image"
@@ -33,7 +33,7 @@
             android:paddingTop="12dp"
             android:text="Perawatan Panel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_card_education" />
+            app:layout_constraintTop_toBottomOf="@id/img_education" />
 
         <TextView
             android:id="@+id/tv_card_subtitle_education"

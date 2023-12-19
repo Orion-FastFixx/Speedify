@@ -43,69 +43,7 @@ class ConsultationViewModel @Inject constructor(
                             error = null,
                             montir = it.data
                         )
-
-                        getTheBestMontir()
-                    }
-
-                    is ResultState.Error -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = false,
-                            error = it.error ?: "An error occurred"
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    fun getTheBestMontir() {
-        viewModelScope.launch {
-            useCases.getTheBestMontir().asFlow().collect() {
-                when (it) {
-                    is ResultState.Loading -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = true,
-                            error = null
-                        )
-                    }
-
-                    is ResultState.Success -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = false,
-                            error = null,
-                            theBestMontir = it.data
-                        )
-                        getTrustedMontir()
-                    }
-
-                    is ResultState.Error -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = false,
-                            error = it.error ?: "An error occurred"
-                        )
-                    }
-                }
-            }
-        }
-    }
-
-    fun getTrustedMontir() {
-        viewModelScope.launch {
-            useCases.getTrustedMontir().asFlow().collect() {
-                when (it) {
-                    is ResultState.Loading -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = true,
-                            error = null
-                        )
-                    }
-
-                    is ResultState.Success -> {
-                        _montirState.value = _montirState.value.copy(
-                            isLoading = false,
-                            error = null,
-                            trustedMontir = it.data
-                        )
+                        
                     }
 
                     is ResultState.Error -> {

@@ -9,4 +9,8 @@ class DetailPesananActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_pesanan)
     }
+
+    companion object {
+        const val EXTRA_PESANAN_ID = "PESANAN_ID"
+    }
 }
