@@ -43,7 +43,7 @@ class PesananRepoImpl @Inject constructor(
                     return@liveData
                 }
 
-                val response = activityApi.getPesananProses(token)
+                val response = activityApi.getAllPesanan(token)
                 val filteredResponse =
                     response.data.filter { proses ->
                         proses.orderStatusId == 2
@@ -64,7 +64,7 @@ class PesananRepoImpl @Inject constructor(
                     return@liveData
                 }
 
-                val response = activityApi.getPesananSelesai(token)
+                val response = activityApi.getAllPesanan(token)
                 val filteredResponse =
                     response.data.filter { proses ->
                         proses.orderStatusId == 4
@@ -85,7 +85,7 @@ class PesananRepoImpl @Inject constructor(
                     return@liveData
                 }
 
-                val response = activityApi.getPesananCancel(token)
+                val response = activityApi.getAllPesanan(token)
                 val filteredResponse =
                     response.data.filter { proses ->
                         proses.orderStatusId == 5

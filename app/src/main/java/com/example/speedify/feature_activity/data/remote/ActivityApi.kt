@@ -11,19 +11,4 @@ interface ActivityApi {
         @Header("Authorization") token: String,
     ): OrderAllResponse
 
-    @GET("pengendara/get-paid-order-service")
-    suspend fun getPesananProses(
-        @Header("Authorization") token: String,
-    ): OrderAllResponse
-
-    @GET("pengendara/get-complete-service")
-    suspend fun getPesananSelesai(
-        @Header("Authorization") token: String,
-    ): OrderAllResponse
-
-    @GET("pengendara/get-cancel-order-service")
-    suspend fun getPesananCancel(
-        @Header("Authorization") token: String,
-    ): OrderAllResponse
-
 }
