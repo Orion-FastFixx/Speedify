@@ -6,6 +6,7 @@ import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.data.model.DetailBengkel
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.PayOrderResponse
+import com.example.speedify.feature_bengkel.data.model.ReviewAllUser
 import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
 
@@ -36,4 +37,6 @@ interface BengkelRepository {
         orderId: Int,
         paymentMethodId: Int
     ): LiveData<ResultState<PayOrderResponse>>
+
+    suspend fun getDetailRatingReviewBengkel(id: Int): LiveData<ResultState<List<ReviewAllUser>>>
 }

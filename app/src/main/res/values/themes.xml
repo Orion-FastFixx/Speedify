@@ -57,6 +57,11 @@
         <item name="android:fontFamily">@font/mona_sans_medium</item>
     </style>
 
+    <style name="MonaMedium20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/mona_sans_medium</item>
+    </style>
+
     <style name="MonaSemiBold12">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">@font/mona_sans_semibold</item>

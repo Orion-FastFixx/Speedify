@@ -9,6 +9,7 @@ import com.example.speedify.feature_bengkel.data.model.DataItem
 import com.example.speedify.feature_bengkel.data.model.DetailBengkel
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.PayOrderResponse
+import com.example.speedify.feature_bengkel.data.model.ReviewAllUser
 import com.example.speedify.feature_bengkel.data.model.ServicesItem
 import com.example.speedify.feature_bengkel.data.remote.BengkelApi
 import com.example.speedify.feature_bengkel.domain.entity.PromotionEntity
@@ -338,6 +339,25 @@ class BengkelRepositoryImpl @Inject constructor(
                     paymentMethodId = paymentMethodId
                 )
                 emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
+    override suspend fun getDetailRatingReviewBengkel(id: Int): LiveData<ResultState<List<ReviewAllUser>>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = bengkelApi.getDetailRatingReviewBengkel(token, id)
+                val listReview = response.data.reviewAll
+                emit(ResultState.Success(listReview))
             } catch (e: Exception) {
                 emit(ResultState.Error(e.message.toString()))
             }

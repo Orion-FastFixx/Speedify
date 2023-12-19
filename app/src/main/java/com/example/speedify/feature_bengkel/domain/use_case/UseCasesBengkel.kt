@@ -15,5 +15,6 @@ data class UseCasesBengkel(
     val getDetailBengkel: GetDetailBengkel,
     val getLayananBengkel: GetLayananBengkel,
     val orderBengkelService: OrderBengkelService,
-    val payOrderService: PayOrderService
+    val payOrderService: PayOrderService,
+    val getDetailRatingReviewBengkel: GetDetailRatingReviewBengkel
 )

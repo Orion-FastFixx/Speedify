@@ -22,6 +22,7 @@ import com.example.speedify.databinding.ActivityDetailBengkelBinding
 import com.example.speedify.feature_bengkel.presentation.checkout_bengkel.CheckoutBengkelActivity
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.adapter.BengkelServicesAdapter
 import com.example.speedify.feature_bengkel.presentation.detail_bengkel.view_model.DetailBengkelViewModel
+import com.example.speedify.feature_bengkel.presentation.review_bengkel.BengkelReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -123,6 +124,19 @@ class DetailBengkelActivity : AppCompatActivity() {
                     setLoadingState(true)
                     OrderTimeManager.resetTimer(bengkelId)
                     orderBengkelService()
+                }
+            }
+        }
+
+        binding.tvRatingReviewDetailBengkel.setOnClickListener {
+            lifecycleScope.launch {
+                viewModel.detailBengkelState.collect { state ->
+                    val intent = Intent(this@DetailBengkelActivity, BengkelReviewActivity::class.java)
+                    intent.putExtra(
+                        BengkelReviewActivity.EXTRA_DETAIL_BENGKEL,
+                        state.detailBengkel
+                    )
+                    startActivity(intent)
                 }
             }
         }
