@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.example.speedify.databinding.ItemActivityBinding
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.toFormattedDate
 import com.example.speedify.feature_activity.data.model.OrderItem
 import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 
@@ -47,7 +48,7 @@ class PesananAdapter :
 
             nama.text = item.bengkel?.namaBengkel ?: item.montir?.nama
             tujuan.text = item.additionalInfo?.preciseLocation
-            tgl.text = String.format("%s", item.createdAt)
+            tgl.text = item.createdAt.toFormattedDate()
             harga.text = String.format("Rp. ", item.services?.firstOrNull()?.orderServices?.price)
 
 
