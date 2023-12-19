@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.domain.interface_repositoty.PesananRepo
 import com.example.speedify.core.utils.ResultState
+import com.example.speedify.feature_activity.data.model.OrderItem
 
 class GetPesananBatal(private val repository: PesananRepo) {
-    suspend operator fun invoke(): LiveData<ResultState<List<PesananEntity>>>{
+    suspend operator fun invoke(): LiveData<ResultState<List<OrderItem>>>{
         return repository.getPesananBatal()
     }
 }

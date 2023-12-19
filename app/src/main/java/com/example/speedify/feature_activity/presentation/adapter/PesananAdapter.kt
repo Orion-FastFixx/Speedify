@@ -1,19 +1,21 @@
 package com.example.speedify.feature_activity.presentation.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemActivityBinding
-import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.feature_activity.data.model.OrderItem
+import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 
 class PesananAdapter :
-    BaseAdapter<PesananEntity, ItemActivityBinding>(diffCallbackListener) {
+    BaseAdapter<OrderItem, ItemActivityBinding>(diffCallbackListener) {
 
     companion object {
-        val diffCallbackListener = object : DiffCallbackListener<PesananEntity> {
-            override fun areItemsTheSame(oldItem: PesananEntity, newItem: PesananEntity) =
+        val diffCallbackListener = object : DiffCallbackListener<OrderItem> {
+            override fun areItemsTheSame(oldItem: OrderItem, newItem: OrderItem) =
                 oldItem.id == newItem.id
         }
     }
@@ -29,26 +31,37 @@ class PesananAdapter :
 
     override fun bind(
         binding: ItemActivityBinding,
-        item: PesananEntity,
+        item: OrderItem,
         position: Int,
         count: Int,
         context: Context
     ) {
-        binding.imgPesanan.setImageResource(item.imgPesanan)
-        binding.namaBengkel.text = item.namaBengkel
-        binding.tujuan.text = item.tujuan
-        binding.tgl.text = String.format("%s, %s", item.tgl.toLocalDate(), item.tgl.toLocalTime());
-        binding.harga.text = String.format("Rp. %s", item.harga)
-        binding.ratingBar.rating = item.rating.toFloat()
+        binding.apply {
+//            val gson = Gson()
+//            val type = object : TypeToken<List<String>>() {}.type
+//            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+//
+//            if (imageUrls.isNotEmpty()) {
+//                imgPesanan.setImageFromUrl(context, imageUrls[0])
+//            }
 
-        binding.root.setOnClickListener {
-            onItemClickCallback?.onItemClicked(item)
+            nama.text = item.bengkel?.namaBengkel ?: item.montir?.nama
+            tujuan.text = item.additionalInfo?.preciseLocation
+            tgl.text = String.format("%s", item.createdAt)
+            harga.text = String.format("Rp. ", item.services?.firstOrNull()?.orderServices?.price)
+
+
+
+            root.setOnClickListener {
+                val intent = Intent(context, DetailPesananActivity::class.java)
+                intent.putExtra(DetailPesananActivity.EXTRA_PESANAN_ID, item.id)
+                context.startActivity(intent)
+            }
         }
-
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: PesananEntity)
+        fun onItemClicked(data: OrderItem)
     }
 
 }

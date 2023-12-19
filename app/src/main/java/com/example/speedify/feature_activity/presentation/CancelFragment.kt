@@ -1,6 +1,7 @@
 package com.example.speedify.feature_activity.presentation
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +11,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentCancelBinding
+import com.example.speedify.feature_activity.data.model.OrderItem
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
+import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,6 +58,15 @@ class CancelFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        pesananAdapter.setOnItemClickCallback(object : PesananAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: OrderItem) {
+                // Tanggapi klik item di sini
+                val intent = Intent(requireContext(), DetailPesananActivity::class.java)
+                intent.putExtra("EDUCATION_ID", data.id)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun initAdapter() {

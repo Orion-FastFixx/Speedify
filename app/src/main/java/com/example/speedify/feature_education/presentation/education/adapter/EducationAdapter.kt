@@ -8,6 +8,7 @@ import com.example.speedify.databinding.ItemCardEducationBinding
 import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.feature_education.data.model.ContentItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,12 +23,11 @@ class EducationAdapter :
         }
     }
 
-    private lateinit var onItemClickCallback: EducationAdapter.OnItemClickCallback
+    private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setOnItemClickCallback(onItemClickCallback: EducationAdapter.OnItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback
+    fun setOnItemClickCallback(callback: OnItemClickCallback) {
+        onItemClickCallback = callback
     }
-
     override fun createViewHolder(inflater: LayoutInflater, container: ViewGroup) =
         ItemCardEducationBinding.inflate(inflater, container, false)
 
@@ -41,11 +41,11 @@ class EducationAdapter :
         binding.apply {
             val gson = Gson()
             val type = object : TypeToken<List<String>>() {}.type
-//            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
-//
-//            if (imageUrls.isNotEmpty()) {
-//                imgMontir.setImageFromUrl(context, imageUrls[0])
-//            }
+            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+
+            if (imageUrls.isNotEmpty()) {
+                imgEducation.setImageFromUrl(context, imageUrls[0])
+            }
             tvCardTitleEducation.text = item.judul
             tvCardSubtitleEducation.text = item.jenisKendaraan
 

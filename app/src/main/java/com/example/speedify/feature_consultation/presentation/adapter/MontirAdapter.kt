@@ -46,11 +46,11 @@ class MontirAdapter :
         binding.apply {
             val gson = Gson()
             val type = object : TypeToken<List<String>>() {}.type
-//            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
-//
-//            if (imageUrls.isNotEmpty()) {
-//                imgMontir.setImageFromUrl(context, imageUrls[0])
-//            }
+            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+
+            if (imageUrls.isNotEmpty()) {
+                imgMontir.setImageFromUrl(context, imageUrls[0])
+            }
             jenisMontir.text = item.jenisMontir
             namaMontir.text = item.nama
             val hargaLayanan = item.services.firstOrNull()?.hargaLayanan?.harga ?: 0

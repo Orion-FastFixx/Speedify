@@ -11,10 +11,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.databinding.FragmentProsesBinding
+import com.example.speedify.feature_activity.data.model.OrderItem
 import com.example.speedify.feature_activity.domain.entity.PesananEntity
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
+import com.example.speedify.feature_education.data.model.ContentItem
+import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
+import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,10 +63,10 @@ class ProsesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         pesananAdapter.setOnItemClickCallback(object : PesananAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: PesananEntity) {
+            override fun onItemClicked(data: OrderItem) {
                 // Tanggapi klik item di sini
                 val intent = Intent(requireContext(), DetailPesananActivity::class.java)
-                intent.putExtra("pesanan_id", data.id)
+                intent.putExtra("EDUCATION_ID", data.id)
                 startActivity(intent)
             }
         })

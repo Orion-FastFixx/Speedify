@@ -3,6 +3,7 @@ package com.example.speedify.di
 import android.content.Context
 import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.core.data.remote.ApiConfig
+import com.example.speedify.feature_activity.data.remote.ActivityApi
 import com.example.speedify.feature_activity.data.repository.PesananRepoImpl
 import com.example.speedify.feature_activity.domain.interface_repositoty.PesananRepo
 import com.example.speedify.feature_activity.domain.use_case.GetAllPesanan
@@ -132,9 +133,19 @@ object SpeedifyModule {
     }
 
     @Provides
+    fun provideActivityApi(
+        @ApplicationContext context: Context,
+        dataStore: UserDataStoreImpl
+    ): ActivityApi =
+        ApiConfig.getApiService(context, dataStore)
+
+    @Provides
     @Singleton
-    fun provideMPesananRepository(): PesananRepo {
-        return PesananRepoImpl.getInstance()
+    fun provideMPesananRepository(
+        activityApi: ActivityApi,
+        dataStore: UserDataStoreImpl
+    ): PesananRepo {
+        return PesananRepoImpl(activityApi, dataStore)
     }
 
     @Provides
