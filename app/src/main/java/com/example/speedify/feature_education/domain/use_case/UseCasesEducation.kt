@@ -6,4 +6,5 @@ data class UseCasesEducation(
     val getEducationInterior: GetEducationInterior,
     val getEducationExterior: GetEducationExterior,
     val getEducationMesin: GetEducationMesin,
+    val getDetailEducation: GetDetailEducation,
     )

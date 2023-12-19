@@ -1,6 +1,7 @@
 package com.example.speedify.feature_education.presentation.education
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,11 @@ import com.example.speedify.databinding.FragmentTipsBinding
 import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import com.example.speedify.feature_education.presentation.education.view_model.EducationViewModel
 import com.example.speedify.core.utils.GridSpacingItemDecoration
+import com.example.speedify.feature_activity.domain.entity.PesananEntity
+import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
+import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
+import com.example.speedify.feature_education.data.model.ContentItem
+import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,6 +58,15 @@ class TipsFragment : Fragment() {
                 educationAdapter.setItems(it)
             }
         }
+
+        educationAdapter.setOnItemClickCallback(object : EducationAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ContentItem) {
+                // Tanggapi klik item di sini
+                val intent = Intent(requireContext(), DetailEducationActivity::class.java)
+                intent.putExtra("EDUCATION_ID", data.id)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun initAdapter() {

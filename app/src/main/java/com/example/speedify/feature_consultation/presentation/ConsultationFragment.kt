@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.speedify.R
 import com.example.speedify.databinding.FragmentConsultationBinding
 import com.example.speedify.feature_consultation.data.model.DaftarItem
-import com.example.speedify.feature_consultation.domain.entity.MontirEntity
 import com.example.speedify.feature_consultation.presentation.adapter.MontirAdapter
-import com.example.speedify.feature_consultation.presentation.order_montir.OrderMontir
+import com.example.speedify.feature_consultation.presentation.order_montir.OrderMontirActivity
 import com.example.speedify.feature_consultation.presentation.view_model.ConsultationViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -60,7 +59,7 @@ class ConsultationFragment : Fragment() {
         montirAdapter.setOnItemClickCallback(object : MontirAdapter.OnItemClickCallback {
             override fun onItemClicked(data: DaftarItem) {
                 // Tanggapi klik item di sini
-                val intent = Intent(requireContext(), OrderMontir::class.java)
+                val intent = Intent(requireContext(), OrderMontirActivity::class.java)
                 startActivity(intent)
             }
         })

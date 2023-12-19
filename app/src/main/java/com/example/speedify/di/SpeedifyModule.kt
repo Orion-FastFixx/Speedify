@@ -41,10 +41,12 @@ import com.example.speedify.feature_consultation.data.repository.MontirRepoImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
 import com.example.speedify.feature_consultation.domain.use_case.GetAllMontir
 import com.example.speedify.feature_consultation.domain.use_case.MontirUseCase
+import com.example.speedify.feature_consultation.domain.use_case.OrderMontirService
 import com.example.speedify.feature_education.data.remote.EducationApi
 import com.example.speedify.feature_education.data.repository.EducationRepositoryImpl
 import com.example.speedify.feature_education.domain.interface_repository.EducationRepository
 import com.example.speedify.feature_education.domain.use_case.GetAllEducation
+import com.example.speedify.feature_education.domain.use_case.GetDetailEducation
 import com.example.speedify.feature_education.domain.use_case.GetEducationExterior
 import com.example.speedify.feature_education.domain.use_case.GetEducationInterior
 import com.example.speedify.feature_education.domain.use_case.GetEducationMesin
@@ -62,8 +64,11 @@ import javax.inject.Singleton
 object SpeedifyModule {
 
     @Provides
-    fun provideMontirApi(@ApplicationContext context: Context): MontirApi =
-        ApiConfig.getApiService(context)
+    fun provideMontirApi(
+        @ApplicationContext context: Context,
+        dataStore: UserDataStoreImpl
+    ): MontirApi =
+        ApiConfig.getApiService(context, dataStore)
 
     @Provides
     @Singleton
@@ -80,6 +85,7 @@ object SpeedifyModule {
     fun provideMontirUseCase(repository: MontirRepo): MontirUseCase {
         return MontirUseCase(
             getAllMontir = GetAllMontir(repository),
+            orderMontirService = OrderMontirService(repository),
         )
     }
 
@@ -139,8 +145,11 @@ object SpeedifyModule {
     }
 
     @Provides
-    fun provideEducationApi(@ApplicationContext context: Context): EducationApi =
-        ApiConfig.getApiService(context)
+    fun provideEducationApi(
+        @ApplicationContext context: Context,
+        dataStore: UserDataStoreImpl
+    ): EducationApi =
+        ApiConfig.getApiService(context, dataStore)
 
     @Provides
     @Singleton
@@ -159,7 +168,8 @@ object SpeedifyModule {
             getEducationTips = GetEducationTips(repository),
             getEducationInterior = GetEducationInterior(repository),
             getEducationExterior = GetEducationExterior(repository),
-            getEducationMesin = GetEducationMesin(repository)
+            getEducationMesin = GetEducationMesin(repository),
+            getDetailEducation = GetDetailEducation(repository)
         )
     }
 

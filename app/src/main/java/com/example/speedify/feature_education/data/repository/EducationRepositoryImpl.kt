@@ -6,6 +6,7 @@ import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.feature_education.domain.interface_repository.EducationRepository
 import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_education.data.model.ContentItem
+import com.example.speedify.feature_education.data.model.DetailItem
 import com.example.speedify.feature_education.data.remote.EducationApi
 import javax.inject.Inject
 
@@ -30,6 +31,26 @@ class EducationRepositoryImpl @Inject constructor(
                 emit(ResultState.Error(e.message.toString()))
             }
         }
+
+    override suspend fun getDetailEducation(id: Int): LiveData<ResultState<DetailItem>> {
+        return liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = educationApi.getDetailEducation(token, id)
+                emit(ResultState.Success(response.data))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+    }
+
     override suspend fun getEducationTips(): LiveData<ResultState<List<ContentItem>>> =
         liveData {
             try {
