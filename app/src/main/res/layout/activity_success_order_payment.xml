@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".feature_payment.SuccessOrderPaymentActivity">
 
     <ImageView
         android:id="@+id/ic_success"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="160dp"
         android:contentDescription="@string/icon"
-        android:src="@drawable/ic_success"
+        android:src="@drawable/ic_success_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +23,7 @@
         style="@style/MonaBold24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:text="@string/title_success"
         android:textColor="@color/charleston_green"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,12 +35,24 @@
         style="@style/MonaMedium14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/subtitle_success"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_success" />
+
+    <Button
+        android:id="@+id/btn_success_order"
+        android:layout_width="312dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="36dp"
+        android:backgroundTint="@color/cinnabar"
+        android:text="@string/done_payment"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

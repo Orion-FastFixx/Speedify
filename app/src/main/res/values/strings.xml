@@ -125,4 +125,5 @@
     <string name="place_order">Lanjutkan Pembayaran</string>
     <string name="title_success">Yay! Pesanan diterima</string>
     <string name="subtitle_success">Bantuan sudah di jalan, kendaraan Anda akan segera mendapat perawatan.</string>
+    <string name="done_payment">Selesai</string>
 </resources>

@@ -30,6 +30,7 @@ import com.example.speedify.feature_bengkel.data.model.DetailBengkel
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.ServicesItemCheckout
 import com.example.speedify.feature_payment.PaymentMethodsActivity
+import com.example.speedify.feature_payment.SuccessOrderPaymentActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -258,9 +259,11 @@ class CheckoutBengkelActivity : AppCompatActivity() {
     }
 
     private fun payService() {
-        val detailLocation = binding.checkoutBengkel.titleDetailLocationEditText.text.toString().trim()
+        val detailLocation =
+            binding.checkoutBengkel.titleDetailLocationEditText.text.toString().trim()
         val userName = binding.checkoutBengkel.titleFullNameEditText.text.toString().trim()
-        val detailComplaints = binding.checkoutBengkel.titleDetailComplaintEditText.text.toString().trim()
+        val detailComplaints =
+            binding.checkoutBengkel.titleDetailComplaintEditText.text.toString().trim()
 
         // Reset errors
         binding.checkoutBengkel.titleDetailLocationEditText.error = null
@@ -269,7 +272,8 @@ class CheckoutBengkelActivity : AppCompatActivity() {
 
         // Check network availability first
         if (!isInternetAvailable(this)) {
-            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.no_internet_connection), Toast.LENGTH_SHORT)
+                .show()
             return
         }
 
@@ -305,14 +309,10 @@ class CheckoutBengkelActivity : AppCompatActivity() {
                     } else if (state.error != null) {
                         Log.d(TAG, "observePayServiceResult:    error")
                     } else if (state.payOrderResponse != null) {
-                        Toast.makeText(
+                        val intent = Intent(
                             this@CheckoutBengkelActivity,
-                            state.payOrderResponse.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val intent = Intent(this@CheckoutBengkelActivity, MainActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                        }
+                            SuccessOrderPaymentActivity::class.java
+                        )
                         startActivity(intent)
                         finish()
                     }
