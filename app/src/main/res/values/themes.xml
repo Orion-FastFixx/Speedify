@@ -112,6 +112,11 @@
         <item name="android:fontFamily">@font/mona_sans_bold</item>
     </style>
 
+    <style name="MonaBold24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/mona_sans_bold</item>
+    </style>
+
     <style name="bottomNavbar">
         <item name="android:textSize">12sp</item>
         <item name="fontFamily">@font/mona_sans_medium</item>
