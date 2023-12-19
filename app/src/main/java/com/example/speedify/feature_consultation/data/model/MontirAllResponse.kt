@@ -1,6 +1,7 @@
 package com.example.speedify.feature_consultation.data.model
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class MontirAllResponse(
 
@@ -10,7 +11,6 @@ data class MontirAllResponse(
 	@field:SerializedName("message")
 	val message: String
 )
-
 data class DaftarItem(
 
 	@field:SerializedName("foto_url")
