@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.speedify.feature_bengkel.domain.use_case.UseCasesBengkel
 import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.BengkelMobilState
 import com.example.speedify.core.utils.ResultState
+import com.example.speedify.feature_bengkel.presentation.bengkel_mobil.adapter.BengkelMobilAdapter
+import com.example.speedify.feature_education.presentation.education.adapter.EducationAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,10 +21,6 @@ class BengkelMobilViewModel @Inject constructor(
 
     private val _bengkelMobilState = MutableStateFlow(BengkelMobilState())
     val bengkelMobilState = _bengkelMobilState.asStateFlow()
-
-    init {
-        getAllBengkelMobil()
-    }
 
     fun getAllBengkelMobil() {
         viewModelScope.launch {

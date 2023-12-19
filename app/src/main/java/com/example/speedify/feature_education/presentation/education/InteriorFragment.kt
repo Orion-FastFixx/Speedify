@@ -49,7 +49,7 @@ class InteriorFragment : Fragment() {
         } else if (state.error != null) {
             Log.e(ContentValues.TAG, "Education:   ${state.error}")
         } else {
-            state.education?.let {
+            state.educationInterior?.let {
                 educationAdapter.setItems(it)
             }
         }

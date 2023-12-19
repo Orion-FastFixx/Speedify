@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EducationViewModel @Inject constructor(private val useCases: UseCasesEducation) :
+class EducationViewModel @Inject constructor (private val useCases: UseCasesEducation) :
     ViewModel() {
 
     private val _educationState = MutableStateFlow(EducationState())
@@ -39,6 +39,132 @@ class EducationViewModel @Inject constructor(private val useCases: UseCasesEduca
                             isLoading = false,
                             error = null,
                             education = it.data
+                        )
+
+                        getEducationTips()
+                    }
+
+                    is ResultState.Error -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getEducationTips() {
+        viewModelScope.launch {
+            useCases.getEducationTips().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            educationTips= it.data
+                        )
+
+                        getEducationInterior()
+                    }
+
+                    is ResultState.Error -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getEducationInterior() {
+        viewModelScope.launch {
+            useCases.getEducationInterior().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            educationInterior = it.data
+                        )
+                        getEducationExterior()
+                    }
+
+                    is ResultState.Error -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getEducationExterior() {
+        viewModelScope.launch {
+            useCases.getEducationInterior().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            educationExterior = it.data
+                        )
+                        getEducationMesin()
+                    }
+
+                    is ResultState.Error -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = it.error ?: "An error occurred"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun getEducationMesin() {
+        viewModelScope.launch {
+            useCases.getEducationInterior().asFlow().collect() {
+                when (it) {
+                    is ResultState.Loading -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = true,
+                            error = null
+                        )
+                    }
+
+                    is ResultState.Success -> {
+                        _educationState.value = _educationState.value.copy(
+                            isLoading = false,
+                            error = null,
+                            educationMesin = it.data
                         )
                     }
 

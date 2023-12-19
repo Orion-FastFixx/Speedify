@@ -45,6 +45,7 @@ class PesananViewModel @Inject constructor(
                         )
 
                         getPesananProses()
+
                     }
 
                     is ResultState.Error -> {
@@ -75,7 +76,9 @@ class PesananViewModel @Inject constructor(
                             error = null,
                             proses = it.data
                         )
+
                         getPesananSelesai()
+
                     }
 
                     is ResultState.Error -> {
@@ -106,7 +109,9 @@ class PesananViewModel @Inject constructor(
                             error = null,
                             selesai = it.data
                         )
+
                         getPesananBatal()
+
                     }
 
                     is ResultState.Error -> {
@@ -137,6 +142,7 @@ class PesananViewModel @Inject constructor(
                             error = null,
                             batal = it.data
                         )
+
                     }
 
                     is ResultState.Error -> {

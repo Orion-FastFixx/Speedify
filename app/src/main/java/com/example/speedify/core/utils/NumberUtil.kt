@@ -3,7 +3,7 @@ package com.example.speedify.core.utils
 import java.text.NumberFormat
 import java.util.Locale
 
-fun Int?.currencyFormat(): String {
+public fun Int?.currencyFormat(): String {
     return if (this == null) {
         "Rp0"
     } else {
@@ -16,7 +16,7 @@ fun Int?.currencyFormat(): String {
 }
 
 //create currencyFormat without Rp
-fun Int?.currencyFormatWithoutRp(): String {
+public fun Int?.currencyFormatWithoutRp(): String {
     return if (this == null) {
         "0"
     } else {

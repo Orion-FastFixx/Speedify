@@ -5,25 +5,26 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.speedify.databinding.ItemCardEducationBinding
-import com.example.speedify.feature_bengkel.presentation.home.adapter.PromotionAdapter
-import com.example.speedify.feature_education.domain.entity.EducationEntity
 import com.example.speedify.feature_education.presentation.detail_education.DetailEducationActivity
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.feature_education.data.model.ContentItem
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class EducationAdapter :
-    BaseAdapter<EducationEntity, ItemCardEducationBinding>(diffCallbackListener) {
+    BaseAdapter<ContentItem, ItemCardEducationBinding>(diffCallbackListener) {
 
     companion object {
-        val diffCallbackListener = object : DiffCallbackListener<EducationEntity> {
-            override fun areItemsTheSame(oldItem: EducationEntity, newItem: EducationEntity) =
+        val diffCallbackListener = object : DiffCallbackListener<ContentItem> {
+            override fun areItemsTheSame(oldItem: ContentItem, newItem: ContentItem) =
                 oldItem.id == newItem.id
         }
     }
 
-    private lateinit var onItemClickCallback: PromotionAdapter.OnItemClickCallback
+    private lateinit var onItemClickCallback: EducationAdapter.OnItemClickCallback
 
-    fun setOnItemClickCallback(onItemClickCallback: PromotionAdapter.OnItemClickCallback) {
+    fun setOnItemClickCallback(onItemClickCallback: EducationAdapter.OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
@@ -32,26 +33,31 @@ class EducationAdapter :
 
     override fun bind(
         binding: ItemCardEducationBinding,
-        item: EducationEntity,
+        item: ContentItem,
         position: Int,
         count: Int,
         context: Context
     ) {
-        binding.imgCardEducation.setImageResource(item.gambar)
-        binding.tvCardTitleEducation.text = item.nama
-        binding.tvCardSubtitleEducation.text = item.jenis_kendaraan
+        binding.apply {
+            val gson = Gson()
+            val type = object : TypeToken<List<String>>() {}.type
+//            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
+//
+//            if (imageUrls.isNotEmpty()) {
+//                imgMontir.setImageFromUrl(context, imageUrls[0])
+//            }
+            tvCardTitleEducation.text = item.judul
+            tvCardSubtitleEducation.text = item.jenisKendaraan
 
-        binding.root.setOnClickListener {
-            binding.root.context.startActivity(
-                Intent(
-                    binding.root.context,
-                    DetailEducationActivity::class.java
-                )
-            )
+            root.setOnClickListener {
+                val intent = Intent(context, DetailEducationActivity::class.java)
+                intent.putExtra(DetailEducationActivity.EXTRA_EDUCATION_ID, item.id)
+                context.startActivity(intent)
+            }
         }
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: EducationEntity)
+        fun onItemClicked(data: ContentItem)
     }
 }

@@ -68,7 +68,7 @@
             style="@style/MonaSemiBold24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="60dp"
             android:text="Vanbelt Motor"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/iv_detail_education"
@@ -86,51 +86,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_title_detail_education" />
 
         <TextView
-            android:id="@+id/tv_section_one_detail_education"
-            style="@style/MonaBold16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Faktor Penyebab V-Belt Putus"
-            android:textColor="@color/charleston_green"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_detail_education" />
-
-        <TextView
-            android:id="@+id/tv_section_one_content_detail_education"
+            android:id="@+id/tv_content_detail_education"
             style="@style/MonaRegular14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="50dp"
             android:letterSpacing="0.02"
             android:text="Kebanyakan orang berpikir bahwa jarak tempuh adalah penyebab utama v-belt motor putus. Faktanya, jarak tempuh tidak memberi pengaruh besar pada v-belt. Faktor utama yang menyebabkan v-belt mudah putus adalah akselerasi atau beban kerja pada belt yang terlalu berlebihan."
             android:textColor="@color/charleston_green"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_section_one_detail_education" />
-
-        <TextView
-            android:id="@+id/tv_section_two_detail_education"
-            style="@style/MonaBold16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:text="Cara Pemasangan V-Belt"
-            android:textColor="@color/charleston_green"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_section_one_content_detail_education" />
-
-        <TextView
-            android:id="@+id/tv_section_two_content_detail_education"
-            style="@style/MonaRegular14"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:paddingBottom="56dp"
-            android:letterSpacing="0.02"
-            android:text="@string/dummy_content_two"
-            android:textColor="@color/charleston_green"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_section_two_detail_education" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_subtitle_detail_education" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

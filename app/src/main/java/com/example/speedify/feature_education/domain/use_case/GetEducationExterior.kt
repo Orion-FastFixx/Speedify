@@ -6,8 +6,8 @@ import com.example.speedify.feature_education.domain.interface_repository.Educat
 import com.example.speedify.core.utils.ResultState
 import com.example.speedify.feature_education.data.model.ContentItem
 
-class GetAllEducation(private val repository: EducationRepository) {
+class GetEducationExterior(private val repository: EducationRepository) {
     suspend operator fun invoke(): LiveData<ResultState<List<ContentItem>>> {
-        return repository.getAllEducation()
+        return repository.getEducationExterior()
     }
 }
