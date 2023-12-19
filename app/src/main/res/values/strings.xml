@@ -126,4 +126,7 @@
     <string name="title_success">Yay! Pesanan diterima</string>
     <string name="subtitle_success">Bantuan sudah di jalan, kendaraan Anda akan segera mendapat perawatan.</string>
     <string name="done_payment">Selesai</string>
+    <string name="overall_rating">4.7</string>
+    <string name="example_date">Desember 19, 2023</string>
+    <string name="example_username">Ashlan Hildengard</string>
 </resources>

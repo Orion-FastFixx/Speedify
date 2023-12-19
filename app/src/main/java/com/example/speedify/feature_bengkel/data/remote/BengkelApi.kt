@@ -2,6 +2,7 @@ package com.example.speedify.feature_bengkel.data.remote
 
 import com.example.speedify.feature_bengkel.data.model.BengkelAllResponse
 import com.example.speedify.feature_bengkel.data.model.DetailBengkelResponse
+import com.example.speedify.feature_bengkel.data.model.DetailRatingReviewBengkelResponse
 import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
 import com.example.speedify.feature_bengkel.data.model.PayOrderResponse
 import retrofit2.http.Field
@@ -42,4 +43,10 @@ interface BengkelApi {
         @Field("order_id") orderId: Int,
         @Field("payment_method_id") paymentMethodId: Int,
     ): PayOrderResponse
+
+    @GET("pengendara/get-detail-review-bengkel/{id}")
+    suspend fun getDetailRatingReviewBengkel(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): DetailRatingReviewBengkelResponse
 }

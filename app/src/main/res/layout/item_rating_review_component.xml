@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="26dp"
+    android:background="@color/white">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:src="@drawable/avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_container_star"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/civ_avatar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_star_1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <ImageView
+            android:id="@+id/ic_star_2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <ImageView
+            android:id="@+id/ic_star_3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <ImageView
+            android:id="@+id/ic_star_4"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <ImageView
+            android:id="@+id/ic_star_5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_star_fill" />
+
+        <ImageView
+            android:id="@+id/ic_half_star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/icon"
+            android:src="@drawable/ic_half_star" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        style="@style/MonaSemiBold12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/example_username"
+        android:textColor="@color/charleston_green"
+        app:layout_constraintStart_toEndOf="@+id/civ_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/ll_container_star" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/MonaMedium12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/example_date"
+        android:textColor="@color/dim_gray"
+        app:layout_constraintStart_toEndOf="@+id/tv_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/ll_container_star" />
+
+    <TextView
+        android:id="@+id/tv_review"
+        style="@style/MonaRegular16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Terimakasih FastFixx karena layanan yang di sediakan, saya tidak kesulitan untuk meneylesaikan masalah kendaraan saat di perjalanan."
+        android:textColor="@color/charleston_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/civ_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
