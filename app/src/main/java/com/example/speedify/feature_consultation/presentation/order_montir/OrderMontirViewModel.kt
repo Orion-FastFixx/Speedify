@@ -20,9 +20,9 @@ class OrderMontirViewModel @Inject constructor(
     private val _orderMontirState = MutableStateFlow(OrderMontirState())
     val orderMontirState = _orderMontirState.asStateFlow()
 
-    fun payOrderService(orderId: Int, paymentMethodId: Int) {
+    fun payOrderMontirService(orderId: Int, paymentMethodId: Int) {
         viewModelScope.launch {
-            useCases.payOrderService(orderId, paymentMethodId).asFlow().collect() { result ->
+            useCases.payOrderMontirService(orderId, paymentMethodId).asFlow().collect() { result ->
                 when (result) {
                     is ResultState.Loading -> {
                         _orderMontirState.value = _orderMontirState.value.copy(
@@ -35,7 +35,7 @@ class OrderMontirViewModel @Inject constructor(
                         _orderMontirState.value = _orderMontirState.value.copy(
                             isLoading = false,
                             error = null,
-                            payOrderResponse = result.data
+                            payOrderMontirResponse = result.data
                         )
                     }
 

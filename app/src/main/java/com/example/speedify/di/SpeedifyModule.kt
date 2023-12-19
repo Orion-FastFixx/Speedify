@@ -43,6 +43,7 @@ import com.example.speedify.feature_consultation.domain.interface_repository.Mon
 import com.example.speedify.feature_consultation.domain.use_case.GetAllMontir
 import com.example.speedify.feature_consultation.domain.use_case.MontirUseCase
 import com.example.speedify.feature_consultation.domain.use_case.OrderMontirService
+import com.example.speedify.feature_consultation.domain.use_case.PayOrderMontirService
 import com.example.speedify.feature_education.data.remote.EducationApi
 import com.example.speedify.feature_education.data.repository.EducationRepositoryImpl
 import com.example.speedify.feature_education.domain.interface_repository.EducationRepository
@@ -87,6 +88,7 @@ object SpeedifyModule {
         return MontirUseCase(
             getAllMontir = GetAllMontir(repository),
             orderMontirService = OrderMontirService(repository),
+            payOrderMontirService = PayOrderMontirService(repository),
         )
     }
 

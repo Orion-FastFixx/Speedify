@@ -235,7 +235,7 @@ class OrderMontirActivity : AppCompatActivity() {
             OrderMontirActivity.EXTRA_ORDER_DATA
             )
             val orderId = orderData?.data?.id ?: 0
-            viewModel.payOrderService(orderId, paymentMethodId)
+            viewModel.payOrderMontirService(orderId, paymentMethodId)
     }
 
     private fun observePayServiceResult() {
@@ -246,10 +246,10 @@ class OrderMontirActivity : AppCompatActivity() {
                         Log.d(ContentValues.TAG, "observePayServiceResult:    isLoading")
                     } else if (state.error != null) {
                         Log.d(ContentValues.TAG, "observePayServiceResult:    error")
-                    } else if (state.payOrderResponse != null) {
+                    } else if (state.payOrderMontirResponse != null) {
                         Toast.makeText(
                             this@OrderMontirActivity,
-                            state.payOrderResponse.message,
+                            state.payOrderMontirResponse.message,
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this@OrderMontirActivity, MainActivity::class.java).apply {

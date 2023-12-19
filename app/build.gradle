@@ -23,7 +23,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'API_BASE_URL', '"http://192.168.214.93:3000/api/v1/"'
+        buildConfigField 'String', 'API_BASE_URL', '"http://192.168.18.225:3000/api/v1/"'
 
     }
 
@@ -61,7 +61,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //imageshape
-    implementation "com.google.android.material:material:1.6.0"
+    implementation 'com.google.android.material:material:1.10.0'
 
 //    CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -71,8 +71,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     // Chucker
-    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+    debugImplementation 'com.github.chuckerteam.chucker:library:4.0.0'
+    releaseImplementation 'com.github.chuckerteam.chucker:library-no-op:4.0.0'
 
     // OkHttp
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
@@ -90,15 +90,15 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Hilt
-    implementation 'com.google.dagger:hilt-android:2.48.1'
-    kapt 'com.google.dagger:hilt-compiler:2.48.1'
+    implementation 'com.google.dagger:hilt-android:2.49'
+    kapt 'com.google.dagger:hilt-compiler:2.49'
 
     // Mockito
-    testImplementation 'org.mockito:mockito-core:3.12.4'
-    testImplementation 'org.mockito:mockito-inline:3.12.4'
+    testImplementation 'org.mockito:mockito-core:5.8.0'
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
 
 //    Gson
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
 
     testImplementation 'junit:junit:4.13.2'

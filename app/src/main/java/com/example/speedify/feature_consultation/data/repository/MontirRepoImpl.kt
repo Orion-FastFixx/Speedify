@@ -5,7 +5,7 @@ import androidx.lifecycle.liveData
 import com.example.speedify.core.data.local.UserDataStoreImpl
 import com.example.speedify.feature_consultation.domain.interface_repository.MontirRepo
 import com.example.speedify.core.utils.ResultState
-import com.example.speedify.feature_bengkel.data.model.OrderBengkelServiceResponse
+import com.example.speedify.feature_consultation.data.model.PayOrderMontirResponse
 import com.example.speedify.feature_consultation.data.model.DaftarItem
 import com.example.speedify.feature_consultation.data.model.OrderMontirServiceResponse
 import com.example.speedify.feature_consultation.data.remote.MontirApi
@@ -57,4 +57,30 @@ class MontirRepoImpl @Inject constructor(
                 emit(ResultState.Error(e.message.toString()))
             }
         }
+
+    override suspend fun payOrder(
+        orderId: Int,
+        paymentMethodId: Int
+    ): LiveData<ResultState<PayOrderMontirResponse>> =
+        liveData {
+            emit(ResultState.Loading)
+            try {
+                val userPreferences = dataStore.getUser()
+                val token = userPreferences.token
+                if (token.isNullOrEmpty()) {
+                    emit(ResultState.Error("No token found"))
+                    return@liveData
+                }
+
+                val response = montirApi.payOrder(
+                    token = token,
+                    orderId = orderId,
+                    paymentMethodId = paymentMethodId
+                )
+                emit(ResultState.Success(response))
+            } catch (e: Exception) {
+                emit(ResultState.Error(e.message.toString()))
+            }
+        }
+
 }
