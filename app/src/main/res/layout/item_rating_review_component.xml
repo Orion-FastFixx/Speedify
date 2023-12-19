@@ -10,6 +10,7 @@
         android:id="@+id/civ_avatar"
         android:layout_width="46dp"
         android:layout_height="46dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

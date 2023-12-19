@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.viewbinding.ViewBinding
 import com.example.speedify.R
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
-import com.example.speedify.core.utils.fromJson
 import com.example.speedify.core.utils.setImageFromUrl
 import com.example.speedify.core.utils.toFormattedDate
 import com.example.speedify.databinding.ItemRatingReviewComponentBinding
@@ -52,7 +50,7 @@ class BengkelReviewAdapter :
             // if (imageUrl.isNotEmpty()) {
             //     civAvatar.setImageFromUrl(context, imageUrl)
             // }
-
+            civAvatar.setImageFromUrl(context, item.pengendara.foto)
             tvUserName.text = item.pengendara.nama
             tvDate.text = item.createdAt.toFormattedDate()
             tvReview.text = item.review
