@@ -38,7 +38,7 @@ class MontirAdapter :
         context: Context
     ) {
         binding.apply {
-            imgMontir.setImageFromUrl(context, item.fotoUrl)
+            // imgMontir.setImageFromUrl(context, item.fotoUrl)
             jenisMontir.text = item.jenisMontir
             namaMontir.text = item.nama
             val hargaLayanan = item.services.firstOrNull()?.hargaLayanan?.harga ?: 0

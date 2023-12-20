@@ -22,6 +22,10 @@ class BengkelMobilViewModel @Inject constructor(
     private val _bengkelMobilState = MutableStateFlow(BengkelMobilState())
     val bengkelMobilState = _bengkelMobilState.asStateFlow()
 
+    init {
+        getAllBengkelMobil()
+    }
+
     fun getAllBengkelMobil() {
         viewModelScope.launch {
             useCases.getAllBengkelMobil().asFlow().collect() {

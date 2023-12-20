@@ -21,6 +21,10 @@ class EducationViewModel @Inject constructor (private val useCases: UseCasesEduc
 
     init {
         getAllEducation()
+        getEducationInterior()
+        getEducationTips()
+        getEducationMesin()
+        getEducationExterior()
     }
 
     fun getAllEducation() {
@@ -40,8 +44,6 @@ class EducationViewModel @Inject constructor (private val useCases: UseCasesEduc
                             error = null,
                             education = it.data
                         )
-
-                        getEducationTips()
                     }
 
                     is ResultState.Error -> {
@@ -72,8 +74,6 @@ class EducationViewModel @Inject constructor (private val useCases: UseCasesEduc
                             error = null,
                             educationTips= it.data
                         )
-
-                        getEducationInterior()
                     }
 
                     is ResultState.Error -> {
@@ -104,7 +104,6 @@ class EducationViewModel @Inject constructor (private val useCases: UseCasesEduc
                             error = null,
                             educationInterior = it.data
                         )
-                        getEducationExterior()
                     }
 
                     is ResultState.Error -> {
@@ -135,7 +134,6 @@ class EducationViewModel @Inject constructor (private val useCases: UseCasesEduc
                             error = null,
                             educationExterior = it.data
                         )
-                        getEducationMesin()
                     }
 
                     is ResultState.Error -> {
