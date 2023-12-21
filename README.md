@@ -1,3 +1,3 @@
 # FastFixx Mobile App
 
-![fastfixx_logo](https://github.com/Orion-FastFixx/Speedify/assets/72327884/d0344f60-9509-4629-9ed2-965e4765fabf)
+![fastfixx_logo](https://github.com/Orion-FastFixx/Speedify/assets/72327884/1c136fd4-ccaa-4173-812a-fffdf63a0a5b)
