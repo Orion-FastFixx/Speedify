@@ -15,8 +15,8 @@ Hacker:
 Hipster:
 
 - [Fatimatuzzahra](https://github.com/Fatimatuzzahra1)
-- [Rifqi Nugraha]
-- [Fikry Azraq Arista]
+- [Rifqi Nugraha](https://github.com/Rifqieeee)
+- [Fikry Azraq Arista](https://github.com/FikryAzraqArista)
 
 
 ---
