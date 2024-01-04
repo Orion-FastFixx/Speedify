@@ -4,18 +4,21 @@ import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.speedify.core.utils.animateVisibility
 import com.example.speedify.databinding.FragmentRiwayatBinding
 import com.example.speedify.feature_activity.data.model.OrderItem
 import com.example.speedify.feature_activity.presentation.adapter.PesananAdapter
 import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
 import com.example.speedify.feature_activity.presentation.view_model.PesananViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RiwayatFragment : Fragment() {
@@ -25,7 +28,6 @@ class RiwayatFragment : Fragment() {
 
     private val viewModel: PesananViewModel by viewModels()
 
-
     private val pesananAdapter by lazy {
         PesananAdapter()
     }
@@ -33,31 +35,16 @@ class RiwayatFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRiwayatBinding.inflate(inflater, container, false)
-
-        initAdapter()
-
-        val state = viewModel.pesananState.value
-
-        if (state.isLoading) {
-            Log.d(ContentValues.TAG, "Pesanan:   Loading")
-        } else if (state.error != null) {
-            Log.e(ContentValues.TAG, "Pesanan:   ${state.error}")
-        } else {
-            state.selesai?.let {
-                pesananAdapter.setItems(it)
-            }
-        }
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAdapter()
+        observeRiwayatOrder()
 
         pesananAdapter.setOnItemClickCallback(object : PesananAdapter.OnItemClickCallback {
             override fun onItemClicked(data: OrderItem) {
@@ -69,15 +56,48 @@ class RiwayatFragment : Fragment() {
         })
     }
 
+    private fun observeRiwayatOrder() {
+        lifecycleScope.launch {
+            try {
+                viewModel.pesananState.collect { state ->
+                    if (state.isLoading) {
+                        setLoadingState(true)
+                        Log.d(ContentValues.TAG, "RiwayatPesanan:   Loading")
+                    } else if (state.error != null) {
+                        setLoadingState(false)
+                        Log.e(ContentValues.TAG, "RiwayatPesanan:   ${state.error}")
+                    } else {
+                        setLoadingState(false)
+                        Log.d(ContentValues.TAG, "RiwayatPesanan:   Success")
+                        state.selesai?.let {
+                            pesananAdapter.setItems(it)
+                        }
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e(ContentValues.TAG, "observeExterior: ${e.message}")
+            }
+        }
+    }
+
+    private fun setLoadingState(isLoading: Boolean) {
+        binding.apply {
+            if (isLoading) {
+                viewLoading.animateVisibility(true)
+                rvRiwayat.animateVisibility(false)
+            } else {
+                viewLoading.animateVisibility(false)
+                rvRiwayat.animateVisibility(true)
+            }
+        }
+    }
+
     private fun initAdapter() {
         binding.rvRiwayat.apply {
             adapter = pesananAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-    }
-
-    companion object {
-
     }
 }

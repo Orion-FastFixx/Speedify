@@ -76,7 +76,7 @@
             android:name=".feature_profile.presentation.ProfileFragment"
             android:exported="false" />
         <activity
-            android:name=".feature_consultation.presentation.order_montir.OrderMontir"
+            android:name=".feature_consultation.presentation.order_montir.OrderMontirActivity"
             android:exported="false" />
         <activity
             android:name=".feature_activity.presentation.detail_pesanan.DetailPesananActivity"

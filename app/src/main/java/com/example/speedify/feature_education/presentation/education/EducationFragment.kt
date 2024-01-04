@@ -56,5 +56,4 @@ class EducationFragment : Fragment() {
             R.string.machine
         )
     }
-
 }

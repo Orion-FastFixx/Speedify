@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.speedify.databinding.ItemActivityBinding
 import com.example.speedify.core.utils.BaseAdapter
 import com.example.speedify.core.utils.DiffCallbackListener
+import com.example.speedify.core.utils.currencyFormatWithoutRp
 import com.example.speedify.core.utils.toFormattedDate
+import com.example.speedify.databinding.ItemActivityBinding
 import com.example.speedify.feature_activity.data.model.OrderItem
 import com.example.speedify.feature_activity.presentation.detail_pesanan.DetailPesananActivity
+
 
 class PesananAdapter :
     BaseAdapter<OrderItem, ItemActivityBinding>(diffCallbackListener) {
@@ -38,18 +40,16 @@ class PesananAdapter :
         context: Context
     ) {
         binding.apply {
-//            val gson = Gson()
-//            val type = object : TypeToken<List<String>>() {}.type
-//            val imageUrls: List<String> = gson.fromJson(item.fotoUrl, type)
-//
-//            if (imageUrls.isNotEmpty()) {
-//                imgPesanan.setImageFromUrl(context, imageUrls[0])
-//            }
 
-            nama.text = item.bengkel?.namaBengkel ?: item.montir?.nama
-            tujuan.text = item.additionalInfo?.preciseLocation
+            nama.text = item.bengkel.namaBengkel
+            tujuan.text = item.additionalInfo.preciseLocation
             tgl.text = item.createdAt.toFormattedDate()
-            harga.text = String.format("Rp. ", item.services?.firstOrNull()?.orderServices?.price)
+
+            val priceString = item.services.firstOrNull()?.orderServices?.price
+            val intPrice = priceString?.toBigDecimalOrNull()?.toInt()
+            val formatterdPrice = intPrice?.currencyFormatWithoutRp()
+            harga.text = String.format("Rp%s", formatterdPrice)
+
 
 
 
@@ -64,5 +64,4 @@ class PesananAdapter :
     interface OnItemClickCallback {
         fun onItemClicked(data: OrderItem)
     }
-
 }
